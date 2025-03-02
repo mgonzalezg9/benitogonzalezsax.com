@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { YouTube } from "astro-embed";
 import SaxoBoda from "../assets/boda3.jpg";
 import SaxoGala from "../assets/Galas.jpg";
 import SaxoGredas from "../assets/Gredas.jpg";
@@ -74,13 +75,13 @@ const photos = [
 
     <div class="gallery-item overflow-hidden rounded-lg shadow-md">
       <div class="relative h-96">
-        <iframe width="600" height="400" src="https://www.youtube.com/embed/Gq-AV9kIV-4?si=upQGk5uhQk-iHFf4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <YouTube id="Gq-AV9kIV-4" class="absolute inset-0 w-full h-full" />
       </div>
     </div>
 
     <div class="gallery-item overflow-hidden rounded-lg shadow-md">
       <div class="relative h-96">
-        <iframe width="600" height="400" src="https://www.youtube.com/embed/HsD3AflaXnk?si=a9uhQcfhE97cC9SY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <YouTube id="HsD3AflaXnk" class="absolute inset-0 w-full h-full" />
       </div>
     </div>
     </div>
