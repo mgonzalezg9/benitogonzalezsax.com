@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets'
+import Supernena from '../assets/boda2.jpg'
+---
+
+<section id="sobre-mi" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <div class="md:w-1/2">
+        <Image
+          src={Supernena}
+          alt="Benito González García - Saxofonista" 
+          class="rounded-lg shadow-lg w-full h-auto"
+        />
+      </div>
+      
+      <div class="md:w-1/2">
+        <h2 class="text-3xl font-bold mb-6 text-primary">Sobre mí</h2>
+        <p class="text-lg mb-4 text-gray-700">
+          Soy Benito González García, saxofonista profesional con más de 15 años de experiencia en el mundo de la música. Mi pasión por el saxofón comenzó a temprana edad y desde entonces he dedicado mi vida a perfeccionar mi técnica y estilo.
+        </p>
+        <p class="text-lg mb-4 text-gray-700">
+          He tenido el privilegio de actuar en numerosos eventos, desde bodas íntimas hasta grandes celebraciones corporativas, aportando un toque de elegancia y emoción a cada ocasión.
+        </p>
+        <p class="text-lg mb-6 text-gray-700">
+          Mi repertorio abarca diversos géneros musicales, desde jazz y blues hasta pop contemporáneo, adaptándome siempre a las preferencias de mis clientes para crear la atmósfera perfecta para cada evento.
+        </p>
+        
+        <div class="flex flex-wrap gap-4">
+          <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
+            <div class="text-accent text-3xl font-bold">+500</div>
+            <div class="text-gray-600">Eventos</div>
+          </div>
+          <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
+            <div class="text-accent text-3xl font-bold">15+</div>
+            <div class="text-gray-600">Años de experiencia</div>
+          </div>
+          <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
+            <div class="text-accent text-3xl font-bold">100%</div>
+            <div class="text-gray-600">Clientes satisfechos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+---
+const testimonials = [
+  {
+    name: "Pepita",
+    role: "Novia",
+    quote: "Benito hizo que nuestra boda fuera mágica. Su música durante la ceremonia emocionó a todos los invitados. ¡Totalmente recomendable!",
+    image: "https://randomuser.me/api/portraits/women/32.jpg"
+  },
+  {
+    name: "Carlos Rodríguez",
+    role: "Director de eventos",
+    quote: "Hemos contado con Benito para varios eventos corporativos y siempre cumple con creces. Profesional, puntual y con un talento extraordinario.",
+    image: "https://randomuser.me/api/portraits/men/45.jpg"
+  },
+  {
+    name: "Elena Gómez",
+    role: "Organizadora de eventos",
+    quote: "La actuación de Benito fue el punto culminante de nuestra gala benéfica. Su versatilidad musical impresionó a todos los asistentes.",
+    image: "https://randomuser.me/api/portraits/women/68.jpg"
+  }
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold mb-4 text-primary">Testimonios</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Lo que dicen mis clientes sobre mis servicios.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => (
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            {/* <img 
+              src={testimonial.image} 
+              alt={testimonial.name} 
+              class="w-16 h-16 rounded-full mr-4"
+            /> */}
+            <div>
+              <h3 class="font-semibold text-lg text-primary">{testimonial.name}</h3>
+              <p class="text-gray-500">{testimonial.role}</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">"{testimonial.quote}"</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

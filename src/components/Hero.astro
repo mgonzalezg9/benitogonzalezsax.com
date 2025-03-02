@@ -1,0 +1,38 @@
+---
+import Supernena from '../assets/enllamas.jpg'
+import { Image } from 'astro:assets';
+---
+
+<section id="inicio" class="relative h-screen flex items-center justify-center bg-gray-900 text-white overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <Image
+      src={Supernena}
+      alt="Benito González García - Saxofonista en boda" 
+      class="w-full h-full object-cover opacity-50"
+    />
+  </div>
+  
+  <div class="container mx-auto px-4 z-10 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">Benito González García</h1>
+    <p class="text-xl md:text-2xl mb-8">Saxofonista profesional para eventos</p>
+    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12">
+      Música en vivo que hará de tu evento una experiencia inolvidable
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="#contacto" class="bg-accent hover:bg-amber-600 text-white font-medium py-3 px-8 rounded-full transition-colors">
+        Contactar
+      </a>
+      <a href="#galeria" class="bg-transparent hover:bg-white/10 border border-white text-white font-medium py-3 px-8 rounded-full transition-colors">
+        Ver galería
+      </a>
+    </div>
+  </div>
+  
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <a href="#sobre-mi" class="text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </a>
+  </div>
+</section>

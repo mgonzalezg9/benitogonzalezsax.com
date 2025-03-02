@@ -1,0 +1,58 @@
+---
+---
+
+<header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center py-4">
+      <a href="#" class="text-2xl font-bold text-primary">
+        Benito González
+        <span class="block text-sm font-normal text-accent">Saxofonista</span>
+      </a>
+      
+      <nav class="hidden md:block">
+        <ul class="flex space-x-8">
+          <li><a href="#inicio" class="text-primary hover:text-accent transition-colors">Inicio</a></li>
+          <li><a href="#sobre-mi" class="text-primary hover:text-accent transition-colors">Sobre mí</a></li>
+          <li><a href="#servicios" class="text-primary hover:text-accent transition-colors">Servicios</a></li>
+          <li><a href="#galeria" class="text-primary hover:text-accent transition-colors">Galería</a></li>
+          <li><a href="#contacto" class="text-primary hover:text-accent transition-colors">Contacto</a></li>
+        </ul>
+      </nav>
+      
+      <button id="mobile-menu-button" class="md:hidden text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <div id="mobile-menu" class="hidden md:hidden bg-white w-full">
+    <ul class="container mx-auto px-4 py-4 space-y-4">
+      <li><a href="#inicio" class="block text-primary hover:text-accent transition-colors">Inicio</a></li>
+      <li><a href="#sobre-mi" class="block text-primary hover:text-accent transition-colors">Sobre mí</a></li>
+      <li><a href="#servicios" class="block text-primary hover:text-accent transition-colors">Servicios</a></li>
+      <li><a href="#galeria" class="block text-primary hover:text-accent transition-colors">Galería</a></li>
+      <li><a href="#contacto" class="block text-primary hover:text-accent transition-colors">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu?.querySelectorAll('a');
+    mobileLinks?.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.add('hidden');
+      });
+    });
+  });
+</script>
