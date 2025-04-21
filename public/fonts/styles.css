@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Segment A';
+  src: url('/fonts/SegmentAKeyTrial-Black.otf') format('opentype');
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segment A';
+  src: url('/fonts/SegmentAKeyTrial-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segment A';
+  src: url('/fonts/SegmentAKeyTrial-Regular.otf') format('opentype');
+  font-weight: normal;
+}

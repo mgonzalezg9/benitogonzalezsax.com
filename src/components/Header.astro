@@ -1,22 +1,23 @@
 ---
+import Logo from './Logo.astro';
 ---
 
 <header class="fixed w-full bg-primary backdrop-blur-sm shadow-sm z-50">
   <div class="container mx-auto px-4">
-    <div class="flex justify-between items-center py-4">
-      <a href="#" class="text-2xl font-bold text-white">
-        Benito González
-        <span class="block text-sm font-normal text-accent">Saxofonista profesional</span>
+    <div class="flex justify-between items-center py-0">
+      
+      <a href="#" class="py-4 w-[100px]">
+        <Logo />
       </a>
       
       <nav class="hidden md:block">
         <ul class="flex space-x-8">
-          <li><a href="#inicio" class="text-white hover:text-accent transition-colors">Inicio</a></li>
-          <li><a href="#sobre-mi" class="text-white hover:text-accent transition-colors">Sobre mí</a></li>
-          <li><a href="#servicios" class="text-white hover:text-accent transition-colors">Servicios</a></li>
-          <li><a href="#galeria" class="text-white hover:text-accent transition-colors">Galería</a></li>
-          <li><a href="#testimonios" class="text-white hover:text-accent transition-colors">Testimonios</a></li>
-          <li><a href="#contacto" class="text-white hover:text-accent transition-colors">Contacto</a></li>
+          <li><a href="#inicio" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Inicio</a></li>
+          <li><a href="#sobre-mi" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Sobre mí</a></li>
+          <li><a href="#servicios" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Servicios</a></li>
+          <li><a href="#galeria" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Galería</a></li>
+          <li><a href="#testimonios" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Testimonios</a></li>
+          <li><a href="#contacto" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Contacto</a></li>
         </ul>
       </nav>
       
@@ -30,12 +31,12 @@
   
   <div id="mobile-menu" class="hidden md:hidden bg-primary w-full">
     <ul class="container mx-auto px-4 py-4 space-y-4">
-      <li><a href="#inicio" class="block text-white hover:text-accent transition-colors">Inicio</a></li>
-      <li><a href="#sobre-mi" class="block text-white hover:text-accent transition-colors">Sobre mí</a></li>
-      <li><a href="#servicios" class="block text-white hover:text-accent transition-colors">Servicios</a></li>
-      <li><a href="#galeria" class="block text-white hover:text-accent transition-colors">Galería</a></li>
-      <li><a href="#testimonios" class="block text-white hover:text-accent transition-colors">Testimonios</a></li>
-      <li><a href="#contacto" class="block text-white hover:text-accent transition-colors">Contacto</a></li>
+      <li><a href="#inicio" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Inicio</a></li>
+      <li><a href="#sobre-mi" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Sobre mí</a></li>
+      <li><a href="#servicios" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Servicios</a></li>
+      <li><a href="#galeria" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Galería</a></li>
+      <li><a href="#testimonios" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Testimonios</a></li>
+      <li><a href="#contacto" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Contacto</a></li>
     </ul>
   </div>
 </header>
