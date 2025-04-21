@@ -10,6 +10,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        segmentA: ['Segment A', 'sans-serif'],
       },
     },
   },
