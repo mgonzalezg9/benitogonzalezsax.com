@@ -1,6 +1,4 @@
 ---
-import Logo from '../components/Logo.astro';
-
 interface Props {
   title: string;
   description?: string;
@@ -25,19 +23,6 @@ const { title, description = "Benito González García - Saxofonista profesional
   </head>
   <body class="bg-gray-50 text-gray-800">
     <slot />
-    <footer class="bg-primary text-white py-8">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="mb-4 md:mb-0">
-            <p class="text-sm">&copy; {new Date().getFullYear()} Benito González García - Todos los derechos reservados</p>
-          </div>
-
-          <div class="w-[100px] py-4">
-            <Logo />
-          </div>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
 
