@@ -1,27 +1,37 @@
 ---
 import Logo from './Logo.astro';
+
+const navSections = [
+  { id: 'inicio', label: 'Inicio', ariaLabel: 'Ir a sección Inicio' },
+  { id: 'sobre-mi', label: 'Sobre mi', ariaLabel: 'Ir a sección Sobre mi' },
+  { id: 'servicios', label: 'Servicios', ariaLabel: 'Ir a sección Servicios' },
+  { id: 'galeria', label: 'Galeria', ariaLabel: 'Ir a sección Galeria' },
+  { id: 'testimonios', label: 'Testimonios', ariaLabel: 'Ir a sección Testimonios' },
+  { id: 'contacto', label: 'Contacto', ariaLabel: 'Ir a sección Contacto' },
+];
 ---
 
 <header class="fixed w-full bg-primary backdrop-blur-sm shadow-sm z-50">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-0">
       
-      <a href="#" class="py-4 w-[100px]">
+      <a href="#" class="py-4 w-[100px]" aria-label="Inicio">
         <Logo />
       </a>
       
       <nav class="hidden md:block">
         <ul class="flex space-x-8">
-          <li><a href="#inicio" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Inicio</a></li>
-          <li><a href="#sobre-mi" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Sobre mi</a></li>
-          <li><a href="#servicios" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Servicios</a></li>
-          <li><a href="#galeria" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Galeria</a></li>
-          <li><a href="#testimonios" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Testimonios</a></li>
-          <li><a href="#contacto" class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors">Contacto</a></li>
+          {navSections.map(section => (
+            <li>
+              <a href={`#${section.id}`} class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
+                {section.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
       
-      <button id="mobile-menu-button" class="md:hidden text-white">
+      <button id="mobile-menu-button" class="md:hidden text-white" aria-label="Toggle mobile menu">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -31,12 +41,13 @@ import Logo from './Logo.astro';
   
   <div id="mobile-menu" class="hidden md:hidden bg-primary w-full">
     <ul class="container mx-auto px-4 py-4 space-y-4">
-      <li><a href="#inicio" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Inicio</a></li>
-      <li><a href="#sobre-mi" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Sobre mi</a></li>
-      <li><a href="#servicios" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Servicios</a></li>
-      <li><a href="#galeria" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Galeria</a></li>
-      <li><a href="#testimonios" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Testimonios</a></li>
-      <li><a href="#contacto" class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors">Contacto</a></li>
+      {navSections.map(section => (
+        <li>
+          <a href={`#${section.id}`} class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
+            {section.label}
+          </a>
+        </li>
+      ))}
     </ul>
   </div>
 </header>
