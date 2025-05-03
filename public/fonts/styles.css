@@ -17,3 +17,23 @@
   src: url('/fonts/SegmentAKeyTrial-Regular.otf') format('opentype');
   font-weight: normal;
 }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Black.otf') format('opentype');
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Regular.otf') format('opentype');
+  font-weight: normal;
+}

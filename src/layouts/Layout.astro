@@ -5,6 +5,15 @@ interface Props {
 }
 
 const { title, description = "Benito González García - Saxofonista profesional para eventos, bodas y celebraciones" } = Astro.props;
+
+const preloadedFonts = [
+  "/fonts/SegmentAKeyTrial-Black.otf",
+  "/fonts/SegmentAKeyTrial-Bold.otf",
+  "/fonts/SegmentAKeyTrial-Regular.otf",
+  "/fonts/Inter-Black.otf",
+  "/fonts/Inter-Bold.otf",
+  "/fonts/Inter-Regular.otf"
+];
 ---
 
 <!doctype html>
@@ -17,13 +26,10 @@ const { title, description = "Benito González García - Saxofonista profesional
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/fonts/styles.css">
-    <link rel="preload" href="/fonts/SegmentAKeyTrial-Black.otf" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="/fonts/SegmentAKeyTrial-Bold.otf" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="/fonts/SegmentAKeyTrial-Regular.otf" as="font" type="font/otf" crossorigin="anonymous">
+    {preloadedFonts.map(font => (
+      <link rel="preload" href={font} as="font" type="font/otf" crossorigin="anonymous" />
+    ))}
   </head>
   <body class="bg-gray-50 text-gray-800">
     <slot />
