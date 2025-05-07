@@ -26,10 +26,21 @@ const preloadedFonts = [
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <title>{title}</title>
+    
     <link rel="stylesheet" href="/fonts/styles.css">
     {preloadedFonts.map(font => (
       <link rel="preload" href={font} as="font" type="font/otf" crossorigin="anonymous" />
     ))}
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV3H08XHBP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SV3H08XHBP');
+    </script>
   </head>
   <body class="bg-gray-50 text-gray-800">
     <slot />
