@@ -16,7 +16,7 @@ const navSections = [
     <div class="flex justify-between items-center py-0">
       
       <a href="#" class="py-4 w-[100px]" aria-label="Inicio">
-        <Logo />
+        <Logo id="test" />
       </a>
       
       <nav class="hidden md:block">
@@ -53,6 +53,8 @@ const navSections = [
 </header>
 
 <script>
+  import gsap from 'gsap';
+
   document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -67,6 +69,11 @@ const navSections = [
       link.addEventListener('click', () => {
         mobileMenu?.classList.add('hidden');
       });
+    });
+
+
+    gsap.to("#test", { 
+      x: 200,
     });
   });
 </script>
