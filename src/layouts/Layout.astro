@@ -25,6 +25,10 @@ const preloadedFonts = [
     <meta name="generator" content={Astro.generator} />
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content={title} />
     <title>{title}</title>
 
     <!-- Icons -->
@@ -32,7 +36,6 @@ const preloadedFonts = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
     
     <link rel="stylesheet" href="/fonts/styles.css">
     {preloadedFonts.map(font => (
