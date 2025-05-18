@@ -1,0 +1,39 @@
+---
+---
+
+<div id="smooth-wrapper">
+  <div id="smooth-content">
+    <slot />
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { ScrollSmoother } from "gsap/ScrollSmoother";
+
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+  ScrollSmoother.create({
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+    smooth: 1.5,
+    effects: true
+  });
+</script>
+
+<style>
+  #smooth-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #smooth-content {
+    width: 100%;
+    min-height: 100vh;
+  }
+</style>
