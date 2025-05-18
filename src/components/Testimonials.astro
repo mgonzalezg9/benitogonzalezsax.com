@@ -3,56 +3,128 @@ const testimonials = [
   {
     name: "Lola C.",
     role: "Cafetería MaiTai",
-    quote: "Fue un placer verlo tocar en directo. Sin duda una actuación increíble!!!",
-    image: "https://randomuser.me/api/portraits/women/32.jpg"
+    quote:
+      "Fue un placer verlo tocar en directo. Sin duda una actuación increíble!!!",
+    image: "https://randomuser.me/api/portraits/women/32.jpg",
   },
   {
     name: "Sergio P.",
     role: "Evento",
-    quote: "Un espectáculo muy dinámico, mucha interacción con el público y mucha pasión, es capaz de llenar un bar y tiene un equipo bastante bueno.",
-    image: "https://randomuser.me/api/portraits/men/45.jpg"
+    quote:
+      "Un espectáculo muy dinámico, mucha interacción con el público y mucha pasión, es capaz de llenar un bar y tiene un equipo bastante bueno.",
+    image: "https://randomuser.me/api/portraits/men/45.jpg",
   },
   {
     name: "Ivan",
     role: "Coctel de Boda",
-    quote: "Genial recomendable 100%. persona muy cercana y un auténtico profesional. Benito fue un gran profesional hizo de nuestro día un espectáculo.",
-    image: "https://randomuser.me/api/portraits/women/68.jpg"
+    quote:
+      "Genial recomendable 100%. persona muy cercana y un auténtico profesional. Benito fue un gran profesional hizo de nuestro día un espectáculo.",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
   },
   {
     name: "Sergio C.",
     role: "Coctel de Boda",
-    quote: "Músico muy cualificado que hace que pases la mejor de las noches, entretenimiento y disfrute al máximo, lo recomiendo al 100%.",
-    image: "https://randomuser.me/api/portraits/women/68.jpg"
-  }
+    quote:
+      "Músico muy cualificado que hace que pases la mejor de las noches, entretenimiento y disfrute al máximo, lo recomiendo al 100%.",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
 ];
 ---
 
 <section id="testimonios" class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-4 text-primary">Testimonios</h2>
+      <h2
+        class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-4 text-primary"
+      >
+        Testimonios
+      </h2>
       <p class="text-lg text-gray-600 max-w-3xl mx-auto">
         Lo que dicen mis clientes sobre mis servicios.
       </p>
     </div>
-    
+
     <div class="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 gap-y-4">
-      {testimonials.map((testimonial) => (
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <div class="flex items-center mb-4">
-            {/* <img 
+      {
+        testimonials.map((testimonial) => (
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              {/* <img 
               src={testimonial.image} 
               alt={testimonial.name} 
               class="w-16 h-16 rounded-full mr-4"
             /> */}
-            <div>
-              <h3 class="font-semibold text-lg text-primary uppercase">{testimonial.name}</h3>
-              <p class="text-gray-500">{testimonial.role}</p>
+              <div>
+                <h3 class="font-semibold text-lg text-primary uppercase">
+                  {testimonial.name}
+                </h3>
+                <p class="text-gray-500">{testimonial.role}</p>
+              </div>
             </div>
+            <p class="text-gray-600 italic">"{testimonial.quote}"</p>
           </div>
-          <p class="text-gray-600 italic">"{testimonial.quote}"</p>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#testimonios");
+
+    if (!section) {
+      console.error(`Section not found`);
+      return;
+    }
+
+    const title = section.querySelector("h2");
+    const description = section.querySelector(".text-lg");
+    const cards = section.querySelectorAll(".bg-white");
+
+    const splitTitle = new SplitText(title, { type: "lines" });
+    const splitDesc = new SplitText(description, { type: "lines" });
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+      },
+      defaults: { ease: "none" },
+    });
+
+    timeline
+      .from(splitTitle.lines, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.02,
+      })
+      .from(
+        splitDesc.lines,
+        {
+          opacity: 0,
+          y: 20,
+        },
+        "<+=0.2"
+      )
+      .from(
+        cards,
+        {
+          opacity: 0,
+          y: 100,
+          stagger: 0.2,
+          duration: 0.5,
+          ease: "power4.out",
+        },
+        "<+=0.1"
+      );
+  });
+</script>

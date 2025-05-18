@@ -72,33 +72,45 @@ import { Image } from "astro:assets";
 
 <script>
   import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
   import { SplitText } from "gsap/SplitText";
   
-  gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
   document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#inicio");
     const title = document.querySelector("#inicio h1");
     const descriptions = document.querySelectorAll("#inicio p");
     const buttons = document.querySelectorAll("#inicio a");
     
     const splitTitle = new SplitText(title, { type: "lines" });
     
-    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1
+      },
+      defaults: { ease: "none" }
+    });
     
     tl.from(splitTitle.lines, {
       opacity: 0,
-      y: 50,
-      duration: 2,
+      y: 100,
+      stagger: 0.1
     })
     .from(descriptions, {
       opacity: 0,
-      duration: 2,
-      stagger: 1.5
-    })
+      y: 50,
+      stagger: 0.1
+    }, "<+=0.1")
     .from(buttons, {
       opacity: 0,
-      duration: 1,
-      zoom: 1,
-    });
+      y: 30,
+      stagger: 0.1
+    }, "<+=0.1");
   });
 </script>

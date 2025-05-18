@@ -44,3 +44,58 @@ import AboutImage from '../assets/about-image.jpg'
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+  
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#sobre-mi");
+
+    if (!section) {
+      console.error(`Section not found`);
+      return;
+    }
+
+    const image = section.querySelector("img");
+    const title = section.querySelector("h2");
+    const paragraphs = section.querySelectorAll("p");
+    const stats = section.querySelectorAll(".bg-gray-100");
+    
+    const splitTitle = new SplitText(title, { type: "lines" });
+    const splitParagraphs = new SplitText(paragraphs, { type: "lines" });
+    
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top center",
+        end: "center center",
+        scrub: 1
+      },
+      defaults: { ease: "none" }
+    });
+    
+    timeline.from(image, {
+      x: -100,
+      opacity: 0
+    })
+    .from(splitTitle.words, {
+      y: 50,
+      opacity: 0,
+      stagger: 0.05
+    })
+    .from(splitParagraphs.lines, {
+      y: 30,
+      opacity: 0,
+      stagger: 0.02
+    })
+    .from(stats, {
+      y: 20,
+      opacity: 0,
+      stagger: 0.1
+    });
+  });
+</script>

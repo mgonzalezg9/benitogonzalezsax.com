@@ -15,95 +15,179 @@ const photos = [
   {
     src: WeddingImage,
     alt: "Benito González - Saxofonista en boda",
-    type: "image"
+    type: "image",
   },
   {
     src: SportsMeetImage,
     alt: "Benito González - Actuación en boda",
-    type: "image"
+    type: "image",
   },
   {
     src: BolnuevoImage,
     alt: "Benito González - Saxofonista en galas",
-    type: "image"
+    type: "image",
   },
   {
     src: BlamesImage,
     alt: "Benito González - Saxofonista en Gredas",
-    type: "image"
+    type: "image",
   },
   {
     src: WeddingVideoOne,
     alt: "Actuación en directo",
-    type: "video"
+    type: "video",
   },
   {
     src: WedddingVideoTwo,
     alt: "Solo de saxofón",
-    type: "video"
-  }
+    type: "video",
+  },
 ];
 ---
 
 <section id="galeria" class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-4 text-primary">Galeria</h2>
+      <h2
+        class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-4 text-primary"
+      >
+        Galeria
+      </h2>
       <p class="text-lg text-black max-w-3xl mx-auto">
-        Descubre algunos momentos de mis actuaciones en diferentes eventos y celebraciones.
+        Descubre algunos momentos de mis actuaciones en diferentes eventos y
+        celebraciones.
       </p>
     </div>
-    
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {photos.map((item) => (
-        <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-          {item.type === "image" ? (
-            <Image 
-              src={item.src} 
-              alt={item.alt} 
-              class="object-cover w-full h-full transition-transform hover:scale-105"
-            />
-          ) : (
-            <div class="relative h-96">
-              <video 
-                src={item.src} 
-                class="absolute inset-0 w-full h-full object-cover" 
-                controls
-                title={item.alt}
+      {
+        photos.map((item) => (
+          <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+            {item.type === "image" ? (
+              <Image
+                src={item.src}
+                alt={item.alt}
+                class="object-cover w-full h-full transition-transform hover:scale-105"
               />
-            </div>
-          )}
+            ) : (
+              <div class="relative h-96">
+                <video
+                  src={item.src}
+                  class="absolute inset-0 w-full h-full object-cover"
+                  controls
+                  title={item.alt}
+                />
+              </div>
+            )}
+          </div>
+        ))
+      }
+
+      <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+        <div class="relative h-96">
+          <YouTube id="Gq-AV9kIV-4" class="absolute inset-0 w-full h-full" />
         </div>
-      ))}
+      </div>
 
-    <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-      <div class="relative h-96">
-        <YouTube id="Gq-AV9kIV-4" class="absolute inset-0 w-full h-full" />
+      <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+        <div class="relative h-96">
+          <YouTube id="HsD3AflaXnk" class="absolute inset-0 w-full h-full" />
+        </div>
       </div>
     </div>
 
-    <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-      <div class="relative h-96">
-        <YouTube id="HsD3AflaXnk" class="absolute inset-0 w-full h-full" />
-      </div>
-    </div>
-    </div>
-    
     <div class="mt-12 text-center">
       <p class="text-lg text-black mb-6">
         ¿Quieres ver más de mi trabajo? Visita mis redes sociales.
       </p>
       <div class="flex justify-center space-x-6">
-        <a href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/" aria-label="Facebook de Benito González" class="text-primary hover:text-accent transition-colors">
+        <a
+          href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/"
+          aria-label="Facebook de Benito González"
+          class="text-primary hover:text-accent transition-colors"
+        >
           <FacebookIcon />
         </a>
-        <a href="https://www.instagram.com/benitogonzalezsax/" aria-label="Instagram de Benito González" class="text-primary hover:text-accent transition-colors">
-         <InstagramIcon />
+        <a
+          href="https://www.instagram.com/benitogonzalezsax/"
+          aria-label="Instagram de Benito González"
+          class="text-primary hover:text-accent transition-colors"
+        >
+          <InstagramIcon />
         </a>
-        <a href="https://www.youtube.com/@benitogonzalezsax/featured" aria-label="YouTube de Benito González" class="text-primary hover:text-accent transition-colors">
+        <a
+          href="https://www.youtube.com/@benitogonzalezsax/featured"
+          aria-label="YouTube de Benito González"
+          class="text-primary hover:text-accent transition-colors"
+        >
           <YouTubeIcon />
         </a>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#galeria");
+
+    if (!section) {
+      console.error(`Section not found`);
+      return;
+    }
+
+    const title = section.querySelector("h2");
+    const description = section.querySelector("p");
+    const galleryItems = section.querySelectorAll(".gallery-item");
+    const socialText = section.querySelector(".mt-12 p");
+    const socialLinks = section.querySelectorAll(".flex.justify-center a");
+
+    const splitTitle = new SplitText(title, { type: "lines" });
+    const splitDesc = new SplitText(description, { type: "lines" });
+    const splitSocialText = new SplitText(socialText, { type: "lines" });
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+      },
+      defaults: { ease: "none" },
+    });
+
+    timeline
+      .from(splitTitle.lines, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.02,
+      })
+      .from(splitDesc.lines, {
+        opacity: 0,
+        y: 20,
+        stagger: 0.1,
+      }, "<+=0.2")
+      .from(galleryItems, {
+        opacity: 0,
+        y: 100,
+        stagger: 0.2,
+        duration: 0.5,
+        ease: "power2.out"
+      }, "<+=0.1")
+      .from(splitSocialText.lines, {
+        opacity: 0,
+        y: 20,
+      }, ">-=0.3")
+      .from(socialLinks, {
+        opacity: 0,
+        scale: 0.75,
+        stagger: 0.1,
+      }, "<+=0.1");
+  });
+</script>

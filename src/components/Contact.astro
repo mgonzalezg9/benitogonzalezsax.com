@@ -101,3 +101,84 @@ import YouTubeIcon from "../assets/icons/youtube.svg";
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#contacto");
+
+    if (!section) {
+      console.error(`Section not found`);
+      return;
+    }
+
+    const title = section.querySelector("h2");
+    const description = section.querySelector(".text-lg");
+    const subtitle = section.querySelector("h3");
+    const contactInfo = section.querySelectorAll(".flex.items-start");
+    const socialSection = section.querySelector(".mt-8");
+
+    const splitTitle = new SplitText(title, { type: "lines" });
+    const splitDesc = new SplitText(description, { type: "lines" });
+    const splitSubtitle = new SplitText(subtitle, { type: "lines" });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top center",
+        end: "top center",
+        scrub: 1,
+      },
+      defaults: { ease: "none" },
+    });
+
+    tl.from(splitTitle.lines, {
+      opacity: 0,
+      y: 50,
+      stagger: 0.02,
+    })
+      .from(
+        splitDesc.lines,
+        {
+          opacity: 0,
+          y: 20,
+          stagger: 0.1,
+        },
+        "<+=0.2"
+      )
+      .from(
+        splitSubtitle.lines,
+        {
+          opacity: 0,
+          y: 20,
+          stagger: 0.02,
+        },
+        "<+=0.1"
+      )
+      .from(
+        contactInfo,
+        {
+          opacity: 0,
+          x: -50,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "power4.out",
+        },
+        "<+=0.2"
+      )
+      .from(
+        socialSection,
+        {
+          opacity: 0,
+          y: 30,
+          duration: 0.5,
+        },
+        "<+=0.2"
+      );
+  });
+</script>

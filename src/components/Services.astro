@@ -77,3 +77,59 @@ const services = [
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector("#servicios");
+
+    if (!section) {
+      console.error(`Section not found`);
+      return;
+    }
+
+    const title = section.querySelector("h2");
+    const description = section.querySelector(".text-lg");
+    const cards = section.querySelectorAll(".bg-white");
+    const cta = section.querySelector(".mt-16 a");
+
+    const splitTitle = new SplitText(title, { type: "lines" });
+    const splitDesc = new SplitText(description, { type: "lines" });
+
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top center",
+        end: "center center",
+        scrub: 1,
+      },
+      defaults: { ease: "none" },
+    });
+
+    timeline
+      .from(splitTitle.lines, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.02,
+      })
+      .from(splitDesc.lines, {
+        opacity: 0,
+        y: 20,
+        stagger: 0.1,
+      })
+      .from(cards, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.05,
+      })
+      .from(cta, {
+        opacity: 0,
+        y: 20,
+      });
+  });
+</script>
