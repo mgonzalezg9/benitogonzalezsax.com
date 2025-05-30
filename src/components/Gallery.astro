@@ -5,102 +5,119 @@ import WeddingImage from "../assets/gallery/sax-wedding.jpg";
 import SportsMeetImage from "../assets/gallery/sports-meet.jpg";
 import BolnuevoImage from "../assets/gallery/bolnuevo.jpg";
 import BlamesImage from "../assets/gallery/blames.jpg";
-import WeddingVideoOne from "../assets/gallery/wedding-video-1.mp4";
-import WedddingVideoTwo from "../assets/gallery/wedding-video-2.mp4";
 import FacebookIcon from "../assets/icons/facebook.svg";
 import InstagramIcon from "../assets/icons/instagram.svg";
 import YouTubeIcon from "../assets/icons/youtube.svg";
 
-const photos = [
+type GalleryItem = {
+  src: ImageMetadata | string;
+  alt: string;
+  type: "image" | "youtube";
+};
+
+const galleryItems: GalleryItem[] = [
   {
     src: WeddingImage,
     alt: "Benito González - Saxofonista en boda",
-    type: "image"
+    type: "image",
   },
   {
     src: SportsMeetImage,
     alt: "Benito González - Actuación en boda",
-    type: "image"
+    type: "image",
   },
   {
     src: BolnuevoImage,
     alt: "Benito González - Saxofonista en galas",
-    type: "image"
+    type: "image",
   },
   {
     src: BlamesImage,
     alt: "Benito González - Saxofonista en Gredas",
-    type: "image"
+    type: "image",
   },
   {
-    src: WeddingVideoOne,
-    alt: "Actuación en directo",
-    type: "video"
+    src: "Ent8OtW2DKU",
+    alt: "Benito González - Flying free en boda",
+    type: "youtube",
   },
   {
-    src: WedddingVideoTwo,
-    alt: "Solo de saxofón",
-    type: "video"
-  }
+    src: "hILiOtCMEBA",
+    alt: "Benito González - Destination Calabria en boda",
+    type: "youtube",
+  },
+  {
+    src: "Gq-AV9kIV-4",
+    alt: "Benito González - Titanium David Guetta",
+    type: "youtube",
+  },
+  {
+    src: "HsD3AflaXnk",
+    alt: "Benito González - Versiones y House",
+    type: "youtube",
+  },
 ];
 ---
 
 <section id="galeria" class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-4 text-primary">Galeria</h2>
+      <h2
+        class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-4 text-primary"
+      >
+        Galeria
+      </h2>
       <p class="text-lg text-black max-w-3xl mx-auto">
-        Descubre algunos momentos de mis actuaciones en diferentes eventos y celebraciones.
+        Descubre algunos momentos de mis actuaciones en diferentes eventos y
+        celebraciones.
       </p>
     </div>
-    
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {photos.map((item) => (
-        <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-          {item.type === "image" ? (
-            <Image 
-              src={item.src} 
-              alt={item.alt} 
-              class="object-cover w-full h-full transition-transform hover:scale-105"
-            />
-          ) : (
-            <div class="relative h-96">
-              <video 
-                src={item.src} 
-                class="absolute inset-0 w-full h-full object-cover" 
-                controls
-                title={item.alt}
+      {
+        galleryItems.map((item) => (
+          <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+            {item.type === "image" && (
+              <Image
+                src={item.src as ImageMetadata}
+                alt={item.alt}
+                class="object-cover w-full h-full transition-transform hover:scale-105"
               />
-            </div>
-          )}
-        </div>
-      ))}
-
-    <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-      <div class="relative h-96">
-        <YouTube id="Gq-AV9kIV-4" class="absolute inset-0 w-full h-full" />
-      </div>
+            )}
+            {item.type === "youtube" && (
+              <div class="relative h-96">
+                <YouTube id={item.src as string} class="absolute inset-0 w-full h-full" />
+              </div>
+            )}
+          </div>
+        ))
+      }
     </div>
 
-    <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-      <div class="relative h-96">
-        <YouTube id="HsD3AflaXnk" class="absolute inset-0 w-full h-full" />
-      </div>
-    </div>
-    </div>
-    
     <div class="mt-12 text-center">
       <p class="text-lg text-black mb-6">
         ¿Quieres ver más de mi trabajo? Visita mis redes sociales.
       </p>
       <div class="flex justify-center space-x-6">
-        <a href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/" aria-label="Facebook de Benito González" class="text-primary hover:text-accent transition-colors">
+        <a
+          href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/"
+          aria-label="Facebook de Benito González"
+          class="text-primary hover:text-accent transition-colors"
+        >
           <FacebookIcon />
         </a>
-        <a href="https://www.instagram.com/benitogonzalezsax/" aria-label="Instagram de Benito González" class="text-primary hover:text-accent transition-colors">
-         <InstagramIcon />
+        <a
+          href="https://www.instagram.com/benitogonzalezsax/"
+          aria-label="Instagram de Benito González"
+          class="text-primary hover:text-accent transition-colors"
+        >
+          <InstagramIcon />
         </a>
-        <a href="https://www.youtube.com/@benitogonzalezsax/featured" aria-label="YouTube de Benito González" class="text-primary hover:text-accent transition-colors">
+        <a
+          href="https://www.youtube.com/@benitogonzalezsax/featured"
+          aria-label="YouTube de Benito González"
+          class="text-primary hover:text-accent transition-colors"
+        >
           <YouTubeIcon />
         </a>
       </div>
