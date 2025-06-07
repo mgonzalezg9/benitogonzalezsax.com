@@ -5,13 +5,17 @@ import WeddingImage from "../assets/gallery/sax-wedding.jpg";
 import SportsMeetImage from "../assets/gallery/sports-meet.jpg";
 import BolnuevoImage from "../assets/gallery/bolnuevo.jpg";
 import BlamesImage from "../assets/gallery/blames.jpg";
-import WeddingVideoOne from "../assets/gallery/wedding-video-1.mp4";
-import WedddingVideoTwo from "../assets/gallery/wedding-video-2.mp4";
 import FacebookIcon from "../assets/icons/facebook.svg";
 import InstagramIcon from "../assets/icons/instagram.svg";
 import YouTubeIcon from "../assets/icons/youtube.svg";
 
-const photos = [
+type GalleryItem = {
+  src: ImageMetadata | string;
+  alt: string;
+  type: "image" | "youtube";
+};
+
+const galleryItems: GalleryItem[] = [
   {
     src: WeddingImage,
     alt: "Benito González - Saxofonista en boda",
@@ -33,14 +37,24 @@ const photos = [
     type: "image",
   },
   {
-    src: WeddingVideoOne,
-    alt: "Actuación en directo",
-    type: "video",
+    src: "Ent8OtW2DKU",
+    alt: "Benito González - Flying free en boda",
+    type: "youtube",
   },
   {
-    src: WedddingVideoTwo,
-    alt: "Solo de saxofón",
-    type: "video",
+    src: "hILiOtCMEBA",
+    alt: "Benito González - Destination Calabria en boda",
+    type: "youtube",
+  },
+  {
+    src: "Gq-AV9kIV-4",
+    alt: "Benito González - Titanium David Guetta",
+    type: "youtube",
+  },
+  {
+    src: "HsD3AflaXnk",
+    alt: "Benito González - Versiones y House",
+    type: "youtube",
   },
 ];
 ---
@@ -49,7 +63,7 @@ const photos = [
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2
-        class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-4 text-primary"
+        class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary"
       >
         Galeria
       </h2>
@@ -61,39 +75,23 @@ const photos = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
-        photos.map((item) => (
+        galleryItems.map((item) => (
           <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-            {item.type === "image" ? (
+            {item.type === "image" && (
               <Image
-                src={item.src}
+                src={item.src as ImageMetadata}
                 alt={item.alt}
                 class="object-cover w-full h-full transition-transform hover:scale-105"
               />
-            ) : (
+            )}
+            {item.type === "youtube" && (
               <div class="relative h-96">
-                <video
-                  src={item.src}
-                  class="absolute inset-0 w-full h-full object-cover"
-                  controls
-                  title={item.alt}
-                />
+                <YouTube id={item.src as string} class="absolute inset-0 w-full h-full" />
               </div>
             )}
           </div>
         ))
       }
-
-      <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-        <div class="relative h-96">
-          <YouTube id="Gq-AV9kIV-4" class="absolute inset-0 w-full h-full" />
-        </div>
-      </div>
-
-      <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-        <div class="relative h-96">
-          <YouTube id="HsD3AflaXnk" class="absolute inset-0 w-full h-full" />
-        </div>
-      </div>
     </div>
 
     <div class="mt-12 text-center">
