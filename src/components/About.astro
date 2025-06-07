@@ -3,7 +3,7 @@ import { Image } from 'astro:assets'
 import AboutImage from '../assets/about-image.jpg'
 ---
 
-<section id="sobre-mi" class="py-20 bg-white">
+<section id="sobre-mi" class="py-12 md:py-16 lg:py-20 bg-white min-h-screen flex items-center">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row items-center gap-12">
       <div class="md:w-1/2">
@@ -71,9 +71,11 @@ import AboutImage from '../assets/about-image.jpg'
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top center",
-        end: "center center",
-        scrub: 1
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1
       },
       defaults: { ease: "none" }
     });
@@ -82,20 +84,20 @@ import AboutImage from '../assets/about-image.jpg'
       x: -100,
       opacity: 0
     })
-    .from(splitTitle.words, {
+    .from(splitTitle.lines, {
       y: 50,
       opacity: 0,
       stagger: 0.05
-    })
+    }, "<+=0.1")
     .from(splitParagraphs.lines, {
       y: 30,
       opacity: 0,
       stagger: 0.02
-    })
+    }, "<+=0.1")
     .from(stats, {
       y: 20,
       opacity: 0,
       stagger: 0.1
-    });
+    }, "<+=0.1");
   });
 </script>

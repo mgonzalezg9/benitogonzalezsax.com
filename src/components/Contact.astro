@@ -8,7 +8,7 @@ import InstagramIcon from "../assets/icons/instagram.svg";
 import YouTubeIcon from "../assets/icons/youtube.svg";
 ---
 
-<section id="contacto" class="py-20 bg-white">
+<section id="contacto" class="py-12 md:py-16 lg:py-20 bg-white min-h-screen flex items-center">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2
@@ -130,11 +130,13 @@ import YouTubeIcon from "../assets/icons/youtube.svg";
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top center",
-        end: "top center",
+        start: "top top",
+        end: "bottom top",
         scrub: 1,
+        pin: true,
+        anticipatePin: 1
       },
-      defaults: { ease: "none" },
+      defaults: { ease: "none" }
     });
 
     tl.from(splitTitle.lines, {
@@ -142,43 +144,27 @@ import YouTubeIcon from "../assets/icons/youtube.svg";
       y: 50,
       stagger: 0.02,
     })
-      .from(
-        splitDesc.lines,
-        {
-          opacity: 0,
-          y: 20,
-          stagger: 0.1,
-        },
-        "<+=0.2"
-      )
-      .from(
-        splitSubtitle.lines,
-        {
-          opacity: 0,
-          y: 20,
-          stagger: 0.02,
-        },
-        "<+=0.1"
-      )
-      .from(
-        contactInfo,
-        {
-          opacity: 0,
-          x: -50,
-          stagger: 0.1,
-          duration: 0.5,
-          ease: "power4.out",
-        },
-        "<+=0.2"
-      )
-      .from(
-        socialSection,
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.5,
-        },
-        "<+=0.2"
-      );
+    .from(splitDesc.lines, {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+    }, "<+=0.1")
+    .from(splitSubtitle.lines, {
+      opacity: 0,
+      y: 20,
+      stagger: 0.02,
+    }, "<+=0.1")
+    .from(contactInfo, {
+      opacity: 0,
+      x: -50,
+      stagger: 0.1,
+      duration: 0.5,
+      ease: "power4.out",
+    }, "<+=0.1")
+    .from(socialSection, {
+      opacity: 0,
+      y: 30,
+      duration: 0.5,
+    }, "<+=0.1");
   });
 </script>

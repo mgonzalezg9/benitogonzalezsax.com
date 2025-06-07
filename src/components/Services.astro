@@ -32,7 +32,7 @@ const services = [
 ];
 ---
 
-<section id="servicios" class="py-20 bg-gray-50">
+<section id="servicios" class="py-12 md:py-16 lg:py-20 bg-gray-50 min-h-screen flex items-center">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2
@@ -104,11 +104,13 @@ const services = [
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top center",
-        end: "center center",
+        start: "top top",
+        end: "bottom top",
         scrub: 1,
+        pin: true,
+        anticipatePin: 1
       },
-      defaults: { ease: "none" },
+      defaults: { ease: "none" }
     });
 
     timeline
@@ -121,15 +123,15 @@ const services = [
         opacity: 0,
         y: 20,
         stagger: 0.1,
-      })
+      }, "<+=0.1")
       .from(cards, {
         opacity: 0,
         y: 50,
         stagger: 0.05,
-      })
+      }, "<+=0.1")
       .from(cta, {
         opacity: 0,
         y: 20,
-      });
+      }, "<+=0.1");
   });
 </script>
