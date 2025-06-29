@@ -76,7 +76,7 @@ const galleryItems: GalleryItem[] = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
         galleryItems.map((item) => (
-          <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+          <div class="gallery-item fade-in overflow-hidden rounded-lg shadow-md">
             {item.type === "image" && (
               <Image
                 src={item.src as ImageMetadata}
@@ -124,3 +124,36 @@ const galleryItems: GalleryItem[] = [
     </div>
   </div>
 </section>
+
+<style>
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+</style>
+<script is:inline>
+  if (typeof window !== 'undefined') {
+    const section = document.getElementById('galeria');
+    const items = section ? section.querySelectorAll('.gallery-item.fade-in') : [];
+    let animated = false;
+    const observer = new window.IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          items.forEach((item, i) => {
+            setTimeout(() => {
+              item.classList.add('visible');
+            }, i * 200);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    if (section) observer.observe(section);
+  }
+</script>
