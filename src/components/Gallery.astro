@@ -8,6 +8,7 @@ import BlamesImage from "../assets/gallery/blames.jpg";
 import FacebookIcon from "../assets/icons/facebook.svg";
 import InstagramIcon from "../assets/icons/instagram.svg";
 import YouTubeIcon from "../assets/icons/youtube.svg";
+import FadeIn from './animations/FadeIn.astro';
 
 type GalleryItem = {
   src: ImageMetadata | string;
@@ -75,21 +76,23 @@ const galleryItems: GalleryItem[] = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
-        galleryItems.map((item) => (
-          <div class="gallery-item fade-in overflow-hidden rounded-lg shadow-md">
-            {item.type === "image" && (
-              <Image
-                src={item.src as ImageMetadata}
-                alt={item.alt}
-                class="object-cover w-full h-full transition-transform hover:scale-105"
-              />
-            )}
-            {item.type === "youtube" && (
-              <div class="relative h-96">
-                <YouTube id={item.src as string} class="absolute inset-0 w-full h-full" />
-              </div>
-            )}
-          </div>
+        galleryItems.map((item, idx) => (
+          <FadeIn delay={idx * 0.2} duration={0.6}>
+            <div class="overflow-hidden rounded-lg shadow-md w-full h-full">
+              {item.type === "image" && (
+                <Image
+                  src={item.src as ImageMetadata}
+                  alt={item.alt}
+                  class="object-cover w-full h-full transition-transform hover:scale-105"
+                />
+              )}
+              {item.type === "youtube" && (
+                <div class="relative h-96">
+                  <YouTube id={item.src as string} class="absolute inset-0 w-full h-full" />
+                </div>
+              )}
+            </div>
+          </FadeIn>
         ))
       }
     </div>
@@ -124,36 +127,3 @@ const galleryItems: GalleryItem[] = [
     </div>
   </div>
 </section>
-
-<style>
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: none;
-}
-</style>
-<script is:inline>
-  if (typeof window !== 'undefined') {
-    const section = document.getElementById('galeria');
-    const items = section ? section.querySelectorAll('.gallery-item.fade-in') : [];
-    let animated = false;
-    const observer = new window.IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          animated = true;
-          items.forEach((item, i) => {
-            setTimeout(() => {
-              item.classList.add('visible');
-            }, i * 200);
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    if (section) observer.observe(section);
-  }
-</script>

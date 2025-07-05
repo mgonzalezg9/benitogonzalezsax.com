@@ -3,6 +3,7 @@ import RingIcon from "../assets/icons/ring.svg";
 import BriefcaseIcon from "../assets/icons/briefcase.svg";
 import PartyIcon from "../assets/icons/party.svg";
 import HotelIcon from "../assets/icons/hotel.svg";
+import FadeIn from './animations/FadeIn.astro';
 
 const services = [
   {
@@ -48,19 +49,21 @@ const services = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {
         services.map((service, idx) => (
-          <div class={"service-card bg-white rounded-lg shadow-md p-6 transition-transform hover:-translate-y-2 fade-in"}>
-            <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-              {service.icon === "ring" && <RingIcon />}
-              {service.icon === "briefcase" && <BriefcaseIcon />}
-              {service.icon === "party" && <PartyIcon />}
-              {service.icon === "hotel" && <HotelIcon />}
-            </div>
+          <FadeIn delay={idx * 0.2} duration={0.6}>
+            <div class="service-card bg-white rounded-lg shadow-md p-6 transition-transform hover:-translate-y-2">
+              <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                {service.icon === "ring" && <RingIcon />}
+                {service.icon === "briefcase" && <BriefcaseIcon />}
+                {service.icon === "party" && <PartyIcon />}
+                {service.icon === "hotel" && <HotelIcon />}
+              </div>
 
-            <h3 class="text-xl uppercase font-semibold mb-3 text-center text-black">
-              {service.title}
-            </h3>
-            <p class="text-gray-600 text-center">{service.description}</p>
-          </div>
+              <h3 class="text-xl uppercase font-semibold mb-3 text-center text-black">
+                {service.title}
+              </h3>
+              <p class="text-gray-600 text-center">{service.description}</p>
+            </div>
+          </FadeIn>
         ))
       }
     </div>
@@ -76,36 +79,3 @@ const services = [
     </div>
   </div>
 </section>
-
-<style>
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: none;
-}
-</style>
-<script is:inline>
-  if (typeof window !== 'undefined') {
-    const section = document.getElementById('servicios');
-    const cards = section ? section.querySelectorAll('.service-card') : [];
-    let animated = false;
-    const observer = new window.IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          animated = true;
-          cards.forEach((card, i) => {
-            setTimeout(() => {
-              card.classList.add('visible');
-            }, i * 200);
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    if (section) observer.observe(section);
-  }
-</script>
