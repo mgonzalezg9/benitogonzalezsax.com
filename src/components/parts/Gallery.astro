@@ -1,13 +1,14 @@
 ---
 import { Image } from "astro:assets";
 import { YouTube } from "astro-embed";
-import WeddingImage from "../assets/gallery/sax-wedding.jpg";
-import SportsMeetImage from "../assets/gallery/sports-meet.jpg";
-import BolnuevoImage from "../assets/gallery/bolnuevo.jpg";
-import BlamesImage from "../assets/gallery/blames.jpg";
-import FacebookIcon from "../assets/icons/facebook.svg";
-import InstagramIcon from "../assets/icons/instagram.svg";
-import YouTubeIcon from "../assets/icons/youtube.svg";
+import WeddingImage from "../../assets/gallery/sax-wedding.jpg";
+import SportsMeetImage from "../../assets/gallery/sports-meet.jpg";
+import BolnuevoImage from "../../assets/gallery/bolnuevo.jpg";
+import BlamesImage from "../../assets/gallery/blames.jpg";
+import FacebookIcon from "../../assets/icons/facebook.svg";
+import InstagramIcon from "../../assets/icons/instagram.svg";
+import YouTubeIcon from "../../assets/icons/youtube.svg";
+import { FadeIn } from '../animations';
 
 type GalleryItem = {
   src: ImageMetadata | string;
@@ -75,21 +76,23 @@ const galleryItems: GalleryItem[] = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
-        galleryItems.map((item) => (
-          <div class="gallery-item overflow-hidden rounded-lg shadow-md">
-            {item.type === "image" && (
-              <Image
-                src={item.src as ImageMetadata}
-                alt={item.alt}
-                class="object-cover w-full h-full transition-transform hover:scale-105"
-              />
-            )}
-            {item.type === "youtube" && (
-              <div class="relative h-96">
-                <YouTube id={item.src as string} class="absolute inset-0 w-full h-full" />
-              </div>
-            )}
-          </div>
+        galleryItems.map((item, idx) => (
+          <FadeIn delay={idx * 0.1} duration={0.6}>
+            <div class="overflow-hidden rounded-lg shadow-md w-full h-full">
+              {item.type === "image" && (
+                <Image
+                  src={item.src as ImageMetadata}
+                  alt={item.alt}
+                  class="object-cover w-full h-full transition-transform hover:scale-105"
+                />
+              )}
+              {item.type === "youtube" && (
+                <div class="relative h-96">
+                  <YouTube id={item.src as string} class="absolute inset-0 w-full h-full" />
+                </div>
+              )}
+            </div>
+          </FadeIn>
         ))
       }
     </div>

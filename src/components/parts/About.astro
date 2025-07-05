@@ -1,17 +1,20 @@
 ---
 import { Image } from 'astro:assets'
-import AboutImage from '../assets/about-image.jpg'
+import AboutImage from '../../assets/about-image.jpg'
+import { FadeIn, Counter } from '../animations';
 ---
 
 <section id="sobre-mi" class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row items-center gap-12">
       <div class="md:w-1/2">
-        <Image
-          src={AboutImage}
-          alt="Benito González García - Saxofonista" 
-          class="rounded-lg shadow-lg w-full h-auto"
-        />
+        <FadeIn direction="horizontal" distance={-20} duration={1.2}>
+          <Image
+            src={AboutImage}
+            alt="Benito González García - Saxofonista" 
+            class="rounded-lg shadow-lg w-full h-auto"
+          />
+        </FadeIn>
       </div>
       
       <div class="md:w-1/2 text-justify">
@@ -28,16 +31,22 @@ import AboutImage from '../assets/about-image.jpg'
         
         <div class="flex flex-wrap gap-4">
           <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
-            <div class="text-accent text-3xl font-bold">+120</div>
-            <div class="text-gray-600 text-left">Eventos</div>
+            <div class="flex text-accent text-3xl font-bold text-left">
+              +<Counter target={120} />
+            </div>
+            <div class="text-gray-600">Eventos</div>
           </div>
           <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
-            <div class="text-accent text-3xl font-bold">+10</div>
-            <div class="text-gray-600 text-left">Años de experiencia</div>
+            <div class="flex text-accent text-3xl font-bold text-left">
+              +<Counter target={10} />
+            </div>
+            <div class="text-gray-600">Años de experiencia</div>
           </div>
           <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
-            <div class="text-accent text-3xl font-bold">100%</div>
-            <div class="text-gray-600 text-left">Clientes satisfechos</div>
+            <div class="flex text-accent text-3xl font-bold text-left">
+              <Counter target={100} />%
+            </div>
+            <div class="text-gray-600">Clientes satisfechos</div>
           </div>
         </div>
       </div>
