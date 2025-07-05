@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import AboutImage from '../assets/about-image.jpg'
 import FadeIn from './animations/FadeIn.astro';
+import Counter from './animations/Counter.astro';
 ---
 
 <section id="sobre-mi" class="py-20 bg-white">
@@ -31,15 +32,21 @@ import FadeIn from './animations/FadeIn.astro';
         
         <div class="flex flex-wrap gap-4">
           <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
-            <div class="text-accent text-3xl font-bold counter" data-target="120">+0</div>
+            <div class="flex text-accent text-3xl font-bold">
+              +<Counter target={120} />
+            </div>
             <div class="text-gray-600">Eventos</div>
           </div>
           <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
-            <div class="text-accent text-3xl font-bold counter" data-target="10">+0</div>
+            <div class="flex text-accent text-3xl font-bold">
+              +<Counter target={10} />
+            </div>
             <div class="text-gray-600">Años de experiencia</div>
           </div>
           <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
-            <div class="text-accent text-3xl font-bold counter" data-target="100" data-suffix="%">0%</div>
+            <div class="flex text-accent text-3xl font-bold">
+              <Counter target={100} />%
+            </div>
             <div class="text-gray-600">Clientes satisfechos</div>
           </div>
         </div>
@@ -47,52 +54,3 @@ import FadeIn from './animations/FadeIn.astro';
     </div>
   </div>
 </section>
-
-<script>
-  if (typeof window !== 'undefined') {
-    const counters = document.querySelectorAll('.counter');
-    let countersAnimated = false;
-
-    function animateCounter(counter: HTMLElement) {
-      const targetAttr = counter.getAttribute('data-target');
-      if (!targetAttr) return;
-      const target = +targetAttr;
-      const suffix = counter.getAttribute('data-suffix') || '';
-      const text = counter.textContent || '';
-      const isPlus = text.trim().startsWith('+');
-      let start = 0;
-      const duration = 1200;
-      const stepTime = Math.max(Math.floor(duration / target), 20);
-      function update() {
-        start++;
-        if (start <= target) {
-          counter.textContent = (isPlus ? '+' : '') + start + suffix;
-          setTimeout(update, stepTime);
-        } else {
-          counter.textContent = (isPlus ? '+' : '') + target + suffix;
-        }
-      }
-      update();
-    }
-
-    const observer = new window.IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (!countersAnimated && entry.target.closest('section')) {
-              counters.forEach(counter => animateCounter(counter as HTMLElement));
-              countersAnimated = true;
-            }
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    
-    // Observe the first counter's parent (the section)
-    if (counters.length) {
-      const section = counters[0].closest('section');
-      if (section) observer.observe(section);
-    }
-  }
-</script>

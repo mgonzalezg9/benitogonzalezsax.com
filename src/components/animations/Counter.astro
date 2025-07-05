@@ -1,0 +1,44 @@
+---
+export interface Props {
+  target: number;
+  duration?: number;
+  threshold?: number;
+}
+
+// PROPS
+const { target, duration = 1.2, threshold = 0.2 } = Astro.props;
+
+// VARS
+const uniqueId = `counter-${Math.random().toString(36).substring(2, 11)}`;
+---
+
+<div id={uniqueId} data-target={target} data-duration={duration}>0</div>
+
+<script is:inline define:vars={{ uniqueId, target, duration, threshold }}>
+  const counter = document.getElementById(uniqueId);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(
+      (entry) => {
+        if (entry.isIntersecting) {
+          // Time between increments to make the increase on time
+          const stepTime = Math.max(Math.floor((duration * 1000) / target), 20);
+
+          let current = 0;
+          const updateLoop = () => {
+            current++;
+            counter.textContent = current <= target ? current : target;
+
+            if (current < target) setTimeout(updateLoop, stepTime);
+          };
+
+          updateLoop();
+          observer.unobserve(counter);
+        }
+      },
+      { threshold }
+    );
+  });
+
+  observer.observe(counter);
+</script>
