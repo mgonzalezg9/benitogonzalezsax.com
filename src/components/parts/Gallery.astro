@@ -77,7 +77,7 @@ const galleryItems: GalleryItem[] = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
         galleryItems.map((item, idx) => (
-          <FadeIn delay={idx * 0.2} duration={0.6}>
+          <FadeIn delay={idx * 0.1} duration={0.6}>
             <div class="overflow-hidden rounded-lg shadow-md w-full h-full">
               {item.type === "image" && (
                 <Image
