@@ -1,20 +1,17 @@
 ---
 import Logo from '../../assets/logo.svg';
-import type { Translations } from '../../utils/translations';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-interface Props {
-  translations: Translations;
-}
-
-const { translations } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const navSections = [
-  { id: translations.nav.home.anchor, label: translations.nav.home.label, ariaLabel: translations.nav.home.ariaDescription },
-  { id: translations.nav.about.anchor, label: translations.nav.about.label, ariaLabel: translations.nav.about.ariaDescription },
-  { id: translations.nav.services.anchor, label: translations.nav.services.label, ariaLabel: translations.nav.services.ariaDescription },
-  { id: translations.nav.gallery.anchor, label: translations.nav.gallery.label, ariaLabel: translations.nav.gallery.ariaDescription },
-  { id: translations.nav.testimonials.anchor, label: translations.nav.testimonials.label, ariaLabel: translations.nav.testimonials.ariaDescription },
-  { id: translations.nav.contact.anchor, label: translations.nav.contact.label, ariaLabel: translations.nav.contact.ariaDescription },
+  { id: t.nav.home.anchor, label: t.nav.home.label, ariaLabel: t.nav.home.ariaDescription },
+  { id: t.nav.about.anchor, label: t.nav.about.label, ariaLabel: t.nav.about.ariaDescription },
+  { id: t.nav.services.anchor, label: t.nav.services.label, ariaLabel: t.nav.services.ariaDescription },
+  { id: t.nav.gallery.anchor, label: t.nav.gallery.label, ariaLabel: t.nav.gallery.ariaDescription },
+  { id: t.nav.testimonials.anchor, label: t.nav.testimonials.label, ariaLabel: t.nav.testimonials.ariaDescription },
+  { id: t.nav.contact.anchor, label: t.nav.contact.label, ariaLabel: t.nav.contact.ariaDescription },
 ];
 ---
 
@@ -22,7 +19,7 @@ const navSections = [
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-0">
       
-      <a href="#" class="py-4 w-[100px]" aria-label={translations.nav.home.label}>
+      <a href="#" class="py-4 w-[100px]" aria-label={t.nav.home.label}>
         <Logo />
       </a>
       

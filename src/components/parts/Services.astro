@@ -4,31 +4,27 @@ import BriefcaseIcon from "../../assets/icons/briefcase.svg";
 import PartyIcon from "../../assets/icons/party.svg";
 import HotelIcon from "../../assets/icons/hotel.svg";
 import { FadeIn } from '../animations';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-import type { Translations } from '../../utils/translations';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-interface Props {
-  translations: Translations;
-}
-
-const { translations } = Astro.props;
-
-const services = translations.services.items.map((item, index) => ({
+const services = t.services.items.map((item, index) => ({
   ...item,
   icon: ["ring", "briefcase", "party", "hotel"][index],
 }));
 ---
 
-<section id={translations.nav.services.anchor} class="py-20 bg-gray-50">
+<section id={t.nav.services.anchor} class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2
         class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary"
       >
-        {translations.services.title}
+        {t.services.title}
       </h2>
       <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-        {translations.services.description}
+        {t.services.description}
       </p>
     </div>
 
@@ -56,11 +52,11 @@ const services = translations.services.items.map((item, index) => ({
 
     <div class="mt-16 text-center">
       <a
-        href={`#${translations.nav.contact.anchor}`}
-        aria-label={translations.services.ctaAriaLabel}
+        href={`#${t.nav.contact.anchor}`}
+        aria-label={t.services.ctaAriaLabel}
         class="font-segmentA uppercase text-4xl tracking-wide inline-block bg-accent hover:bg-amber-400 text-white font-medium pb-2 px-8 rounded-full transition-colors"
       >
-        {translations.services.ctaButton}
+        {t.services.ctaButton}
       </a>
     </div>
   </div>

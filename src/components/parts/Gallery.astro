@@ -9,14 +9,10 @@ import FacebookIcon from "../../assets/icons/facebook.svg";
 import InstagramIcon from "../../assets/icons/instagram.svg";
 import YouTubeIcon from "../../assets/icons/youtube.svg";
 import { FadeIn } from '../animations';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-import type { Translations } from '../../utils/translations';
-
-interface Props {
-  translations: Translations;
-}
-
-const { translations } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 type GalleryItem = {
   src: ImageMetadata | string;
@@ -27,57 +23,57 @@ type GalleryItem = {
 const galleryItems: GalleryItem[] = [
   {
     src: WeddingImage,
-    alt: translations.gallery.items.weddingImageAlt,
+    alt: t.gallery.items.weddingImageAlt,
     type: "image",
   },
   {
     src: SportsMeetImage,
-    alt: translations.gallery.items.sportsMeetImageAlt,
+    alt: t.gallery.items.sportsMeetImageAlt,
     type: "image",
   },
   {
     src: BolnuevoImage,
-    alt: translations.gallery.items.bolnuevoImageAlt,
+    alt: t.gallery.items.bolnuevoImageAlt,
     type: "image",
   },
   {
     src: BlamesImage,
-    alt: translations.gallery.items.blamesImageAlt,
+    alt: t.gallery.items.blamesImageAlt,
     type: "image",
   },
   {
     src: "Ent8OtW2DKU",
-    alt: translations.gallery.items.flyingFreeAtWeddingYTAlt,
+    alt: t.gallery.items.flyingFreeAtWeddingYTAlt,
     type: "youtube",
   },
   {
     src: "hILiOtCMEBA",
-    alt: translations.gallery.items.destinationCalabriaAtWeddingYTAlt,
+    alt: t.gallery.items.destinationCalabriaAtWeddingYTAlt,
     type: "youtube",
   },
   {
     src: "Gq-AV9kIV-4",
-    alt: translations.gallery.items.titaniumDavidGuettaYTAlt,
+    alt: t.gallery.items.titaniumDavidGuettaYTAlt,
     type: "youtube",
   },
   {
     src: "HsD3AflaXnk",
-    alt: translations.gallery.items.versionsAndHouseYTAlt,
+    alt: t.gallery.items.versionsAndHouseYTAlt,
     type: "youtube",
   },
 ];
 --- 
 
-<section id={translations.nav.gallery.anchor} class="py-20 bg-white">
+<section id={t.nav.gallery.anchor} class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2
         class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary"
       >
-        {translations.gallery.title}
+        {t.gallery.title}
       </h2>
       <p class="text-lg text-black max-w-3xl mx-auto">
-        {translations.gallery.description}
+        {t.gallery.description}
       </p>
     </div>
 
@@ -106,26 +102,26 @@ const galleryItems: GalleryItem[] = [
 
     <div class="mt-12 text-center">
       <p class="text-lg text-black mb-6">
-        {translations.gallery.socialText}
+        {t.gallery.socialText}
       </p>
       <div class="flex justify-center space-x-6">
         <a
           href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/"
-          aria-label={translations.gallery.facebookAriaLabel}
+          aria-label={t.gallery.facebookAriaLabel}
           class="text-primary hover:text-accent transition-colors"
         >
           <FacebookIcon />
         </a>
         <a
           href="https://www.instagram.com/benitogonzalezsax/"
-          aria-label={translations.gallery.instagramAriaLabel}
+          aria-label={t.gallery.instagramAriaLabel}
           class="text-primary hover:text-accent transition-colors"
         >
           <InstagramIcon />
         </a>
         <a
           href="https://www.youtube.com/@benitogonzalezsax/featured"
-          aria-label={translations.gallery.youtubeAriaLabel}
+          aria-label={t.gallery.youtubeAriaLabel}
           class="text-primary hover:text-accent transition-colors"
         >
           <YouTubeIcon />

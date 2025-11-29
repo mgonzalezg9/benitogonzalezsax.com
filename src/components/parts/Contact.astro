@@ -6,32 +6,28 @@ import ClockIcon from "../../assets/icons/clock.svg";
 import FacebookIcon from "../../assets/icons/facebook.svg";
 import InstagramIcon from "../../assets/icons/instagram.svg";
 import YouTubeIcon from "../../assets/icons/youtube.svg";
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-import type { Translations } from '../../utils/translations';
-
-interface Props {
-  translations: Translations;
-}
-
-const { translations } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section id={translations.nav.contact.anchor} class="py-20 bg-white">
+<section id={t.nav.contact.anchor} class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2
         class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary"
       >
-        {translations.contact.title}
+        {t.contact.title}
       </h2>
       <p class="text-lg text-black max-w-3xl mx-auto">
-        {translations.contact.description}
+        {t.contact.description}
       </p>
     </div>
 
     <div class="bg-gray-50 p-8 rounded-lg h-full">
       <h3 class="text-xl font-semibold mb-6 text-primary">
-        {translations.contact.infoTitle}
+        {t.contact.infoTitle}
       </h3>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -40,7 +36,7 @@ const { translations } = Astro.props;
             <PhoneIcon />
           </div>
           <div>
-            <h4 class="font-medium text-gray-900">{translations.contact.phone}</h4>
+            <h4 class="font-medium text-gray-900">{t.contact.phone}</h4>
             <p class="text-black">+34 615 97 71 90</p>
           </div>
         </div>
@@ -50,7 +46,7 @@ const { translations } = Astro.props;
             <EmailIcon />
           </div>
           <div>
-            <h4 class="font-medium text-gray-900">{translations.contact.email}</h4>
+            <h4 class="font-medium text-gray-900">{t.contact.email}</h4>
             <p class="text-black">info@benitogonzalezsax.com</p>
           </div>
         </div>
@@ -60,9 +56,9 @@ const { translations } = Astro.props;
             <LocationIcon />
           </div>
           <div>
-            <h4 class="font-medium text-gray-900">{translations.contact.location}</h4>
-            <p class="text-black">{translations.contact.locationDetail}</p>
-            <p class="text-black">{translations.contact.locationDetail2}</p>
+            <h4 class="font-medium text-gray-900">{t.contact.location}</h4>
+            <p class="text-black">{t.contact.locationDetail}</p>
+            <p class="text-black">{t.contact.locationDetail2}</p>
           </div>
         </div>
 
@@ -71,34 +67,34 @@ const { translations } = Astro.props;
             <ClockIcon />
           </div>
           <div>
-            <h4 class="font-medium text-gray-900">{translations.contact.schedule}</h4>
-            <p class="text-black">{translations.contact.scheduleDetail}</p>
+            <h4 class="font-medium text-gray-900">{t.contact.schedule}</h4>
+            <p class="text-black">{t.contact.scheduleDetail}</p>
           </div>
         </div>
       </div>
 
       <div class="mt-8">
         <h4 class="font-medium text-gray-900 mb-4">
-          {translations.contact.socialTitle}
+          {t.contact.socialTitle}
         </h4>
         <div class="flex space-x-4">
           <a
             href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/"
-            aria-label={translations.contact.facebookAriaLabel}
+            aria-label={t.contact.facebookAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
             <FacebookIcon />
           </a>
           <a
             href="https://www.instagram.com/benitogonzalezsax/"
-            aria-label={translations.contact.instagramAriaLabel}
+            aria-label={t.contact.instagramAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
             <InstagramIcon />
           </a>
           <a
             href="https://www.youtube.com/@benitogonzalezsax/featured"
-            aria-label={translations.contact.youtubeAriaLabel}
+            aria-label={t.contact.youtubeAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
             <YouTubeIcon />

@@ -1,22 +1,19 @@
 ---
 import { FadeIn } from '../animations';
-import type { Translations } from '../../utils/translations';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-interface Props {
-  translations: Translations;
-}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-const { translations } = Astro.props;
-
-const testimonials = translations.testimonials.items;
+const testimonials = t.testimonials.items;
 ---
 
-<section id={translations.nav.testimonials.anchor} class="py-20 bg-gray-50">
+<section id={t.nav.testimonials.anchor} class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary">{translations.testimonials.title}</h2>
+      <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary">{t.testimonials.title}</h2>
       <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-        {translations.testimonials.description}
+        {t.testimonials.description}
       </p>
     </div>
     

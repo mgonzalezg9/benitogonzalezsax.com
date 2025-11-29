@@ -1,19 +1,16 @@
 ---
 import Logo from '../../assets/logo.svg';
-import type { Translations } from '../../utils/translations';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-interface Props {
-  translations: Translations;
-}
-
-const { translations } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="bg-primary text-white py-8">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row justify-between items-center">
       <div class="mb-4 md:mb-0">
-        <p class="text-sm">&copy; {new Date().getFullYear()} Benito González García - {translations.footer.copyright}</p>
+        <p class="text-sm">&copy; {new Date().getFullYear()} Benito González García - {t.footer.copyright}</p>
       </div>
 
       <div class="w-[100px] py-4">

@@ -295,6 +295,8 @@ export const translations = {
   },
 };
 
+export const defaultLang = "es";
+
 export type Language = 'es' | 'en';
 export type Translations = typeof translations.es;
 

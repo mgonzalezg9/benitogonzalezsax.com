@@ -1,5 +1,5 @@
 ---
-import type { Language } from '../utils/translations';
+import type { Language } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -7,7 +7,7 @@ interface Props {
   lang: Language;
 }
 
-const { title, description, lang = "es" } = Astro.props;
+const { title, description, lang } = Astro.props;
 
 const preloadedFonts = [
   "/fonts/SegmentAKeyTrial-Black.otf",
