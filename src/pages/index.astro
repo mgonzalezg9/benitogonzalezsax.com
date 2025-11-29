@@ -8,15 +8,18 @@ import Gallery from '../components/parts/Gallery.astro';
 import Testimonials from '../components/parts/Testimonials.astro';
 import Contact from '../components/parts/Contact.astro';
 import Footer from '../components/parts/Footer.astro';
+import { translations } from '../utils/translations';
+
+const t = translations.es;
 ---
 
-<Layout title="Benito González - Saxofonista para eventos">
-  <Header />
-  <Hero />
-  <About />
-  <Services />
-  <Gallery />
-  <Testimonials />
-  <Contact />
-  <Footer />
+<Layout title={t.meta.title} description={t.meta.description} lang="es">
+  <Header translations={t} />
+  <Hero translations={t} />
+  <About translations={t} />
+  <Services translations={t} />
+  <Gallery translations={t} />
+  <Testimonials translations={t} />
+  <Contact translations={t} />
+  <Footer translations={t} />
 </Layout>

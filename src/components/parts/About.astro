@@ -2,31 +2,38 @@
 import { Image } from 'astro:assets'
 import AboutImage from '../../assets/about-image.jpg'
 import { FadeIn, Counter } from '../animations';
+import type { Translations } from '../../utils/translations';
+
+interface Props {
+  translations: Translations;
+}
+
+const { translations } = Astro.props;
 ---
 
-<section id="sobre-mi" class="py-20 bg-white">
+<section id={translations.nav.about.anchor} class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row items-center gap-12">
       <div class="md:w-1/2">
         <FadeIn direction="horizontal" distance={-20} duration={1.2}>
           <Image
             src={AboutImage}
-            alt="Benito González García - Saxofonista" 
+            alt={translations.about.imageAlt} 
             class="rounded-lg shadow-lg w-full h-auto"
           />
         </FadeIn>
       </div>
       
       <div class="md:w-1/2 text-justify">
-        <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary">Sobre mi</h2>
+        <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary">{translations.about.title}</h2>
         <p class="text-lg mb-4 text-gray-700">
-          Soy Benito González García, saxofonista profesional con más de 10 años de experiencia, especializado en eventos exclusivos. Desde mis inicios, mi pasión por el saxofón me ha llevado a perfeccionar mi técnica y estilo, destacando en bodas, eventos corporativos, discotecas y presentaciones de marca.
+          {translations.about.paragraph1}
         </p>
         <p class="text-lg mb-4 text-gray-700">
-          He tenido el honor de actuar en numerosos eventos, desde bodas íntimas hasta grandes celebraciones corporativas, aportando un toque de elegancia y emoción con mi música en vivo. Trabajo con marcas reconocidas como Martin Miller's Gin e IQOS, ofreciendo un servicio musical de alto nivel.
+          {translations.about.paragraph2}
         </p>
         <p class="text-lg mb-6 text-gray-700">
-          Mi especialidad es el saxofón en cócteles y barra libre para bodas, saxo y DJ en discotecas y eventos corporativos exclusivos. Mi repertorio incluye géneros como jazz, house, afrohouse, EDM, electrónica y reggaetón, adaptándome a cada ambiente para crear experiencias musicales inolvidables.
+          {translations.about.paragraph3}
         </p>
         
         <div class="flex flex-wrap gap-4">
@@ -34,19 +41,19 @@ import { FadeIn, Counter } from '../animations';
             <div class="flex text-accent text-3xl font-bold text-left">
               +<Counter target={120} />
             </div>
-            <div class="text-gray-600">Eventos</div>
+            <div class="text-gray-600">{translations.about.stats.events}</div>
           </div>
           <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
             <div class="flex text-accent text-3xl font-bold text-left">
               +<Counter target={10} />
             </div>
-            <div class="text-gray-600">Años de experiencia</div>
+            <div class="text-gray-600">{translations.about.stats.experienceYears}</div>
           </div>
           <div class="bg-gray-100 rounded-lg p-4 flex-1 min-w-[150px]">
             <div class="flex text-accent text-3xl font-bold text-left">
               <Counter target={100} />%
             </div>
-            <div class="text-gray-600">Clientes satisfechos</div>
+            <div class="text-gray-600">{translations.about.stats.satisfiedClients}</div>
           </div>
         </div>
       </div>

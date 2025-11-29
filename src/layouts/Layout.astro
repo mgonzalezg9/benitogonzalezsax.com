@@ -1,10 +1,13 @@
 ---
+import type { Language } from '../utils/translations';
+
 interface Props {
   title: string;
-  description?: string;
+  description: string;
+  lang: Language;
 }
 
-const { title, description = "Benito González García - Saxofonista profesional para eventos, bodas y celebraciones" } = Astro.props;
+const { title, description, lang = "es" } = Astro.props;
 
 const preloadedFonts = [
   "/fonts/SegmentAKeyTrial-Black.otf",
@@ -17,7 +20,7 @@ const preloadedFonts = [
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />

@@ -1,13 +1,20 @@
 ---
 import Logo from '../../assets/logo.svg';
+import type { Translations } from '../../utils/translations';
+
+interface Props {
+  translations: Translations;
+}
+
+const { translations } = Astro.props;
 
 const navSections = [
-  { id: 'inicio', label: 'Inicio', ariaLabel: 'Ir a sección Inicio' },
-  { id: 'sobre-mi', label: 'Sobre mi', ariaLabel: 'Ir a sección Sobre mi' },
-  { id: 'servicios', label: 'Servicios', ariaLabel: 'Ir a sección Servicios' },
-  { id: 'galeria', label: 'Galeria', ariaLabel: 'Ir a sección Galeria' },
-  { id: 'testimonios', label: 'Testimonios', ariaLabel: 'Ir a sección Testimonios' },
-  { id: 'contacto', label: 'Contacto', ariaLabel: 'Ir a sección Contacto' },
+  { id: translations.nav.home.anchor, label: translations.nav.home.label, ariaLabel: translations.nav.home.ariaDescription },
+  { id: translations.nav.about.anchor, label: translations.nav.about.label, ariaLabel: translations.nav.about.ariaDescription },
+  { id: translations.nav.services.anchor, label: translations.nav.services.label, ariaLabel: translations.nav.services.ariaDescription },
+  { id: translations.nav.gallery.anchor, label: translations.nav.gallery.label, ariaLabel: translations.nav.gallery.ariaDescription },
+  { id: translations.nav.testimonials.anchor, label: translations.nav.testimonials.label, ariaLabel: translations.nav.testimonials.ariaDescription },
+  { id: translations.nav.contact.anchor, label: translations.nav.contact.label, ariaLabel: translations.nav.contact.ariaDescription },
 ];
 ---
 
@@ -15,7 +22,7 @@ const navSections = [
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-0">
       
-      <a href="#" class="py-4 w-[100px]" aria-label="Inicio">
+      <a href="#" class="py-4 w-[100px]" aria-label={translations.nav.home.label}>
         <Logo />
       </a>
       

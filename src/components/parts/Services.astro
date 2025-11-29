@@ -5,44 +5,30 @@ import PartyIcon from "../../assets/icons/party.svg";
 import HotelIcon from "../../assets/icons/hotel.svg";
 import { FadeIn } from '../animations';
 
-const services = [
-  {
-    title: "Bodas",
-    description:
-      "Música elegante para tu ceremonia, cóctel, banquete o barra libre. Momentos especiales acompañados de melodías inolvidables.",
-    icon: "ring",
-  },
-  {
-    title: "Eventos corporativos",
-    description:
-      "Amenización musical para conferencias, cenas de empresa o inauguraciones. El toque perfecto para impresionar a tus clientes.",
-    icon: "briefcase",
-  },
-  {
-    title: "Fiestas privadas",
-    description:
-      "Desde cumpleaños hasta aniversarios. Crea una atmósfera única con música en directo que sorprenderá a tus invitados.",
-    icon: "party",
-  },
-  {
-    title: "Hoteles y restaurantes",
-    description:
-      "Música ambiental para tu establecimiento. Mejora la experiencia de tus clientes con un ambiente sofisticado.",
-    icon: "hotel",
-  },
-];
+import type { Translations } from '../../utils/translations';
+
+interface Props {
+  translations: Translations;
+}
+
+const { translations } = Astro.props;
+
+const services = translations.services.items.map((item, index) => ({
+  ...item,
+  icon: ["ring", "briefcase", "party", "hotel"][index],
+}));
 ---
 
-<section id="servicios" class="py-20 bg-gray-50">
+<section id={translations.nav.services.anchor} class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2
         class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary"
       >
-        Mis servicios
+        {translations.services.title}
       </h2>
       <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-        Ofrezco música en vivo de saxofón con backing tracks que me acompañan. Desde cócteles y música elegante a los estilos más animados. Además, las ofertas de saxofonista y violinista y Sax&DJ completan la oferta para que tu evento cuente con la mejor música de principio a fin.
+        {translations.services.description}
       </p>
     </div>
 
@@ -70,11 +56,11 @@ const services = [
 
     <div class="mt-16 text-center">
       <a
-        href="#contacto"
-        aria-label="Ir a la sección de contacto para solicitar presupuesto"
+        href={`#${translations.nav.contact.anchor}`}
+        aria-label={translations.services.ctaAriaLabel}
         class="font-segmentA uppercase text-4xl tracking-wide inline-block bg-accent hover:bg-amber-400 text-white font-medium pb-2 px-8 rounded-full transition-colors"
       >
-        Solicitar presupuesto
+        {translations.services.ctaButton}
       </a>
     </div>
   </div>
