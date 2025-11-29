@@ -1,0 +1,44 @@
+---
+import { translations } from '../../i18n/ui';
+import { getLangFromUrl } from '../../i18n/utils';
+
+type LanguageOption = {
+  lang: string;
+  href: string;
+};
+
+const currentLang = getLangFromUrl(Astro.url);
+const { pathname } = Astro.url;
+
+const languageOptions: LanguageOption[] = Object.entries(translations).map(([lang]) => {
+  const path = pathname.replace(/^\/[^/]+/, '');
+  const href = `/${lang}${path || '/'}`;
+  return {
+    lang,
+    href,
+  };
+});
+---
+
+<select
+  id="language-picker"
+  class="text-white bg-transparent tracking-wide text-xl uppercase py-2"
+>
+  {languageOptions.map(({ lang, href }) => (
+    <option value={href} selected={currentLang === lang}>
+      {lang.toUpperCase()}
+    </option>
+  ))}
+</select>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const languagePicker = document.getElementById('language-picker');
+    languagePicker?.addEventListener('change', (e) => {
+      const target = e.target as HTMLSelectElement;
+      if (target.value) {
+        window.location.href = target.value === 'en' ? '/en' : '/';
+      }
+    });
+  });
+</script>

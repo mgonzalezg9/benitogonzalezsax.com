@@ -1,6 +1,8 @@
 ---
 import Logo from '../../assets/logo.svg';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import HamburgerMenuIcon from '../../assets/icons/hamburger-menu.svg';
+import LanguagePicker from '../ui/LanguagePicker.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -23,7 +25,7 @@ const navSections = [
         <Logo />
       </a>
       
-      <nav class="hidden md:block">
+      <nav class="hidden md:flex items-end gap-10">
         <ul class="flex space-x-8">
           {navSections.map(section => (
             <li>
@@ -33,26 +35,28 @@ const navSections = [
             </li>
           ))}
         </ul>
+
+        <LanguagePicker currentLang={lang} />
       </nav>
       
       <button id="mobile-menu-button" class="md:hidden text-white" aria-label="Toggle mobile menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <HamburgerMenuIcon />
       </button>
     </div>
   </div>
   
   <div id="mobile-menu" class="hidden md:hidden bg-primary w-full">
-    <ul class="container mx-auto px-4 py-4 space-y-4">
-      {navSections.map(section => (
-        <li>
-          <a href={`#${section.id}`} class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
-            {section.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div class="container mx-auto px-4 py-4">
+      <ul class="space-y-4">
+        {navSections.map(section => (
+          <li>
+            <a href={`#${section.id}`} class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
+              {section.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </header>
 
