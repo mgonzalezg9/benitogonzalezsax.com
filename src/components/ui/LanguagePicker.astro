@@ -1,14 +1,34 @@
 ---
+import { Image } from 'astro:assets';
 import { translations } from '../../i18n/ui';
 import { getLangFromUrl } from '../../i18n/utils';
+import ChevronIcon from '../../assets/icons/chevron.svg';
+
+type Flag = {
+  icon: string;
+  label: string;
+};
 
 type LanguageOption = {
   lang: string;
   href: string;
+  icon: string;
+  label: string;
 };
 
 const currentLang = getLangFromUrl(Astro.url);
 const { pathname } = Astro.url;
+
+const flags: Record<string, Flag> = {
+  en: {
+    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/2560px-Flag_of_the_United_Kingdom_%283-5%29.svg.png",
+    label: 'En'
+  },
+  es: {
+    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Flag_of_Spain_%28civil%29.svg/1280px-Flag_of_Spain_%28civil%29.svg.png",
+    label: 'Es'
+  }
+};
 
 const languageOptions: LanguageOption[] = Object.entries(translations).map(([lang]) => {
   const path = pathname.replace(/^\/[^/]+/, '');
@@ -16,20 +36,43 @@ const languageOptions: LanguageOption[] = Object.entries(translations).map(([lan
   return {
     lang,
     href,
+    ...flags[lang]
   };
 });
 ---
 
-<select
-  id="language-picker"
-  class="text-white bg-transparent tracking-wide text-xl uppercase py-2"
->
-  {languageOptions.map(({ lang, href }) => (
-    <option value={href} selected={currentLang === lang}>
-      {lang.toUpperCase()}
-    </option>
-  ))}
-</select>
+<div class="relative inline-block text-left">
+  <label for="language-picker" class="sr-only">Select Language</label>
+  <select
+    id="language-picker"
+    class="block w-full px-10 py-1 text-white bg-transparent tracking-wide text-xl uppercase appearance-none focus:outline-none focus:ring-2 focus:ring-white/50 rounded"
+  >
+    {languageOptions.map(({ lang, href, label }) => (
+      <option value={href} selected={currentLang === lang}>
+        {label}
+      </option>
+    ))}
+  </select>
+  <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
+     <Image 
+        src={flags[currentLang].icon} 
+        alt={`${flags[currentLang].label} flag`}
+        width="24"
+        height="24"
+      />
+  </div>
+  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3">
+    <ChevronIcon />
+  </div>
+</div>
+
+<style>
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -37,7 +80,7 @@ const languageOptions: LanguageOption[] = Object.entries(translations).map(([lan
     languagePicker?.addEventListener('change', (e) => {
       const target = e.target as HTMLSelectElement;
       if (target.value) {
-        window.location.href = target.value === 'en' ? '/en' : '/';
+        window.location.href = target.value === '/en/' ? '/en' : '/';
       }
     });
   });
