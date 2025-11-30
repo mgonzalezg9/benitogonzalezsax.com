@@ -1,4 +1,4 @@
-import { translations, defaultLang, type Language, type Translations } from './ui';
+import { translations, defaultLang, type Language } from './ui';
 
 export const getLangFromUrl = (url: URL) => {
   const [, lang] = url.pathname.split('/');
@@ -8,4 +8,8 @@ export const getLangFromUrl = (url: URL) => {
 
 export const useTranslations = (lang: Language) => {
   return translations[lang] || translations[defaultLang];
+}
+
+export const navigateToLanguage = (lang: Language) => {
+  window.location.href = lang !== defaultLang ? `/${lang}` : '/';
 }

@@ -78,6 +78,9 @@ const languageOptions: LanguageOption[] = Object.entries(translations).map(([lan
 </style>
 
 <script>
+import type { Language } from "../../i18n/ui";
+import { navigateToLanguage } from "../../i18n/utils";
+
   document.addEventListener('DOMContentLoaded', () => {
     const languagePickers = document.querySelectorAll('.language-picker');
 
@@ -85,7 +88,7 @@ const languageOptions: LanguageOption[] = Object.entries(translations).map(([lan
       selector.addEventListener('change', (e) => {
         const target = e.target as HTMLSelectElement;
         if (target.value) {
-          window.location.href = target.value === '/en/' ? '/en' : '/';
+          navigateToLanguage(target.value as Language);
         }
       });
     });
