@@ -6,25 +6,28 @@ import ClockIcon from "../../assets/icons/clock.svg";
 import FacebookIcon from "../../assets/icons/facebook.svg";
 import InstagramIcon from "../../assets/icons/instagram.svg";
 import YouTubeIcon from "../../assets/icons/youtube.svg";
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section id="contacto" class="py-20 bg-white">
+<section id={t.nav.contact.anchor} class="py-20 bg-white">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2
         class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary"
       >
-        Contacto
+        {t.contact.title}
       </h2>
       <p class="text-lg text-black max-w-3xl mx-auto">
-        ¿Interesado en mis servicios? Ponte en contacto conmigo para más
-        información o para solicitar un presupuesto personalizado.
+        {t.contact.description}
       </p>
     </div>
 
     <div class="bg-gray-50 p-8 rounded-lg h-full">
       <h3 class="text-xl font-semibold mb-6 text-primary">
-        Información de contacto
+        {t.contact.infoTitle}
       </h3>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -33,7 +36,7 @@ import YouTubeIcon from "../../assets/icons/youtube.svg";
             <PhoneIcon />
           </div>
           <div>
-            <h4 class="font-medium text-gray-900">Teléfono</h4>
+            <h4 class="font-medium text-gray-900">{t.contact.phone}</h4>
             <p class="text-black">+34 615 97 71 90</p>
           </div>
         </div>
@@ -43,7 +46,7 @@ import YouTubeIcon from "../../assets/icons/youtube.svg";
             <EmailIcon />
           </div>
           <div>
-            <h4 class="font-medium text-gray-900">Email</h4>
+            <h4 class="font-medium text-gray-900">{t.contact.email}</h4>
             <p class="text-black">info@benitogonzalezsax.com</p>
           </div>
         </div>
@@ -53,9 +56,9 @@ import YouTubeIcon from "../../assets/icons/youtube.svg";
             <LocationIcon />
           </div>
           <div>
-            <h4 class="font-medium text-gray-900">Ubicación</h4>
-            <p class="text-black">Murcia, España</p>
-            <p class="text-black">Disponible para eventos en toda España</p>
+            <h4 class="font-medium text-gray-900">{t.contact.location}</h4>
+            <p class="text-black">{t.contact.locationDetail}</p>
+            <p class="text-black">{t.contact.locationDetail2}</p>
           </div>
         </div>
 
@@ -64,34 +67,34 @@ import YouTubeIcon from "../../assets/icons/youtube.svg";
             <ClockIcon />
           </div>
           <div>
-            <h4 class="font-medium text-gray-900">Horario</h4>
-            <p class="text-black">Lunes a Domingo: 9:00 - 22:00</p>
+            <h4 class="font-medium text-gray-900">{t.contact.schedule}</h4>
+            <p class="text-black">{t.contact.scheduleDetail}</p>
           </div>
         </div>
       </div>
 
       <div class="mt-8">
         <h4 class="font-medium text-gray-900 mb-4">
-          Sígueme en redes sociales
+          {t.contact.socialTitle}
         </h4>
         <div class="flex space-x-4">
           <a
             href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/"
-            aria-label="Facebook de Benito González"
+            aria-label={t.contact.facebookAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
             <FacebookIcon />
           </a>
           <a
             href="https://www.instagram.com/benitogonzalezsax/"
-            aria-label="Instagram de Benito González"
+            aria-label={t.contact.instagramAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
             <InstagramIcon />
           </a>
           <a
             href="https://www.youtube.com/@benitogonzalezsax/featured"
-            aria-label="YouTube de Benito González"
+            aria-label={t.contact.youtubeAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
             <YouTubeIcon />

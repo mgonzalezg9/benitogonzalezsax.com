@@ -8,9 +8,13 @@ import Gallery from '../components/parts/Gallery.astro';
 import Testimonials from '../components/parts/Testimonials.astro';
 import Contact from '../components/parts/Contact.astro';
 import Footer from '../components/parts/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<Layout title="Benito González - Saxofonista para eventos">
+<Layout title={t.meta.title} description={t.meta.description} lang={lang}>
   <Header />
   <Hero />
   <About />

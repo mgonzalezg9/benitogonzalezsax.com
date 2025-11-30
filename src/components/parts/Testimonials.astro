@@ -1,40 +1,19 @@
 ---
 import { FadeIn } from '../animations';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-const testimonials = [
-  {
-    name: "Lola C.",
-    role: "Cafetería MaiTai",
-    quote: "Fue un placer verlo tocar en directo. Sin duda una actuación increíble!!!",
-    image: "https://randomuser.me/api/portraits/women/32.jpg"
-  },
-  {
-    name: "Sergio P.",
-    role: "Evento",
-    quote: "Un espectáculo muy dinámico, mucha interacción con el público y mucha pasión, es capaz de llenar un bar y tiene un equipo bastante bueno.",
-    image: "https://randomuser.me/api/portraits/men/45.jpg"
-  },
-  {
-    name: "Ivan",
-    role: "Coctel de Boda",
-    quote: "Genial recomendable 100%. persona muy cercana y un auténtico profesional. Benito fue un gran profesional hizo de nuestro día un espectáculo.",
-    image: "https://randomuser.me/api/portraits/women/68.jpg"
-  },
-  {
-    name: "Sergio C.",
-    role: "Coctel de Boda",
-    quote: "Músico muy cualificado que hace que pases la mejor de las noches, entretenimiento y disfrute al máximo, lo recomiendo al 100%.",
-    image: "https://randomuser.me/api/portraits/women/68.jpg"
-  }
-];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const testimonials = t.testimonials.items;
 ---
 
-<section id="testimonios" class="py-20 bg-gray-50">
+<section id={t.nav.testimonials.anchor} class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary">Testimonios</h2>
+      <h2 class="font-segmentA uppercase tracking-wide text-6xl md:text-8xl font-bold mb-6 text-primary">{t.testimonials.title}</h2>
       <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-        Lo que dicen mis clientes sobre mis servicios.
+        {t.testimonials.description}
       </p>
     </div>
     

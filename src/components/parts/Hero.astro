@@ -2,13 +2,17 @@
 import HeroImage from '../../assets/hero-image.jpg'
 import { Image } from 'astro:assets';
 import { FadeIn } from '../animations';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section id="inicio" class="relative h-screen flex items-center justify-center bg-gray-900 text-white overflow-hidden">
+<section id={t.nav.home.anchor} class="relative h-screen flex items-center justify-center bg-gray-900 text-white overflow-hidden">
   <div class="absolute inset-0 z-0">
     <Image
       src={HeroImage}
-      alt="Benito González García - Saxofonista en boda" 
+      alt={t.hero.subtitle} 
       class="w-full h-full object-cover opacity-50"
       loading="eager"
       width={1385}
@@ -18,20 +22,20 @@ import { FadeIn } from '../animations';
   
   <div class="container mx-auto px-4 z-10 text-center">
     <FadeIn duration={1.2}>
-      <h1 class="text-7xl md:text-9xl font-bold font-segmentA uppercase mb-4">Benito Gonzalez Garcia</h1>
-      <p class="text-xl md:text-2xl mb-8">Saxofonista para bodas y eventos</p>
+      <h1 class="text-7xl md:text-9xl font-bold font-segmentA uppercase mb-4">{t.hero.title}</h1>
+      <p class="text-xl md:text-2xl mb-8">{t.hero.subtitle}</p>
       <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12">
-        Saxofonista profesional para bodas, eventos y celebraciones en Murcia, Alicante y toda España.
+        {t.hero.description}
       </p>
     </FadeIn>
 
     <FadeIn duration={1.2} delay={0.6}>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a href="#contacto" aria-label="Ir a la sección de contacto" class="font-segmentA uppercase text-4xl tracking-wide bg-accent hover:bg-amber-400 text-white font-medium pb-2 px-8 rounded-full transition-colors">
-          Contactar
+        <a href={`#${t.nav.contact.anchor}`} aria-label={t.hero.contactAriaLabel} class="font-segmentA uppercase text-4xl tracking-wide bg-accent hover:bg-amber-400 text-white font-medium pb-2 px-8 rounded-full transition-colors">
+          {t.hero.contactButton}
         </a>
-        <a href="#galeria" aria-label="Ir a la galería de imágenes" class="font-segmentA uppercase text-4xl tracking-wide bg-transparent hover:bg-white/10 border border-white text-white font-medium pb-2 px-8 rounded-full transition-colors">
-          Ver galeria
+        <a href={`#${t.nav.gallery.anchor}`} aria-label={t.hero.galleryAriaLabel} class="font-segmentA uppercase text-4xl tracking-wide bg-transparent hover:bg-white/10 border border-white text-white font-medium pb-2 px-8 rounded-full transition-colors">
+          {t.hero.galleryButton}
         </a>
       </div>
     </FadeIn>
@@ -39,7 +43,7 @@ import { FadeIn } from '../animations';
   
   <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
     <FadeIn duration={1.2} delay={1.5}>
-      <a href="#sobre-mi" aria-label="Ir a la sección sobre mí" class="text-white">
+      <a href={`#${t.nav.about.anchor}`} aria-label={t.hero.aboutAriaLabel} class="text-white">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
