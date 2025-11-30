@@ -87,7 +87,8 @@ import { defaultLang } from "../../i18n/ui";
       selector.addEventListener('change', (e) => {
         const target = e.target as HTMLSelectElement;
         if (target.value) {
-          window.location.href = target.value === `/${defaultLang}/` ? '/' : target.value;
+          const newPath = target.value === `/${defaultLang}/` ? '/' : target.value;
+          window.location.href = window.location.origin + newPath;
         }
       });
     });
