@@ -3,15 +3,18 @@ import { Image } from 'astro:assets';
 import { translations } from '../../i18n/ui';
 import { getLangFromUrl } from '../../i18n/utils';
 
+import SpainFlag from '../../assets/icons/es.svg';
+import UnitedKingdomFlag from '../../assets/icons/en.svg';
+
 type Flag = {
-  icon: string;
+  icon: ImageMetadata;
   label: string;
 };
 
 type LanguageOption = {
   lang: string;
   href: string;
-  icon: string;
+  icon: ImageMetadata;
   label: string;
 };
 
@@ -20,11 +23,11 @@ const { pathname } = Astro.url;
 
 const flags: Record<string, Flag> = {
   en: {
-    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/2560px-Flag_of_the_United_Kingdom_%283-5%29.svg.png",
+    icon: UnitedKingdomFlag,
     label: 'En'
   },
   es: {
-    icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Flag_of_Spain_%28civil%29.svg/1280px-Flag_of_Spain_%28civil%29.svg.png",
+    icon: SpainFlag,
     label: 'Es'
   }
 };
