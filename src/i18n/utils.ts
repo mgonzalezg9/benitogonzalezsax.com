@@ -9,7 +9,3 @@ export const getLangFromUrl = (url: URL) => {
 export const useTranslations = (lang: Language) => {
   return translations[lang] || translations[defaultLang];
 }
-
-export const navigateToLanguage = (lang: Language) => {
-  window.location.href = lang !== defaultLang ? `/${lang}` : '/';
-}

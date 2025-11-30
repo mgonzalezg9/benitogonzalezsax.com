@@ -78,8 +78,7 @@ const languageOptions: LanguageOption[] = Object.entries(translations).map(([lan
 </style>
 
 <script>
-import type { Language } from "../../i18n/ui";
-import { navigateToLanguage } from "../../i18n/utils";
+import { defaultLang } from "../../i18n/ui";
 
   document.addEventListener('DOMContentLoaded', () => {
     const languagePickers = document.querySelectorAll('.language-picker');
@@ -88,7 +87,7 @@ import { navigateToLanguage } from "../../i18n/utils";
       selector.addEventListener('change', (e) => {
         const target = e.target as HTMLSelectElement;
         if (target.value) {
-          navigateToLanguage(target.value as Language);
+          window.location.href = target.value === `/${defaultLang}/` ? '/' : target.value;
         }
       });
     });
