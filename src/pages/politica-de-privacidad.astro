@@ -2,10 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/parts/Header.astro';
 import Footer from '../components/parts/Footer.astro';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 ---
 
 <Layout 

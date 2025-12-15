@@ -90,7 +90,7 @@ export const es = {
     ctaAriaLabel: 'Ir a la sección de contacto para solicitar presupuesto',
   },
   gallery: {
-    title: 'Galería',
+    title: 'Galeria',
     items: {
       weddingImageAlt: 'Benito González - Saxofonista en boda',
       sportsMeetImageAlt: 'Benito González - Actuación en boda',
