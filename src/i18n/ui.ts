@@ -144,6 +144,7 @@ export const translations = {
     },
     footer: {
       copyright: 'Todos los derechos reservados',
+      privacyPolicy: 'Política de privacidad',
     },
   },
   en: {
@@ -291,6 +292,7 @@ export const translations = {
     },
     footer: {
       copyright: 'All rights reserved',
+      privacyPolicy: 'Privacy policy',
     },
   },
 };

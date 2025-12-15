@@ -1,0 +1,152 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/parts/Header.astro';
+import Footer from '../../components/parts/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout 
+  title="Privacy Policy - Benito González García" 
+  description="Privacy policy and legal notice of Benito González García - Professional saxophonist" 
+  lang={lang}
+>
+  <Header />
+  
+  <main class="pt-20 pb-16">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h1 class="text-4xl font-bold mb-8 text-primary">Privacy Policy</h1>
+      
+      <div class="prose prose-lg max-w-none">
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">1. General Information</h2>
+          <p class="mb-4">
+            In compliance with the provisions of Organic Law 3/2018, of December 5, on Personal Data Protection and guarantee 
+            of digital rights (LOPDGDD) and Regulation (EU) 2016/679 of the European Parliament and of the Council of April 27, 
+            2016 (GDPR), we inform you about the processing of your personal data.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">2. Data Controller</h2>
+          <p class="mb-4">
+            <strong>Benito González García</strong><br/>
+            Professional Saxophonist<br/>
+            Murcia, Spain<br/>
+            Email: [Your contact email]<br/>
+            Phone: [Your contact phone]
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">3. Data We Collect</h2>
+          <p class="mb-4">
+            We collect the following types of personal data when you use our services or contact us:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Identification data: name, surname</li>
+            <li>Contact data: email address, phone number</li>
+            <li>Navigation data: IP address, browser type, pages visited</li>
+            <li>Communication data: messages sent through contact forms</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">4. Purpose of Processing</h2>
+          <p class="mb-4">
+            We use your personal data for the following purposes:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Respond to your inquiries and information requests</li>
+            <li>Manage bookings and service contracts</li>
+            <li>Send communications related to our services</li>
+            <li>Improve our services and user experience</li>
+            <li>Comply with legal obligations</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">5. Legal Basis</h2>
+          <p class="mb-4">
+            The processing of your personal data is based on:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Consent of the data subject</li>
+            <li>Performance of a contract or pre-contractual measures</li>
+            <li>Legitimate interest of the controller</li>
+            <li>Compliance with legal obligations</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">6. Data Retention</h2>
+          <p class="mb-4">
+            We will retain your personal data for as long as necessary to fulfill the purposes for which they were collected 
+            and, in any case, for the periods established by applicable legislation.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">7. Data Subject Rights</h2>
+          <p class="mb-4">
+            You have the right to:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Access your personal data</li>
+            <li>Rectify inaccurate or incomplete data</li>
+            <li>Delete your data when it is no longer necessary</li>
+            <li>Object to the processing of your data</li>
+            <li>Limit processing in certain circumstances</li>
+            <li>Portability of your data</li>
+            <li>File a complaint with the Spanish Data Protection Agency (AEPD)</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">8. Cookies</h2>
+          <p class="mb-4">
+            This website uses cookies to improve user experience. For more information, please see our cookie policy.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">9. Security</h2>
+          <p class="mb-4">
+            We implement appropriate technical and organizational measures to protect your personal data against unauthorized 
+            access, loss, destruction or alteration.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">10. Modifications</h2>
+          <p class="mb-4">
+            We reserve the right to modify this privacy policy. Modifications will be published on this page with the 
+            corresponding update date.
+          </p>
+          <p class="text-sm text-gray-600">
+            Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose h2 {
+    color: #1a1a1a;
+    margin-top: 2rem;
+  }
+  
+  .prose ul {
+    margin-bottom: 1rem;
+  }
+  
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+</style>

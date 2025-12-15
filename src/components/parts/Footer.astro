@@ -1,6 +1,7 @@
 ---
 import Logo from '../../assets/logo.svg';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getRouteForLanguage } from '../../i18n/routes';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -9,8 +10,11 @@ const t = useTranslations(lang);
 <footer class="bg-primary text-white py-8">
   <div class="container mx-auto px-4">
     <div class="flex flex-col md:flex-row justify-between items-center">
-      <div class="mb-4 md:mb-0">
+      <div class="mb-4 md:mb-0 flex flex-col gap-2">
         <p class="text-sm">&copy; {new Date().getFullYear()} Benito González García - {t.footer.copyright}</p>
+        <a href={getRouteForLanguage('/politica-de-privacidad', lang)} class="text-sm underline hover:text-accent transition-colors">
+          {t.footer.privacyPolicy}
+        </a>
       </div>
 
       <div class="w-[100px] py-4">

@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import { translations } from '../../i18n/ui';
 import { getLangFromUrl } from '../../i18n/utils';
+import { getRouteForLanguage } from '../../i18n/routes';
+import type { Language } from '../../i18n/ui';
 
 import SpainFlag from '../../assets/icons/es.svg';
 import UnitedKingdomFlag from '../../assets/icons/en.svg';
@@ -19,7 +21,6 @@ type LanguageOption = {
 };
 
 const currentLang = getLangFromUrl(Astro.url);
-const { pathname } = Astro.url;
 
 const flags: Record<string, Flag> = {
   en: {
@@ -33,8 +34,7 @@ const flags: Record<string, Flag> = {
 };
 
 const languageOptions: LanguageOption[] = Object.entries(translations).map(([lang]) => {
-  const path = pathname.replace(/^\/[^/]+/, '');
-  const href = `/${lang}${path || '/'}`;
+  const href = getRouteForLanguage("/", lang as Language);
   return {
     lang,
     href,
@@ -87,6 +87,7 @@ import { defaultLang } from "../../i18n/ui";
       selector.addEventListener('change', (e) => {
         const target = e.target as HTMLSelectElement;
         if (target.value) {
+          // Use the href value directly as it's already computed with route mapping
           const newPath = target.value === `/${defaultLang}/` ? '/' : target.value;
           window.location.href = window.location.origin + newPath;
         }

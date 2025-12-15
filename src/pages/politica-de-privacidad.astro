@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/parts/Header.astro';
+import Footer from '../components/parts/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout 
+  title="Política de Privacidad - Benito González García" 
+  description="Política de privacidad y aviso legal de Benito González García - Saxofonista profesional" 
+  lang={lang}
+>
+  <Header />
+  
+  <main class="pt-20 pb-16">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h1 class="text-4xl font-bold mb-8 text-primary">Política de Privacidad</h1>
+      
+      <div class="prose prose-lg max-w-none">
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">1. Información General</h2>
+          <p class="mb-4">
+            En cumplimiento de lo establecido en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales 
+            y garantía de los derechos digitales (LOPDGDD) y el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo 
+            de 27 de abril de 2016 (RGPD), le informamos sobre el tratamiento de sus datos personales.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">2. Responsable del Tratamiento</h2>
+          <p class="mb-4">
+            <strong>Benito González García</strong><br/>
+            Saxofonista profesional<br/>
+            Murcia, España<br/>
+            Email: [Su email de contacto]<br/>
+            Teléfono: [Su teléfono de contacto]
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">3. Datos que Recopilamos</h2>
+          <p class="mb-4">
+            Recopilamos los siguientes tipos de datos personales cuando utiliza nuestros servicios o se pone en contacto con nosotros:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Datos de identificación: nombre, apellidos</li>
+            <li>Datos de contacto: dirección de correo electrónico, número de teléfono</li>
+            <li>Datos de navegación: dirección IP, tipo de navegador, páginas visitadas</li>
+            <li>Datos de comunicación: mensajes enviados a través de formularios de contacto</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">4. Finalidad del Tratamiento</h2>
+          <p class="mb-4">
+            Utilizamos sus datos personales para las siguientes finalidades:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Responder a sus consultas y solicitudes de información</li>
+            <li>Gestionar reservas y contrataciones de servicios</li>
+            <li>Enviar comunicaciones relacionadas con nuestros servicios</li>
+            <li>Mejorar nuestros servicios y experiencia del usuario</li>
+            <li>Cumplir con obligaciones legales</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">5. Base Legal</h2>
+          <p class="mb-4">
+            El tratamiento de sus datos personales se basa en:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Consentimiento del interesado</li>
+            <li>Ejecución de un contrato o medidas precontractuales</li>
+            <li>Interés legítimo del responsable</li>
+            <li>Cumplimiento de obligaciones legales</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">6. Conservación de Datos</h2>
+          <p class="mb-4">
+            Conservaremos sus datos personales durante el tiempo necesario para cumplir con las finalidades para las que fueron 
+            recopilados y, en cualquier caso, durante los plazos establecidos por la legislación aplicable.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">7. Derechos del Interesado</h2>
+          <p class="mb-4">
+            Usted tiene derecho a:
+          </p>
+          <ul class="list-disc pl-6 mb-4">
+            <li>Acceder a sus datos personales</li>
+            <li>Rectificar datos inexactos o incompletos</li>
+            <li>Suprimir sus datos cuando ya no sean necesarios</li>
+            <li>Oponerse al tratamiento de sus datos</li>
+            <li>Limitar el tratamiento en determinadas circunstancias</li>
+            <li>Portabilidad de sus datos</li>
+            <li>Presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD)</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">8. Cookies</h2>
+          <p class="mb-4">
+            Este sitio web utiliza cookies para mejorar la experiencia del usuario. Para más información, consulte nuestra 
+            política de cookies.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">9. Seguridad</h2>
+          <p class="mb-4">
+            Implementamos medidas técnicas y organizativas apropiadas para proteger sus datos personales contra el acceso no 
+            autorizado, la pérdida, destrucción o alteración.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">10. Modificaciones</h2>
+          <p class="mb-4">
+            Nos reservamos el derecho de modificar esta política de privacidad. Las modificaciones serán publicadas en esta 
+            página con la fecha de actualización correspondiente.
+          </p>
+          <p class="text-sm text-gray-600">
+            Última actualización: {new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose h2 {
+    color: #1a1a1a;
+    margin-top: 2rem;
+  }
+  
+  .prose ul {
+    margin-bottom: 1rem;
+  }
+  
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+</style>

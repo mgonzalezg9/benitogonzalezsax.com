@@ -1,7 +1,7 @@
 ---
 import Logo from '../../assets/logo.svg';
+import { getRouteForLanguage } from '../../i18n/routes';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
-import HamburgerMenuIcon from '../../assets/icons/hamburger-menu.svg';
 import LanguagePicker from '../ui/LanguagePicker.astro';
 
 const lang = getLangFromUrl(Astro.url);
@@ -21,7 +21,7 @@ const navSections = [
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-0">
       
-      <a href="#" class="py-4 w-[100px]" aria-label={t.nav.home.label}>
+      <a href={getRouteForLanguage('/', lang)} class="py-4 w-[100px]" aria-label={t.nav.home.label}>
         <Logo />
       </a>
       
@@ -29,7 +29,7 @@ const navSections = [
         <ul class="flex space-x-8">
           {navSections.map(section => (
             <li>
-              <a href={`#${section.id}`} class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
+              <a href={`${getRouteForLanguage('/', lang)}#${section.id}`} class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
                 {section.label}
               </a>
             </li>
