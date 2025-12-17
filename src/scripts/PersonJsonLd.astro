@@ -1,0 +1,44 @@
+---
+import type { Language } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const siteUrl = Astro.site?.origin;
+const url = lang === 'es' ? siteUrl : `${siteUrl}/en`;
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Benito González García",
+  alternateName: "Benito Gonzalez Garcia",
+  jobTitle: t.hero.subtitle,
+  description: t.meta.description,
+  url,
+  telephone: "+34 615 97 71 90",
+  email: "mailto:info@benitogonzalezsax.com",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Murcia",
+    addressCountry: "ES",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "Spain",
+  },
+  sameAs: [
+    "https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/",
+    "https://www.instagram.com/benitogonzalezsax/",
+    "https://www.youtube.com/@benitogonzalezsax/featured",
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(person)} />
+
+
