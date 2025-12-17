@@ -1,5 +1,6 @@
 ---
 import type { Language } from '../i18n/ui';
+import GoogleAnalyticsTag from '../scripts/GoogleAnalyticsTag.astro';
 
 interface Props {
   title: string;
@@ -45,15 +46,7 @@ const preloadedFonts = [
       <link rel="preload" href={font} as="font" type="font/otf" crossorigin="anonymous" />
     ))}
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SV3H08XHBP"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-SV3H08XHBP');
-    </script>
+    <GoogleAnalyticsTag />
   </head>
   <body class="bg-gray-50 text-gray-800">
     <slot />
