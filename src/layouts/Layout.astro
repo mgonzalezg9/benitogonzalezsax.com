@@ -1,6 +1,7 @@
 ---
 import type { Language } from '../i18n/ui';
 import GoogleAnalyticsTag from '../scripts/GoogleAnalyticsTag.astro';
+import PersonJsonLd from '../scripts/PersonJsonLd.astro';
 
 interface Props {
   title: string;
@@ -46,7 +47,9 @@ const preloadedFonts = [
       <link rel="preload" href={font} as="font" type="font/otf" crossorigin="anonymous" />
     ))}
 
+    <!-- Scripts -->
     <GoogleAnalyticsTag />
+    <PersonJsonLd lang={lang} />
   </head>
   <body class="bg-gray-50 text-gray-800">
     <slot />
