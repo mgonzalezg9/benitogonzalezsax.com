@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 # firebase
 .firebase/
+
+.codex-dev.log

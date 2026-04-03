@@ -36,8 +36,8 @@ export const es = {
     },
   },
   hero: {
-    title: 'Benito Gonzalez Garcia',
-    subtitle: 'Saxofonista para bodas y eventos',
+    title: 'Saxofonista para bodas y eventos',
+    subtitle: 'Benito Gonzalez Sax saxofonista profesional para bodas, eventos y celebraciones en Murcia, Alicante y toda España.',
     description: 'Saxofonista profesional para bodas, eventos y celebraciones en Murcia, Alicante y toda España.',
     contactButton: 'Contactar',
     galleryButton: 'Ver galeria',

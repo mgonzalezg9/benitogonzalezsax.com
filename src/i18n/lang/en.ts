@@ -37,8 +37,8 @@ export const en = {
     },
   },
   hero: {
-    title: 'Benito Gonzalez Garcia',
-    subtitle: 'Saxophonist for weddings and events',
+    title: 'Saxophone player for weddings and events',
+    subtitle: 'Benito Gonzalez Sax saxphonist specialized in weddings and events',
     description:
       'Professional saxophonist for weddings, events and celebrations in Murcia, Alicante and throughout Spain.',
     contactButton: 'Contact',
