@@ -13,12 +13,15 @@ import JackAvatar from '../../assets/testimonials/jack.jpg';
 import YolandaAvatar from '../../assets/testimonials/yolanda.jpg';
 import type { LandingPageData } from '../../data/landingPages';
 import { BUSINESS } from '../../lib/site';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 interface Props {
   page: LandingPageData;
 }
 
 const { page } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const getYouTubeEmbedUrl = (rawUrl: string) => {
   try {
@@ -65,64 +68,6 @@ const testimonialAvatars = {
   yolanda: YolandaAvatar,
 } as const;
 
-const answerBlockHeading =
-  page.type === 'home'
-    ? 'Todo lo que necesitas saber antes de contratar'
-    : `Todo lo que necesitas saber para tu boda en ${page.heroTitle.replace('Saxofonista para bodas en ', '')}`;
-
-const cityName = page.heroTitle.replace('Saxofonista para bodas en ', '');
-
-const answerBlockIntro =
-  page.type === 'home'
-    ? 'Un resumen claro sobre el servicio, los formatos disponibles, las zonas en las que trabajo y la forma más rápida de pedir presupuesto.'
-    : 'Un resumen claro sobre cómo funciona el servicio, qué momentos de la boda puedo cubrir y cómo pedir presupuesto en tu ciudad.';
-
-const answerCardsDisplay =
-  page.type === 'home'
-    ? [
-        {
-          title: 'Qué servicio ofrezco',
-          body:
-            'Saxo en directo para bodas y eventos, con actuaciones pensadas para ceremonia, cóctel, banquete, barra libre y sesiones con DJ.',
-        },
-        {
-          title: 'Dónde puedo actuar',
-          body:
-            'Trabajo en bodas tanto de la Península como de Baleares, adaptando la actuación al lugar, la fecha y el estilo de cada celebración.',
-        },
-        {
-          title: 'Cómo se adapta a vuestra boda',
-          body:
-            'Puedo actuar solo, coordinarme con wedding planners y espacios o integrarme en un formato Saxo + DJ para darle más energía a la fiesta.',
-        },
-        {
-          title: 'Cómo pedir presupuesto',
-          body:
-            'Solo necesitas enviar fecha, ciudad, lugar y momentos de actuación por formulario o WhatsApp para recibir una propuesta.',
-        },
-      ]
-    : [
-        {
-          title: `Qué servicio ofrezco en ${cityName}`,
-          body:
-            `Saxo en directo para bodas en ${cityName}, con servicio adaptable a ceremonia, cóctel, banquete, barra libre y formato Saxo + DJ.`,
-        },
-        {
-          title: `Dónde puedo actuar cerca de ${cityName}`,
-          body:
-            `Trabajo bodas en ${cityName} y alrededores, adaptando la actuación al tipo de espacio, al momento del evento y al estilo de la pareja.`,
-        },
-        {
-          title: 'Cómo se adapta a vuestra boda',
-          body:
-            'La actuación se ajusta al ritmo del evento, al repertorio que mejor encaja con el ambiente y a la coordinación con wedding planners, fincas, hoteles o DJs.',
-        },
-        {
-          title: `Cómo pedir presupuesto en ${cityName}`,
-          body:
-            `Con fecha, lugar y momentos de actuación definidos, puedes pedir presupuesto por formulario o WhatsApp para tu boda en ${cityName}.`,
-        },
-      ];
 ---
 
 <main class="bg-gray-50 text-gray-900">
@@ -202,7 +147,7 @@ const answerCardsDisplay =
 
         <div class="rounded-[2rem] border border-white/15 bg-white/10 p-5 backdrop-blur-sm md:p-6">
           <p class="text-[1.16rem] font-semibold uppercase tracking-[0.15em] text-accent md:text-[1.34rem]">
-            ¿Por qué contar con mis servicios?
+            {t.landing.hero.trustTitle}
           </p>
           <ul class="mt-6 space-y-4 text-base text-white/90">
             {page.trustPoints.map((point) => (
@@ -214,16 +159,16 @@ const answerCardsDisplay =
           </ul>
           <div class="mt-8 grid gap-3 sm:grid-cols-3">
             <div class="rounded-2xl bg-white/10 p-3.5 text-center">
-              <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">+200</p>
-              <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">Eventos<br />realizados</p>
+              <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.eventsValue}</p>
+              <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.eventsLine1}<br />{t.landing.hero.stats.eventsLine2}</p>
             </div>
             <div class="rounded-2xl bg-white/10 p-3.5 text-center">
-              <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">+10</p>
-              <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">Años de<br />experiencia</p>
+              <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.experienceValue}</p>
+              <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.experienceLine1}<br />{t.landing.hero.stats.experienceLine2}</p>
             </div>
             <div class="rounded-2xl bg-white/10 p-3.5 text-center">
-              <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">100%</p>
-              <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">Clientes<br />satisfechos</p>
+              <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.satisfactionValue}</p>
+              <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.satisfactionLine1}<br />{t.landing.hero.stats.satisfactionLine2}</p>
             </div>
           </div>
         </div>
@@ -236,14 +181,14 @@ const answerCardsDisplay =
       <div>
         <Image
           src={AboutImage}
-          alt="Benito González saxofonista para bodas"
+          alt={t.landing.about.imageAlt}
           class="w-full rounded-[2rem] object-cover shadow-lg"
           loading="lazy"
         />
       </div>
       <div>
         <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-          Tu saxofonista para bodas
+          {t.landing.about.eyebrow}
         </p>
         <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {page.introTitle}
@@ -261,7 +206,7 @@ const answerCardsDisplay =
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
         <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-          Servicios para bodas
+          {t.landing.services.eyebrow}
         </p>
         <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {page.serviceTitle}
@@ -285,7 +230,7 @@ const answerCardsDisplay =
           <div>
             <h3 class="text-[1.42rem] font-semibold uppercase tracking-[0.08em] text-accent md:text-[1.72rem]">{page.extrasTitle}</h3>
             <p class="mt-4 text-base leading-7 text-white/80">
-              Una propuesta flexible para ceremonia, cóctel, banquete y fiesta, pensada para que la música encaje de verdad con cada momento de la boda.
+              {t.landing.services.extrasIntro}
             </p>
           </div>
           <ul class="grid gap-4 md:grid-cols-2">
@@ -304,18 +249,18 @@ const answerCardsDisplay =
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
         <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-          Datos clave
+          {t.landing.answerBlock.eyebrow}
         </p>
         <h2 class="mt-4 font-segmentA text-[3rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.2rem]">
-          {answerBlockHeading}
+          {page.answerBlockTitle}
         </h2>
         <p class="mt-6 text-lg leading-8 text-gray-700">
-          {answerBlockIntro}
+          {page.answerBlockIntro}
         </p>
       </div>
 
       <div class="mt-10 grid gap-6 md:grid-cols-2">
-        {answerCardsDisplay.map((card) => (
+        {page.answerCards.map((card) => (
           <article class="rounded-[1.75rem] border border-gray-200 bg-gray-50 p-6 shadow-sm">
             <h3 class="font-segmentA text-[2.1rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.4rem]">
               {card.title}
@@ -330,7 +275,7 @@ const answerCardsDisplay =
   <section id="videos" class="bg-white py-20">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
-        <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">Vídeos</p>
+        <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">{t.landing.videos.eyebrow}</p>
         <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {page.videosTitle}
         </h2>
@@ -361,7 +306,7 @@ const answerCardsDisplay =
                       rel="noreferrer"
                       class="text-sm font-semibold uppercase tracking-[0.14em] text-primary underline decoration-accent decoration-2 underline-offset-4"
                     >
-                      Ver vídeo
+                      {t.landing.videos.watchLabel}
                     </a>
                   </div>
                 )}
@@ -388,7 +333,7 @@ const answerCardsDisplay =
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
         <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-          Repertorio
+          {t.landing.repertoire.eyebrow}
         </p>
         <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {page.repertoireTitle}
@@ -416,7 +361,7 @@ const answerCardsDisplay =
 
       <div class="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p class="max-w-2xl text-sm leading-6 text-gray-500">
-          Si quieres ver la selección completa de canciones, puedes descargar la carta de repertorio en PDF.
+          {t.landing.repertoire.downloadNote}
         </p>
         <a
           href={page.repertoireDownloadHref}
@@ -438,7 +383,7 @@ const answerCardsDisplay =
           >
             <img
               src={imageSrc}
-              alt={`Vista previa del repertorio ${index + 1}`}
+              alt={`${t.landing.repertoire.previewAlt} ${index + 1}`}
               class="h-full w-full object-cover"
               loading="lazy"
             />
@@ -452,7 +397,7 @@ const answerCardsDisplay =
     <div class="container mx-auto px-4">
       <div class="max-w-2xl">
         <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-          Packs para boda
+          {t.landing.packs.eyebrow}
         </p>
         <h2 class="mt-4 font-segmentA text-[3rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {page.packsTitle}
@@ -473,7 +418,7 @@ const answerCardsDisplay =
             <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <p class="text-[0.9rem] font-semibold uppercase tracking-[0.24em] text-accent">
-                  {index === 0 ? 'Pack recomendado' : 'Pack flexible'}
+                  {index === 0 ? t.landing.packs.recommendedLabel : t.landing.packs.flexibleLabel}
                 </p>
                 <div class="mt-4 flex flex-wrap items-center gap-3">
                   <h3
@@ -490,7 +435,7 @@ const answerCardsDisplay =
                       index === 0 ? 'bg-white/10 text-white' : 'bg-primary/8 text-primary',
                     ]}
                   >
-                    {index === 0 ? 'Más personalización' : 'Más directo'}
+                    {index === 0 ? t.landing.packs.morePersonalisationLabel : t.landing.packs.moreDirectLabel}
                   </span>
                 </div>
               </div>
@@ -519,7 +464,7 @@ const answerCardsDisplay =
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
         <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-          Opiniones reales
+          {t.landing.testimonials.eyebrow}
         </p>
         <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {page.testimonialsTitle}
@@ -572,7 +517,7 @@ const answerCardsDisplay =
       <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
         <div class="rounded-[2rem] bg-primary p-8 text-white md:p-10">
           <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-            Reserva y disponibilidad
+            {t.landing.contact.eyebrow}
           </p>
           <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] md:text-[4.4rem]">
             {page.contactTitle}
@@ -582,11 +527,11 @@ const answerCardsDisplay =
 
           <div class="mt-8 space-y-4">
             <a class="block rounded-2xl bg-white/10 p-4 transition hover:bg-white/15" href={BUSINESS.phoneHref}>
-              <span class="block text-sm uppercase tracking-[0.18em] text-accent">Teléfono</span>
+              <span class="block text-sm uppercase tracking-[0.18em] text-accent">{t.landing.contact.phoneLabel}</span>
               <span class="mt-2 block text-lg">{BUSINESS.phone}</span>
             </a>
             <a class="block rounded-2xl bg-white/10 p-4 transition hover:bg-white/15" href={BUSINESS.emailHref}>
-              <span class="block text-sm uppercase tracking-[0.18em] text-accent">Email</span>
+              <span class="block text-sm uppercase tracking-[0.18em] text-accent">{t.landing.contact.emailLabel}</span>
               <span class="mt-2 block text-lg">{BUSINESS.email}</span>
             </a>
             <a
@@ -596,7 +541,7 @@ const answerCardsDisplay =
               rel="noreferrer"
             >
               <span class="block text-sm uppercase tracking-[0.18em] text-accent">WhatsApp</span>
-              <span class="mt-2 block text-lg">Escribir ahora</span>
+              <span class="mt-2 block text-lg">{t.landing.contact.whatsappLabel}</span>
             </a>
           </div>
         </div>
@@ -610,50 +555,47 @@ const answerCardsDisplay =
           >
             <div class="grid gap-5 md:grid-cols-2">
               <label class="block">
-                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">Nombre</span>
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.nameLabel}</span>
                 <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="text" name="nombre" required />
               </label>
               <label class="block">
-                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">Email</span>
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.emailLabel}</span>
                 <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="email" name="email" required />
               </label>
             </div>
 
             <div class="grid gap-5 md:grid-cols-2">
               <label class="block">
-                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">Teléfono</span>
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.phoneLabel}</span>
                 <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="tel" name="telefono" />
               </label>
               <label class="block">
-                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">Fecha de la boda</span>
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.weddingDateLabel}</span>
                 <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="date" name="fecha" />
               </label>
             </div>
 
             <div class="grid gap-5 md:grid-cols-2">
               <label class="block">
-                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">Ciudad o lugar</span>
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.cityOrVenueLabel}</span>
                 <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="text" name="ciudad" required />
               </label>
               <label class="block">
-                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">Tipo de servicio</span>
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.serviceTypeLabel}</span>
                 <select class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" name="servicio" required>
-                  <option value="Ceremonia">Ceremonia</option>
-                  <option value="Cóctel">Cóctel</option>
-                  <option value="Banquete">Banquete</option>
-                  <option value="Barra libre">Barra libre</option>
-                  <option value="Saxo + DJ">Saxo + DJ</option>
-                  <option value="Varios momentos">Varios momentos</option>
+                  {t.landing.contact.form.serviceOptions.map((option) => (
+                    <option value={option}>{option}</option>
+                  ))}
                 </select>
               </label>
             </div>
 
             <label class="block">
-              <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">Mensaje</span>
+              <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.messageLabel}</span>
               <textarea
                 class="min-h-36 w-full rounded-2xl border border-gray-300 px-4 py-3"
                 name="mensaje"
-                placeholder="Cuéntame el tipo de boda, horario aproximado, lugar y cualquier detalle importante."
+                placeholder={t.landing.contact.form.messagePlaceholder}
               ></textarea>
             </label>
 
@@ -662,19 +604,19 @@ const answerCardsDisplay =
                 type="submit"
                 class="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-7 py-3 font-segmentA text-[1.45rem] font-bold uppercase tracking-[0.12em] text-white transition hover:bg-amber-400 md:text-[1.7rem]"
               >
-                Enviar por email
+                {t.landing.contact.form.submitEmailLabel}
               </button>
               <button
                 type="button"
                 data-action="whatsapp"
                 class="inline-flex min-h-12 items-center justify-center rounded-full border border-primary px-7 py-3 font-segmentA text-[1.45rem] font-bold uppercase tracking-[0.12em] text-primary transition hover:bg-primary hover:text-white md:text-[1.7rem]"
               >
-                Enviar por WhatsApp
+                {t.landing.contact.form.submitWhatsAppLabel}
               </button>
             </div>
 
             <p class="text-sm leading-6 text-gray-500">
-              El formulario prepara tu solicitud para email o WhatsApp con los datos clave de la boda. Así puedes pedir presupuesto sin perder información importante.
+              {t.landing.contact.form.helpText}
             </p>
           </form>
         </div>
@@ -685,7 +627,7 @@ const answerCardsDisplay =
   <section class="bg-white py-20">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
-        <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">FAQ</p>
+        <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">{t.landing.faq.eyebrow}</p>
         <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {page.faqTitle}
         </h2>
@@ -707,7 +649,7 @@ const answerCardsDisplay =
   <section id="ciudades" class="bg-white py-20">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
-        <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">Cobertura</p>
+        <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">{t.landing.cities.eyebrow}</p>
         <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
           {page.citiesTitle}
         </h2>
@@ -736,7 +678,7 @@ const answerCardsDisplay =
       data-floating-cta
       class="pointer-events-none fixed bottom-4 right-4 z-40 inline-flex min-h-10 translate-y-4 items-center justify-center rounded-[999px] bg-accent px-4 py-2.5 text-[0.74rem] font-semibold uppercase tracking-[0.08em] text-white opacity-0 shadow-lg shadow-black/15 transition duration-300 hover:bg-amber-400 md:bottom-6 md:left-[calc(50%-7rem)] md:right-auto md:min-h-11 md:-translate-x-1/2 md:px-5 md:py-3 md:text-[0.82rem]"
     >
-      Solicita presupuesto
+      {t.landing.floatingCta.budgetLabel}
     </a>
 
     <a
@@ -744,7 +686,7 @@ const answerCardsDisplay =
       data-floating-videos-cta
       class="pointer-events-none fixed bottom-4 left-4 z-30 inline-flex min-h-9 translate-y-4 items-center justify-center rounded-[999px] border border-accent bg-white px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-accent opacity-0 shadow-lg shadow-black/10 transition duration-300 hover:bg-amber-50 md:bottom-6 md:left-[calc(50%+7rem)] md:min-h-11 md:-translate-x-1/2 md:px-5 md:py-3 md:text-[0.82rem]"
     >
-      Ver vídeos
+      {t.landing.floatingCta.videosLabel}
     </a>
   </div>
 </main>
