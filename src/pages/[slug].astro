@@ -4,7 +4,8 @@ import Header from '../components/parts/Header.astro';
 import WeddingLandingPage from '../components/pages/WeddingLandingPage.astro';
 import { buildCityPageData } from '../data/landingPages';
 import { getLaunchedLocations, getLocationBySlug } from '../data/locations';
-import { BUSINESS, DEFAULT_OG_IMAGE, absoluteUrl } from '../lib/site';
+import { DEFAULT_OG_IMAGE, absoluteUrl } from '../lib/site';
+import { buildPageSchemas } from '../lib/schemas';
 import Layout from '../layouts/Layout.astro';
 
 export const getStaticPaths = () =>
@@ -26,126 +27,7 @@ if (!location) {
 
 const page = buildCityPageData(location);
 const canonical = absoluteUrl(page.canonicalPath);
-const reviewCount = page.testimonials.length;
-const reviews = page.testimonials.map((testimonial) => ({
-  '@type': 'Review',
-  reviewBody: testimonial.quote,
-  author: {
-    '@type': 'Person',
-    name: testimonial.name,
-  },
-  reviewRating: {
-    '@type': 'Rating',
-    ratingValue: '5',
-    bestRating: '5',
-  },
-}));
-const offerCatalog = {
-  '@type': 'OfferCatalog',
-  name: `Servicios de saxo para bodas en ${location.city}`,
-  itemListElement: page.serviceTypes.map((serviceType) => ({
-    '@type': 'Offer',
-    areaServed: {
-      '@type': 'City',
-      name: location.city,
-    },
-    itemOffered: {
-      '@type': 'Service',
-      name: `${serviceType} en ${location.city}`,
-      serviceType,
-    },
-  })),
-};
-
-const schemas = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: `${BUSINESS.name} - ${page.heroTitle}`,
-    url: canonical,
-    description: page.description,
-    telephone: BUSINESS.phone,
-    email: BUSINESS.email,
-    serviceType: page.serviceTypes,
-    knowsAbout: page.serviceTypes,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: BUSINESS.addressLocality,
-      addressRegion: BUSINESS.addressRegion,
-      addressCountry: BUSINESS.addressCountry,
-    },
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        contactType: 'sales',
-        telephone: BUSINESS.phone,
-        email: BUSINESS.email,
-        availableLanguage: ['es', 'en'],
-      },
-    ],
-    areaServed: {
-      '@type': 'City',
-      name: location.city,
-      containedInPlace: {
-        '@type': 'AdministrativeArea',
-        name: location.province,
-      },
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: location.latitude,
-      longitude: location.longitude,
-    },
-    hasOfferCatalog: offerCatalog,
-    review: reviews,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: String(reviewCount),
-      bestRating: '5',
-    },
-    sameAs: [BUSINESS.facebook, BUSINESS.instagram, BUSINESS.youtube],
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: page.heroTitle,
-    serviceType: page.serviceTypes,
-    provider: {
-      '@type': 'ProfessionalService',
-      name: BUSINESS.name,
-      url: canonical,
-    },
-    areaServed: {
-      '@type': 'City',
-      name: location.city,
-      containedInPlace: {
-        '@type': 'AdministrativeArea',
-        name: location.province,
-      },
-    },
-    offers: offerCatalog.itemListElement,
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: page.faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-    })),
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: (page.breadcrumb ?? []).map((crumb, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: crumb.label,
-      item: absoluteUrl(crumb.href),
-    })),
-  },
-];
+const schemas = buildPageSchemas(page, canonical, location);
 ---
 
 <Layout
