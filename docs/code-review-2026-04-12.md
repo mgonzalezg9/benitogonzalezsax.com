@@ -6,37 +6,30 @@
 
 ### Critical
 
-#### 1. Two parallel, irreconcilable page architectures with no shared components
+#### 1. Two parallel, irreconcilable page architectures with no shared components ✅ Fixed
 
 The Spanish landing system (`/` and `[slug].astro`) and the English page (`/en/index.astro`) are built on entirely different component models:
 
 - Spanish pages use `src/components/pages/WeddingLandingPage.astro`, a single ~750-line monolith rendering every section in one file.
 - The English page composes individual section components from `src/components/parts/` (Hero, About, Services, Gallery, Testimonials, Contact).
 
-These two systems share zero markup. The hero section appears three times with different markup. Every structural UI change costs two to three times as much work. As more city pages are added, the monolith grows without bound.
-
-**Suggestion:** Decompose `WeddingLandingPage.astro` into the same section-level components the English page already uses, parameterised via props to accept a `LandingPageData` object.
+`WeddingLandingPage.astro` has been decomposed into 12 section components in `src/components/parts/` (`LandingHero`, `LandingAbout`, `LandingServices`, `LandingAnswerBlock`, `LandingVideos`, `LandingRepertoire`, `LandingPacks`, `LandingTestimonials`, `LandingContact`, `LandingFaq`, `LandingCities`, `LandingFloatingCta`). The page file is now a ~33-line composition layer.
 
 ---
 
-#### 2. Hard-coded Spanish strings throughout `WeddingLandingPage.astro`
+#### 2. Hard-coded Spanish strings throughout `WeddingLandingPage.astro` ✅ Fixed
 
-The i18n system exists and is used consistently by English-facing components, but `WeddingLandingPage.astro` contains dozens of hard-coded strings not in any translation file:
+The i18n system exists and is used consistently by English-facing components, but `WeddingLandingPage.astro` contained dozens of hard-coded strings not in any translation file.
 
-- Line 205: `"¿Por qué contar con mis servicios?"` — not from `page.*`
-- Lines 333, 391, 454, 521–522, 575, 584–585, 599, 665–673, 676–678, 688, 710 — all hard-coded
-- Contact form field labels: Nombre, Email, Teléfono, Fecha de la boda, Ciudad o lugar, Tipo de servicio, Mensaje (lines 613–653)
-- Floating CTA labels: `"Solicita presupuesto"` and `"Ver vídeos"` (lines 739, 747)
-
-Also, `src/components/parts/Contact.astro` lines 40 and 49 hard-code the phone number and email instead of referencing `BUSINESS.phone` and `BUSINESS.email` from `src/lib/site.ts`.
+All strings have been moved to `es.ts` under a new `landing` section, and the component now references them via `t.landing.*`. Also, `src/components/parts/Contact.astro` previously hard-coded the phone number, email, and social link hrefs — these now reference `BUSINESS` from `src/lib/site.ts`.
 
 ---
 
-#### 3. `answerCardsDisplay` computed in component duplicates logic already in data layer
+#### 3. `answerCardsDisplay` computed in component duplicates logic already in data layer ✅ Fixed
 
-`WeddingLandingPage.astro` lines 68–125 recompute `answerBlockHeading`, `answerBlockIntro`, and `answerCardsDisplay` locally, ignoring `page.answerBlockTitle`, `page.answerBlockIntro`, and `page.answerCards` — which are already populated by `buildHomeAnswerCards()` / `buildCityAnswerCards()` in `landingPages.ts`. The data layer and presentation layer duplicate the same logic with slightly different text.
+`WeddingLandingPage.astro` recomputed `answerBlockHeading`, `answerBlockIntro`, and `answerCardsDisplay` locally, ignoring `page.answerBlockTitle`, `page.answerBlockIntro`, and `page.answerCards`. The local computation has been removed; the component now uses the data layer fields directly.
 
-**Suggestion:** Remove the local computation and use `page.answerBlockTitle`, `page.answerBlockIntro`, and `page.answerCards` directly.
+Also fixed: missing accents in `buildCityPageData`'s `answerBlockTitle` and `answerBlockIntro` (`rapida` → `rápida`, `que` → `qué`, etc.).
 
 ---
 
@@ -44,13 +37,16 @@ Also, `src/components/parts/Contact.astro` lines 40 and 49 hard-code the phone n
 
 #### 4. `LanguagePicker` always links to `/` regardless of active city page
 
-`LanguagePicker.astro` line 37 hardcodes `"/"` as the path, so a user on `/saxofonista-para-bodas-en-madrid` switching language is sent to `/en` (the English homepage), losing their context.
+`LanguagePicker.astro` hardcodes `"/"` as the path, so a user on `/saxofonista-para-bodas-en-madrid` switching language is sent to `/en` (the English homepage), losing their context.
 
-#### 5. JSON-LD schema construction duplicated across `index.astro` and `[slug].astro`
+#### 5. JSON-LD schema construction duplicated across `index.astro` and `[slug].astro` ✅ Fixed
 
-Both files contain ~100 lines of nearly identical JSON-LD construction. The only difference is city pages add a `geo` field and use a `City` for `areaServed`.
+Both files contained ~100 lines of nearly identical JSON-LD construction. Extracted into `src/lib/schemas.ts` as `buildPageSchemas(page, canonical, location?)`.
 
-**Suggestion:** Extract a `buildPageSchemas(page, location?)` function into `src/lib/schemas.ts`.
+- Home page: `areaServed` covers Península + Illes Balears; `geo` uses Mazarrón coordinates from `BUSINESS`.
+- City pages: `areaServed` is a `City` object; `geo` uses the location's coordinates.
+- Individual offers on the home page have no `areaServed`; city page offers carry `{ '@type': 'City', name }`.
+- `BreadcrumbList` schema included conditionally when `page.breadcrumb` is present.
 
 #### 6. `FadeIn` creates one `IntersectionObserver` per instance
 
@@ -66,6 +62,8 @@ Both files contain ~100 lines of nearly identical JSON-LD construction. The only
 
 #### 8. City pages (`[slug].astro`) were missing `hreflang` alternate links ✅ Fixed
 
+`[slug].astro` now emits `hreflang="es"` (self-reference) and `hreflang="x-default"` pointing to the homepage.
+
 #### 9. `nav.gallery` key misleadingly named for a "Ciudades" section
 
 In `es.ts`, the fourth nav entry uses key `nav.gallery` but points to `#ciudades` (a cities/coverage section, not a gallery). In `en.ts`, the same slot genuinely is a gallery. This naming disconnect is a maintenance trap.
@@ -76,7 +74,7 @@ In `es.ts`, the fourth nav entry uses key `nav.gallery` but points to `#ciudades
 
 ### Nice to Have
 
-- `testimonialAvatars` map hard-coded in `WeddingLandingPage.astro` requires all nine avatar imports at the top. Adding a new testimonial requires changes in three places.
+- `testimonialAvatars` map moved to `LandingTestimonials.astro` — avatar imports are now co-located with the component that uses them. ✅ Fixed
 - `Services.astro` line 14 assigns icons by array index — fragile if translation item order ever changes.
 - `Testimonials.astro` had a commented-out `<img>` block referencing a non-existent `testimonial.image` property. ✅ Removed
 - `LanguagePicker.astro` accepted a `currentLang` prop it immediately discarded. ✅ Removed
@@ -108,9 +106,9 @@ export const routeMappings: Record<string, string> = { ... }
 
 `getRouteForLanguage` only maps Spanish → English. The English → Spanish direction falls through to `routeMappings[pathname] ?? pathname`, which returns the English path unchanged when no mapping exists.
 
-#### `page.answerCards` / `page.answerBlockTitle` / `page.answerBlockIntro` never consumed
+#### `page.answerCards` / `page.answerBlockTitle` / `page.answerBlockIntro` never consumed ✅ Fixed
 
-`WeddingLandingPage.astro` lines 68–125 ignore these three `LandingPageData` fields entirely and compute local equivalents. The interface contract and actual rendering are out of sync.
+`WeddingLandingPage.astro` previously ignored these three `LandingPageData` fields and computed local equivalents. The local computation has been removed and the page data fields are now used directly.
 
 ---
 
@@ -150,7 +148,7 @@ The English `/en` page has no equivalent for: intro/trust section, wedding momen
 
 #### `addressLocality` mismatch between UI and JSON-LD
 
-`Contact.astro` displays "Murcia, España" (`es.ts` line 151) but `BUSINESS.addressLocality` in `src/lib/site.ts` line 11 is `'Mazarrón'`, which flows into the JSON-LD `PostalAddress` on every page.
+`Contact.astro` displays "Murcia, España" (`es.ts` line 151) but `BUSINESS.addressLocality` in `src/lib/site.ts` is `'Mazarrón'`, which flows into the JSON-LD `PostalAddress` on every page.
 
 ---
 
@@ -170,7 +168,7 @@ No `schemas` prop is passed to `Layout`. Google sees no structured data on `/en`
 
 #### Language picker on city pages routes to `/en` regardless of current page
 
-`LanguagePicker.astro` line 37 hardcodes `"/"` — a user on a city page who switches language lands on the English homepage, not the closest equivalent page.
+`LanguagePicker.astro` hardcodes `"/"` — a user on a city page who switches language lands on the English homepage, not the closest equivalent page.
 
 ---
 

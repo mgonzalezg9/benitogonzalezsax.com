@@ -20,7 +20,7 @@ export const es = {
       anchor: 'servicios',
       ariaDescription: 'Ir a la sección de servicios',
     },
-    gallery: {
+    cities: {
       label: 'Ciudades',
       anchor: 'ciudades',
       ariaDescription: 'Ir a la sección de ciudades',
