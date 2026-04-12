@@ -1,0 +1,33 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<section class="bg-white py-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl">
+      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">{t.landing.faq.eyebrow}</p>
+      <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+        {page.faqTitle}
+      </h2>
+    </div>
+
+    <div class="mt-10 grid gap-4">
+      {page.faqs.map((faq) => (
+        <details class="rounded-[1.5rem] border border-gray-200 bg-gray-50 p-6">
+          <summary class="cursor-pointer list-none text-[1rem] font-semibold uppercase tracking-[0.15em] text-primary md:text-[1.12rem]">
+            {faq.question}
+          </summary>
+          <p class="mt-4 text-base leading-7 text-gray-700">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

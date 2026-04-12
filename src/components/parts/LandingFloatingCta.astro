@@ -1,0 +1,70 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<div class="md:contents">
+  <a
+    href="#contacto"
+    data-floating-cta
+    class="pointer-events-none fixed bottom-4 right-4 z-40 inline-flex min-h-10 translate-y-4 items-center justify-center rounded-[999px] bg-accent px-4 py-2.5 text-[0.74rem] font-semibold uppercase tracking-[0.08em] text-white opacity-0 shadow-lg shadow-black/15 transition duration-300 hover:bg-amber-400 md:bottom-6 md:left-[calc(50%-7rem)] md:right-auto md:min-h-11 md:-translate-x-1/2 md:px-5 md:py-3 md:text-[0.82rem]"
+  >
+    {t.landing.floatingCta.budgetLabel}
+  </a>
+
+  <a
+    href="#videos"
+    data-floating-videos-cta
+    class="pointer-events-none fixed bottom-4 left-4 z-30 inline-flex min-h-9 translate-y-4 items-center justify-center rounded-[999px] border border-accent bg-white px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-accent opacity-0 shadow-lg shadow-black/10 transition duration-300 hover:bg-amber-50 md:bottom-6 md:left-[calc(50%+7rem)] md:min-h-11 md:-translate-x-1/2 md:px-5 md:py-3 md:text-[0.82rem]"
+  >
+    {t.landing.floatingCta.videosLabel}
+  </a>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const primaryHeroCta = document.querySelector('[data-primary-hero-cta]');
+    const floatingCta = document.querySelector('[data-floating-cta]');
+    const floatingVideosCta = document.querySelector('[data-floating-videos-cta]');
+
+    if (primaryHeroCta instanceof HTMLElement && floatingCta instanceof HTMLElement) {
+      const syncFloatingCta = () => {
+        const heroButtonVisible = (() => {
+          const rect = primaryHeroCta.getBoundingClientRect();
+          return rect.bottom > 0 && rect.top < window.innerHeight;
+        })();
+
+        const contactSection = document.getElementById('contacto');
+        const videosSection = document.getElementById('videos');
+        const nearContact = contactSection
+          ? contactSection.getBoundingClientRect().top < window.innerHeight * 0.75
+          : false;
+        const nearVideos = videosSection
+          ? videosSection.getBoundingClientRect().top < window.innerHeight * 0.75
+          : false;
+
+        const shouldShow = !heroButtonVisible && !nearContact;
+        const shouldShowVideos = !heroButtonVisible && !nearVideos && !nearContact;
+
+        floatingCta.classList.toggle('pointer-events-none', !shouldShow);
+        floatingCta.classList.toggle('opacity-0', !shouldShow);
+        floatingCta.classList.toggle('translate-y-4', !shouldShow);
+        floatingCta.classList.toggle('opacity-100', shouldShow);
+        floatingCta.classList.toggle('translate-y-0', shouldShow);
+
+        if (floatingVideosCta instanceof HTMLElement) {
+          floatingVideosCta.classList.toggle('pointer-events-none', !shouldShowVideos);
+          floatingVideosCta.classList.toggle('opacity-0', !shouldShowVideos);
+          floatingVideosCta.classList.toggle('translate-y-4', !shouldShowVideos);
+          floatingVideosCta.classList.toggle('opacity-100', shouldShowVideos);
+          floatingVideosCta.classList.toggle('translate-y-0', shouldShowVideos);
+        }
+      };
+
+      syncFloatingCta();
+      window.addEventListener('scroll', syncFloatingCta, { passive: true });
+      window.addEventListener('resize', syncFloatingCta);
+    }
+  });
+</script>
