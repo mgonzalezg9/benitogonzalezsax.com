@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import JessicaValdesAvatar from '../../assets/testimonials/jessica-valdes.png';
+import NicolasRodriguezCarmonaAvatar from '../../assets/testimonials/nicolas-rodriguez-carmona.png';
+import RafaelValeroAgulloAvatar from '../../assets/testimonials/rafael-valero-agullo.png';
+import VincentSextonAvatar from '../../assets/testimonials/vincent-sexton.png';
+import EvaPelegrinAvatar from '../../assets/testimonials/eva-pelegrin.png';
+import KarenAvatar from '../../assets/testimonials/karen.jpg';
+import BettyAvatar from '../../assets/testimonials/betty.jpg';
+import JackAvatar from '../../assets/testimonials/jack.jpg';
+import YolandaAvatar from '../../assets/testimonials/yolanda.jpg';
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+
+const testimonialAvatars = {
+  'jessica-valdes': JessicaValdesAvatar,
+  'nicolas-rodriguez-carmona': NicolasRodriguezCarmonaAvatar,
+  'rafael-valero-agullo': RafaelValeroAgulloAvatar,
+  'vincent-sexton': VincentSextonAvatar,
+  'eva-pelegrin': EvaPelegrinAvatar,
+  karen: KarenAvatar,
+  betty: BettyAvatar,
+  jack: JackAvatar,
+  yolanda: YolandaAvatar,
+} as const;
+---
+
+<section id="opiniones" class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl">
+      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
+        {t.landing.testimonials.eyebrow}
+      </p>
+      <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+        {page.testimonialsTitle}
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-gray-700">
+        {page.testimonialsDescription}
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {page.testimonials.map((testimonial) => {
+        const avatar = testimonial.avatar
+          ? testimonialAvatars[testimonial.avatar as keyof typeof testimonialAvatars]
+          : null;
+
+        return (
+          <article class="rounded-[1.5rem] bg-white p-6 shadow-md">
+            <p class="text-base leading-7 text-gray-700">"{testimonial.quote}"</p>
+            <div class="mt-6 flex items-center gap-4">
+              <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-accent/40 bg-gray-100 shadow-sm">
+                {avatar ? (
+                  <Image
+                    src={avatar}
+                    alt={testimonial.name}
+                    class="h-full w-full scale-[1.08] object-cover"
+                    loading="lazy"
+                    widths={[64, 96]}
+                    sizes="64px"
+                  />
+                ) : (
+                  <div class="flex h-full w-full items-center justify-center bg-primary text-sm font-semibold uppercase tracking-[0.12em] text-white">
+                    {testimonial.name.slice(0, 2)}
+                  </div>
+                )}
+              </div>
+              <div>
+                <p class="font-segmentA text-[2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.2rem]">{testimonial.name}</p>
+                <p class="text-sm text-gray-500">{testimonial.role}</p>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

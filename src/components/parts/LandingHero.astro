@@ -1,0 +1,118 @@
+---
+import { Image } from 'astro:assets';
+import HeroImage from '../../assets/hero-image.jpg';
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<section id="inicio" class="relative overflow-hidden bg-primary pb-24 pt-36 text-white">
+  <div class="absolute inset-0 opacity-15 md:hidden">
+    <Image
+      src={HeroImage}
+      alt={page.heroTitle}
+      class="h-full w-full object-cover"
+      loading="eager"
+      width={1385}
+      height={1385}
+    />
+  </div>
+  <video
+    class="absolute inset-0 hidden h-full w-full object-cover opacity-20 md:block"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster={HeroImage.src}
+    aria-hidden="true"
+  >
+    <source src="/videos/hero-background.mp4" type="video/mp4" />
+  </video>
+
+  <div class="container relative mx-auto px-4">
+    {page.breadcrumb && (
+      <nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/80">
+        <ol class="flex flex-wrap gap-2">
+          {page.breadcrumb.map((crumb, index) => (
+            <li class="flex items-center gap-2">
+              {index > 0 && <span>/</span>}
+              {index === page.breadcrumb!.length - 1 ? (
+                <span>{crumb.label}</span>
+              ) : (
+                <a href={crumb.href} class="hover:text-accent">{crumb.label}</a>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
+    <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+      <div>
+        <p class="mb-4 text-[1rem] font-semibold uppercase tracking-[0.32em] text-accent md:text-[1.18rem]">
+          {page.heroLabel}
+        </p>
+        <h1 class="max-w-4xl font-segmentA text-[3.5rem] font-bold uppercase leading-[0.92] tracking-[0.1em] md:text-[5.2rem]">
+          {page.heroTitle}
+        </h1>
+        <p class="mt-6 max-w-3xl text-lg text-white/90 md:text-xl">
+          {page.heroSummary}
+        </p>
+        <p class="mt-4 max-w-3xl text-base leading-7 text-white/80 md:text-lg">
+          {page.heroBody}
+        </p>
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          <a
+            href={page.primaryCtaHref}
+            data-primary-hero-cta
+            class="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-7 py-3 text-[0.92rem] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-amber-400 md:px-8 md:text-[1.02rem]"
+          >
+            {page.primaryCtaLabel}
+          </a>
+          <a
+            href={page.secondaryCtaHref}
+            class="inline-flex min-h-12 items-center justify-center rounded-full border border-white/60 px-7 py-3 text-[0.92rem] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-white/10 md:px-8 md:text-[1.02rem]"
+          >
+            {page.secondaryCtaLabel}
+          </a>
+        </div>
+      </div>
+
+      <div class="rounded-[2rem] border border-white/15 bg-white/10 p-5 backdrop-blur-sm md:p-6">
+        <p class="text-[1.16rem] font-semibold uppercase tracking-[0.15em] text-accent md:text-[1.34rem]">
+          {t.landing.hero.trustTitle}
+        </p>
+        <ul class="mt-6 space-y-4 text-base text-white/90">
+          {page.trustPoints.map((point) => (
+            <li class="flex gap-3">
+              <span class="mt-1 h-2.5 w-2.5 rounded-full bg-accent"></span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-2xl bg-white/10 p-3.5 text-center">
+            <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.eventsValue}</p>
+            <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.eventsLine1}<br />{t.landing.hero.stats.eventsLine2}</p>
+          </div>
+          <div class="rounded-2xl bg-white/10 p-3.5 text-center">
+            <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.experienceValue}</p>
+            <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.experienceLine1}<br />{t.landing.hero.stats.experienceLine2}</p>
+          </div>
+          <div class="rounded-2xl bg-white/10 p-3.5 text-center">
+            <p class="text-[1.55rem] font-bold tracking-[0.06em] text-accent md:text-[1.75rem]">{t.landing.hero.stats.satisfactionValue}</p>
+            <p class="text-xs leading-tight text-white/80 md:text-[0.82rem]">{t.landing.hero.stats.satisfactionLine1}<br />{t.landing.hero.stats.satisfactionLine2}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

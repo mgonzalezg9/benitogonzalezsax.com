@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import AboutImage from '../../assets/about-image.jpg';
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<section id="propuesta" class="bg-white py-20">
+  <div class="container mx-auto grid gap-12 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+    <div>
+      <Image
+        src={AboutImage}
+        alt={t.landing.about.imageAlt}
+        class="w-full rounded-[2rem] object-cover shadow-lg"
+        loading="lazy"
+      />
+    </div>
+    <div>
+      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
+        {t.landing.about.eyebrow}
+      </p>
+      <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+        {page.introTitle}
+      </h2>
+      <div class="mt-6 space-y-4 text-lg leading-8 text-gray-700">
+        {page.introParagraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

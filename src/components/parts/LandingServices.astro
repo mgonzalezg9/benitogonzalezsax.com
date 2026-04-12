@@ -1,0 +1,54 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<section id="servicios" class="py-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl">
+      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
+        {t.landing.services.eyebrow}
+      </p>
+      <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+        {page.serviceTitle}
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-gray-700">
+        {page.serviceDescription}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {page.moments.map((moment) => (
+        <article class="rounded-[1.5rem] bg-white p-6 shadow-md">
+          <h3 class="font-segmentA text-[2.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.5rem]">{moment.title}</h3>
+          <p class="mt-4 text-base leading-7 text-gray-700">{moment.description}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-12 rounded-[2rem] bg-primary px-6 py-8 text-white md:px-10">
+      <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <h3 class="text-[1.42rem] font-semibold uppercase tracking-[0.08em] text-accent md:text-[1.72rem]">{page.extrasTitle}</h3>
+          <p class="mt-4 text-base leading-7 text-white/80">
+            {t.landing.services.extrasIntro}
+          </p>
+        </div>
+        <ul class="grid gap-4 md:grid-cols-2">
+          {page.extras.map((extra) => (
+            <li class="rounded-2xl bg-white/10 p-4 text-sm leading-6 text-white/90">
+              {extra}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

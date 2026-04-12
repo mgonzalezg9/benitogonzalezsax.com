@@ -1,0 +1,38 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<section class="bg-white py-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl">
+      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
+        {t.landing.answerBlock.eyebrow}
+      </p>
+      <h2 class="mt-4 font-segmentA text-[3rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.2rem]">
+        {page.answerBlockTitle}
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-gray-700">
+        {page.answerBlockIntro}
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {page.answerCards.map((card) => (
+        <article class="rounded-[1.75rem] border border-gray-200 bg-gray-50 p-6 shadow-sm">
+          <h3 class="font-segmentA text-[2.1rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.4rem]">
+            {card.title}
+          </h3>
+          <p class="mt-4 text-base leading-7 text-gray-700">{card.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
