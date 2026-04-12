@@ -161,4 +161,80 @@ export const es = {
     copyright: 'Todos los derechos reservados',
     privacyPolicy: 'Política de privacidad',
   },
+  landing: {
+    hero: {
+      trustTitle: '¿Por qué contar con mis servicios?',
+      stats: {
+        eventsValue: '+200',
+        eventsLine1: 'Eventos',
+        eventsLine2: 'realizados',
+        experienceValue: '+10',
+        experienceLine1: 'Años de',
+        experienceLine2: 'experiencia',
+        satisfactionValue: '100%',
+        satisfactionLine1: 'Clientes',
+        satisfactionLine2: 'satisfechos',
+      },
+    },
+    about: {
+      imageAlt: 'Benito González saxofonista para bodas',
+      eyebrow: 'Tu saxofonista para bodas',
+    },
+    services: {
+      eyebrow: 'Servicios para bodas',
+      extrasIntro: 'Una propuesta flexible para ceremonia, cóctel, banquete y fiesta, pensada para que la música encaje de verdad con cada momento de la boda.',
+    },
+    answerBlock: {
+      eyebrow: 'Datos clave',
+    },
+    videos: {
+      eyebrow: 'Vídeos',
+      watchLabel: 'Ver vídeo',
+    },
+    repertoire: {
+      eyebrow: 'Repertorio',
+      downloadNote: 'Si quieres ver la selección completa de canciones, puedes descargar la carta de repertorio en PDF.',
+      previewAlt: 'Vista previa del repertorio',
+    },
+    packs: {
+      eyebrow: 'Packs para boda',
+      recommendedLabel: 'Pack recomendado',
+      flexibleLabel: 'Pack flexible',
+      morePersonalisationLabel: 'Más personalización',
+      moreDirectLabel: 'Más directo',
+    },
+    testimonials: {
+      eyebrow: 'Opiniones reales',
+    },
+    contact: {
+      eyebrow: 'Reserva y disponibilidad',
+      phoneLabel: 'Teléfono',
+      emailLabel: 'Email',
+      whatsappLabel: 'Escribir ahora',
+      form: {
+        nameLabel: 'Nombre',
+        emailLabel: 'Email',
+        phoneLabel: 'Teléfono',
+        weddingDateLabel: 'Fecha de la boda',
+        cityOrVenueLabel: 'Ciudad o lugar',
+        serviceTypeLabel: 'Tipo de servicio',
+        serviceOptions: ['Ceremonia', 'Cóctel', 'Banquete', 'Barra libre', 'Saxo + DJ', 'Varios momentos'],
+        messageLabel: 'Mensaje',
+        messagePlaceholder: 'Cuéntame el tipo de boda, horario aproximado, lugar y cualquier detalle importante.',
+        submitEmailLabel: 'Enviar por email',
+        submitWhatsAppLabel: 'Enviar por WhatsApp',
+        helpText: 'El formulario prepara tu solicitud para email o WhatsApp con los datos clave de la boda. Así puedes pedir presupuesto sin perder información importante.',
+      },
+    },
+    faq: {
+      eyebrow: 'FAQ',
+    },
+    cities: {
+      eyebrow: 'Cobertura',
+    },
+    floatingCta: {
+      budgetLabel: 'Solicita presupuesto',
+      videosLabel: 'Ver vídeos',
+    },
+  },
 } as const;

@@ -7,6 +7,7 @@ import FacebookIcon from "../../assets/icons/facebook.svg";
 import InstagramIcon from "../../assets/icons/instagram.svg";
 import YouTubeIcon from "../../assets/icons/youtube.svg";
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { BUSINESS } from '../../lib/site';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -37,7 +38,7 @@ const t = useTranslations(lang);
           </div>
           <div>
             <h4 class="font-medium text-gray-900">{t.contact.phone}</h4>
-            <p class="text-black">+34 615 97 71 90</p>
+            <p class="text-black">{BUSINESS.phone}</p>
           </div>
         </div>
 
@@ -47,7 +48,7 @@ const t = useTranslations(lang);
           </div>
           <div>
             <h4 class="font-medium text-gray-900">{t.contact.email}</h4>
-            <p class="text-black">info@benitogonzalezsax.com</p>
+            <p class="text-black">{BUSINESS.email}</p>
           </div>
         </div>
 
@@ -79,21 +80,21 @@ const t = useTranslations(lang);
         </h4>
         <div class="flex space-x-4">
           <a
-            href="https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/"
+            href={BUSINESS.facebook}
             aria-label={t.contact.facebookAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
             <FacebookIcon />
           </a>
           <a
-            href="https://www.instagram.com/benitogonzalezsax/"
+            href={BUSINESS.instagram}
             aria-label={t.contact.instagramAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
             <InstagramIcon />
           </a>
           <a
-            href="https://www.youtube.com/@benitogonzalezsax/featured"
+            href={BUSINESS.youtube}
             aria-label={t.contact.youtubeAriaLabel}
             class="text-primary hover:text-accent transition-colors"
           >
