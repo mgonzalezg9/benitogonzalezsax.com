@@ -6,6 +6,10 @@ import LanguagePicker from '../ui/LanguagePicker.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const pathname = Astro.url.pathname;
+const isLandingPage =
+  pathname !== '/politica-de-privacidad' && pathname !== '/en/privacy-policy';
+const navBase = isLandingPage ? pathname : getRouteForLanguage('/', lang);
 
 const navSections = [
   { id: t.nav.home.anchor, label: t.nav.home.label, ariaLabel: t.nav.home.ariaDescription },
@@ -29,7 +33,7 @@ const navSections = [
         <ul class="flex space-x-8">
           {navSections.map(section => (
             <li>
-              <a href={`${getRouteForLanguage('/', lang)}#${section.id}`} class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
+              <a href={`${navBase}#${section.id}`} class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
                 {section.label}
               </a>
             </li>
@@ -53,7 +57,7 @@ const navSections = [
       <ul class="space-y-4">
         {navSections.map(section => (
           <li>
-            <a href={`#${section.id}`} class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
+            <a href={`${navBase}#${section.id}`} class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
               {section.label}
             </a>
           </li>

@@ -1,7 +1,8 @@
 export const es = {
   meta: {
-    title: 'Benito González - Saxofonista para eventos',
-    description: 'Benito González García - Saxofonista profesional para eventos, bodas y celebraciones',
+    title: 'Saxofonista para bodas | Benito González Sax',
+    description:
+      'Saxofonista para bodas en España, Murcia, Alicante, Madrid y otras capitales de provincia.',
   },
   nav: {
     home: {
@@ -10,9 +11,9 @@ export const es = {
       ariaDescription: 'Ir a la sección de inicio',
     },
     about: {
-      label: 'Sobre mi',
+      label: 'Propuesta',
       anchor: 'sobre-mi',
-      ariaDescription: 'Ir a la sección sobre mí',
+      ariaDescription: 'Ir a la sección de propuesta comercial',
     },
     services: {
       label: 'Servicios',
@@ -20,14 +21,14 @@ export const es = {
       ariaDescription: 'Ir a la sección de servicios',
     },
     gallery: {
-      label: 'Galeria',
+      label: 'Ciudades',
       anchor: 'galeria',
-      ariaDescription: 'Ir a la sección de galería',
+      ariaDescription: 'Ir a la sección de ciudades',
     },
     testimonials: {
-      label: 'Testimonios',
+      label: 'Opiniones',
       anchor: 'testimonios',
-      ariaDescription: 'Ir a la sección de testimonios',
+      ariaDescription: 'Ir a la sección de opiniones',
     },
     contact: {
       label: 'Contacto',
@@ -37,16 +38,18 @@ export const es = {
   },
   hero: {
     title: 'Saxofonista para bodas y eventos',
-    subtitle: 'Benito Gonzalez Sax saxofonista profesional para bodas, eventos y celebraciones en Murcia, Alicante y toda España.',
-    description: 'Saxofonista profesional para bodas, eventos y celebraciones en Murcia, Alicante y toda España.',
+    subtitle:
+      'Benito González Sax, saxofonista profesional para bodas, eventos y celebraciones en Murcia, Alicante y toda España.',
+    description:
+      'Saxofonista profesional para bodas, eventos y celebraciones en Murcia, Alicante y toda España.',
     contactButton: 'Contactar',
-    galleryButton: 'Ver galeria',
+    galleryButton: 'Ver galería',
     contactAriaLabel: 'Ir a la sección de contacto',
     galleryAriaLabel: 'Ir a la galería de imágenes',
     aboutAriaLabel: 'Ir a la sección sobre mí',
   },
   about: {
-    title: 'Sobre mi',
+    title: 'Sobre mí',
     imageAlt: 'Benito González García - Saxofonista',
     paragraph1:
       'Soy Benito González García, saxofonista profesional con más de 10 años de experiencia, especializado en eventos exclusivos. Desde mis inicios, mi pasión por el saxofón me ha llevado a perfeccionar mi técnica y estilo, destacando en bodas, eventos corporativos, discotecas y presentaciones de marca.',
@@ -63,7 +66,7 @@ export const es = {
   services: {
     title: 'Mis servicios',
     description:
-      'Ofrezco música en vivo de saxofón con backing tracks que me acompañan. Desde cócteles y música elegante a los estilos más animados. Además, las ofertas de saxofonista y violinista y Sax&DJ completan la oferta para que tu evento cuente con la mejor música de principio a fin.',
+      'Ofrezco música en vivo de saxofón con backing tracks que me acompañan. Desde cócteles y música elegante hasta los estilos más animados. Además, las ofertas de saxofonista y violinista y Sax&DJ completan la propuesta para que tu evento cuente con la mejor música de principio a fin.',
     items: [
       {
         title: 'Bodas',
@@ -90,18 +93,19 @@ export const es = {
     ctaAriaLabel: 'Ir a la sección de contacto para solicitar presupuesto',
   },
   gallery: {
-    title: 'Galeria',
+    title: 'Galería',
     items: {
       weddingImageAlt: 'Benito González - Saxofonista en boda',
       sportsMeetImageAlt: 'Benito González - Actuación en boda',
       bolnuevoImageAlt: 'Benito González - Saxofonista en galas',
       blamesImageAlt: 'Benito González - Saxofonista en Gredas',
-      flyingFreeAtWeddingYTAlt: 'Benito González - Flying free en boda',
+      flyingFreeAtWeddingYTAlt: 'Benito González - Flying Free en boda',
       destinationCalabriaAtWeddingYTAlt: 'Benito González - Destination Calabria en boda',
       titaniumDavidGuettaYTAlt: 'Benito González - Titanium David Guetta',
       versionsAndHouseYTAlt: 'Benito González - Versiones y House',
     },
-    description: 'Descubre algunos momentos de mis actuaciones en diferentes eventos y celebraciones.',
+    description:
+      'Descubre algunos momentos de mis actuaciones en diferentes eventos y celebraciones.',
     socialText: '¿Quieres ver más de mi trabajo? Visita mis redes sociales.',
     facebookAriaLabel: 'Facebook de Benito González',
     instagramAriaLabel: 'Instagram de Benito González',
@@ -114,25 +118,25 @@ export const es = {
       {
         name: 'Lola C.',
         role: 'Cafetería MaiTai',
-        quote: 'Fue un placer verlo tocar en directo. Sin duda una actuación increíble!!!',
+        quote: 'Fue un placer verlo tocar en directo. Sin duda una actuación increíble.',
       },
       {
         name: 'Sergio P.',
         role: 'Evento',
         quote:
-          'Un espectáculo muy dinámico, mucha interacción con el público y mucha pasión, es capaz de llenar un bar y tiene un equipo bastante bueno.',
+          'Un espectáculo muy dinámico, mucha interacción con el público y mucha pasión. Es capaz de llenar un bar y tiene un equipo bastante bueno.',
       },
       {
-        name: 'Ivan',
-        role: 'Coctel de Boda',
+        name: 'Iván',
+        role: 'Cóctel de boda',
         quote:
-          'Genial recomendable 100%. persona muy cercana y un auténtico profesional. Benito fue un gran profesional hizo de nuestro día un espectáculo.',
+          'Genial, recomendable 100%. Persona muy cercana y un auténtico profesional. Benito hizo de nuestro día un espectáculo.',
       },
       {
         name: 'Sergio C.',
-        role: 'Coctel de Boda',
+        role: 'Cóctel de boda',
         quote:
-          'Músico muy cualificado que hace que pases la mejor de las noches, entretenimiento y disfrute al máximo, lo recomiendo al 100%.',
+          'Músico muy cualificado que hace que pases la mejor de las noches, entretenimiento y disfrute al máximo. Lo recomiendo al 100%.',
       },
     ],
   },
@@ -158,5 +162,3 @@ export const es = {
     privacyPolicy: 'Política de privacidad',
   },
 } as const;
-
-

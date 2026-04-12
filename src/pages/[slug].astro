@@ -2,13 +2,30 @@
 import Footer from '../components/parts/Footer.astro';
 import Header from '../components/parts/Header.astro';
 import WeddingLandingPage from '../components/pages/WeddingLandingPage.astro';
-import { buildHomePageData } from '../data/landingPages';
+import { buildCityPageData } from '../data/landingPages';
+import { getLaunchedLocations, getLocationBySlug } from '../data/locations';
 import { BUSINESS, DEFAULT_OG_IMAGE, absoluteUrl } from '../lib/site';
 import Layout from '../layouts/Layout.astro';
 
-const page = buildHomePageData();
+export const getStaticPaths = () =>
+  getLaunchedLocations().map((location) => ({
+    params: { slug: location.slug },
+    props: { locationSlug: location.slug },
+  }));
+
+interface Props {
+  locationSlug: string;
+}
+
+const { locationSlug } = Astro.props;
+const location = getLocationBySlug(locationSlug);
+
+if (!location) {
+  throw new Error(`Unknown location slug: ${locationSlug}`);
+}
+
+const page = buildCityPageData(location);
 const canonical = absoluteUrl(page.canonicalPath);
-const englishCanonical = absoluteUrl('/en');
 const reviewCount = page.testimonials.length;
 const reviews = page.testimonials.map((testimonial) => ({
   '@type': 'Review',
@@ -25,12 +42,16 @@ const reviews = page.testimonials.map((testimonial) => ({
 }));
 const offerCatalog = {
   '@type': 'OfferCatalog',
-  name: 'Servicios de saxo para bodas',
+  name: `Servicios de saxo para bodas en ${location.city}`,
   itemListElement: page.serviceTypes.map((serviceType) => ({
     '@type': 'Offer',
+    areaServed: {
+      '@type': 'City',
+      name: location.city,
+    },
     itemOffered: {
       '@type': 'Service',
-      name: serviceType,
+      name: `${serviceType} en ${location.city}`,
       serviceType,
     },
   })),
@@ -40,7 +61,7 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: BUSINESS.name,
+    name: `${BUSINESS.name} - ${page.heroTitle}`,
     url: canonical,
     description: page.description,
     telephone: BUSINESS.phone,
@@ -62,10 +83,19 @@ const schemas = [
         availableLanguage: ['es', 'en'],
       },
     ],
-    areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Península' },
-      { '@type': 'AdministrativeArea', name: 'Illes Balears' },
-    ],
+    areaServed: {
+      '@type': 'City',
+      name: location.city,
+      containedInPlace: {
+        '@type': 'AdministrativeArea',
+        name: location.province,
+      },
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: location.latitude,
+      longitude: location.longitude,
+    },
     hasOfferCatalog: offerCatalog,
     review: reviews,
     aggregateRating: {
@@ -79,17 +109,21 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Saxofonista para bodas',
+    name: page.heroTitle,
     serviceType: page.serviceTypes,
     provider: {
       '@type': 'ProfessionalService',
       name: BUSINESS.name,
       url: canonical,
     },
-    areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Peninsula' },
-      { '@type': 'AdministrativeArea', name: 'Illes Balears' },
-    ],
+    areaServed: {
+      '@type': 'City',
+      name: location.city,
+      containedInPlace: {
+        '@type': 'AdministrativeArea',
+        name: location.province,
+      },
+    },
     offers: offerCatalog.itemListElement,
   },
   {
@@ -99,6 +133,16 @@ const schemas = [
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: (page.breadcrumb ?? []).map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.label,
+      item: absoluteUrl(crumb.href),
     })),
   },
 ];
@@ -112,11 +156,6 @@ const schemas = [
   ogTitle={page.title}
   ogDescription={page.description}
   ogImage={absoluteUrl(DEFAULT_OG_IMAGE)}
-  alternates={[
-    { hreflang: 'es', href: canonical },
-    { hreflang: 'en', href: englishCanonical },
-    { hreflang: 'x-default', href: canonical },
-  ]}
   schemas={schemas}
 >
   <Header />

@@ -1,20 +1,32 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/parts/Header.astro';
-import Hero from '../../components/parts/Hero.astro';
 import About from '../../components/parts/About.astro';
-import Services from '../../components/parts/Services.astro';
-import Gallery from '../../components/parts/Gallery.astro';
-import Testimonials from '../../components/parts/Testimonials.astro';
 import Contact from '../../components/parts/Contact.astro';
 import Footer from '../../components/parts/Footer.astro';
+import Gallery from '../../components/parts/Gallery.astro';
+import Header from '../../components/parts/Header.astro';
+import Hero from '../../components/parts/Hero.astro';
+import Services from '../../components/parts/Services.astro';
+import Testimonials from '../../components/parts/Testimonials.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { absoluteUrl } from '../../lib/site';
+import Layout from '../../layouts/Layout.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const canonical = absoluteUrl('/en');
 ---
 
-<Layout title={t.meta.title} description={t.meta.description} lang={lang}>
+<Layout
+  title={t.meta.title}
+  description={t.meta.description}
+  lang={lang}
+  canonical={canonical}
+  alternates={[
+    { hreflang: 'en', href: canonical },
+    { hreflang: 'es', href: absoluteUrl('/') },
+    { hreflang: 'x-default', href: absoluteUrl('/') },
+  ]}
+>
   <Header />
   <Hero />
   <About />
@@ -24,4 +36,3 @@ const t = useTranslations(lang);
   <Contact />
   <Footer />
 </Layout>
-
