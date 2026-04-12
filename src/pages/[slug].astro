@@ -156,6 +156,10 @@ const schemas = [
   ogTitle={page.title}
   ogDescription={page.description}
   ogImage={absoluteUrl(DEFAULT_OG_IMAGE)}
+  alternates={[
+    { hreflang: 'es', href: canonical },
+    { hreflang: 'x-default', href: absoluteUrl('/') },
+  ]}
   schemas={schemas}
 >
   <Header />
