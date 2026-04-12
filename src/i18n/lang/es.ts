@@ -12,7 +12,7 @@ export const es = {
     },
     about: {
       label: 'Propuesta',
-      anchor: 'sobre-mi',
+      anchor: 'propuesta',
       ariaDescription: 'Ir a la sección de propuesta comercial',
     },
     services: {
@@ -22,12 +22,12 @@ export const es = {
     },
     gallery: {
       label: 'Ciudades',
-      anchor: 'galeria',
+      anchor: 'ciudades',
       ariaDescription: 'Ir a la sección de ciudades',
     },
     testimonials: {
       label: 'Opiniones',
-      anchor: 'testimonios',
+      anchor: 'opiniones',
       ariaDescription: 'Ir a la sección de opiniones',
     },
     contact: {
