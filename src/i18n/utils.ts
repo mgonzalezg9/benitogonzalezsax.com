@@ -7,5 +7,5 @@ export const getLangFromUrl = (url: URL) => {
 }
 
 export const useTranslations = (lang: Language) => {
-  return translations[lang] || translations[defaultLang];
+  return translations[lang];
 }
