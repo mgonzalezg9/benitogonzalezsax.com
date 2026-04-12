@@ -11,6 +11,8 @@ export const BUSINESS = {
   addressLocality: 'Mazarrón',
   addressRegion: 'Murcia',
   addressCountry: 'ES',
+  latitude: 37.5989,
+  longitude: -1.3147,
   facebook:
     'https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/',
   instagram: 'https://www.instagram.com/benitogonzalezsax/',
