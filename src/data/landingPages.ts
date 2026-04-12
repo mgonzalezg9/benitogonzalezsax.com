@@ -196,7 +196,7 @@ const sharedExtras = [
 
 const sharedServiceTypes = [
   'Ceremonia',
-  'CÃ³ctel',
+  'Cóctel',
   'Banquete',
   'Barra libre',
   'Saxo + DJ',
@@ -204,43 +204,43 @@ const sharedServiceTypes = [
 
 const buildHomeAnswerCards = (): AnswerCard[] => [
   {
-    title: 'QuÃ© hace Benito GonzÃ¡lez Sax',
+    title: 'Qué hace Benito González Sax',
     body:
-      'Ofrece saxo en directo para bodas y eventos, con formatos pensados para ceremonia, cÃ³ctel, banquete, barra libre y sesiones con DJ.',
+      'Ofrece saxo en directo para bodas y eventos, con formatos pensados para ceremonia, cóctel, banquete, barra libre y sesiones con DJ.',
   },
   {
-    title: 'DÃ³nde trabaja',
+    title: 'Dónde trabaja',
     body:
-      'Trabaja bodas en capitales de provincia de la PenÃ­nsula y Baleares, adaptando la propuesta al lugar, la fecha y el tipo de celebraciÃ³n.',
+      'Trabaja bodas en capitales de provincia de la Península y Baleares, adaptando la propuesta al lugar, la fecha y el tipo de celebración.',
   },
   {
-    title: 'QuÃ© formatos ofrece',
+    title: 'Qué formatos ofrece',
     body:
-      'Puede actuar solo sobre bases, coordinarse con wedding planners y espacios, o integrarse en un formato Saxo + DJ mÃ¡s potente para la fiesta.',
+      'Puede actuar solo sobre bases, coordinarse con wedding planners y espacios, o integrarse en un formato Saxo + DJ más potente para la fiesta.',
   },
   {
-    title: 'CÃ³mo pedir presupuesto',
+    title: 'Cómo pedir presupuesto',
     body:
-      'La forma mÃ¡s rÃ¡pida es enviar fecha, ciudad, lugar y momentos de actuaciÃ³n por formulario o WhatsApp para recibir una propuesta realista.',
+      'La forma más rápida es enviar fecha, ciudad, lugar y momentos de actuación por formulario o WhatsApp para recibir una propuesta realista.',
   },
 ];
 
 const buildCityAnswerCards = (location: LocationEntry): AnswerCard[] => [
   {
-    title: `QuÃ© ofrece en ${location.city}`,
-    body: `Saxo en directo para bodas en ${location.city} con servicio adaptable a ceremonia, cÃ³ctel, banquete, barra libre y formato Saxo + DJ.`,
+    title: `Qué ofrece en ${location.city}`,
+    body: `Saxo en directo para bodas en ${location.city} con servicio adaptable a ceremonia, cóctel, banquete, barra libre y formato Saxo + DJ.`,
   },
   {
-    title: `DÃ³nde trabaja en ${location.province}`,
+    title: `Dónde trabaja en ${location.province}`,
     body: `Cubre bodas en ${location.city}, ${location.province} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
   },
   {
-    title: 'QuÃ© tipo de formato encaja mejor',
-    body: `El formato estÃ¡ pensado para ${location.serviceAngle}, ajustando repertorio, intensidad y coordinaciÃ³n tÃ©cnica segÃºn el evento.`,
+    title: 'Qué tipo de formato encaja mejor',
+    body: `El formato está pensado para ${location.serviceAngle}, ajustando repertorio, intensidad y coordinación técnica según el evento.`,
   },
   {
-    title: `CÃ³mo reservar en ${location.city}`,
-    body: `Con fecha, lugar y momentos de actuaciÃ³n definidos, se puede pedir presupuesto para ${location.city} por formulario, email o WhatsApp.`,
+    title: `Cómo reservar en ${location.city}`,
+    body: `Con fecha, lugar y momentos de actuación definidos, se puede pedir presupuesto para ${location.city} por formulario, email o WhatsApp.`,
   },
 ];
 
@@ -523,9 +523,9 @@ export const buildHomePageData = (): LandingPageData => ({
   moments: sharedMoments,
   extrasTitle: '¿Cuál es mi propuesta para bodas o eventos?',
   extras: sharedExtras,
-  answerBlockTitle: 'Respuesta rÃ¡pida sobre el servicio',
+  answerBlockTitle: 'Respuesta rápida sobre el servicio',
   answerBlockIntro:
-    'Un resumen directo para parejas, buscadores y asistentes que necesitan entender rÃ¡pido quÃ© ofrece Benito GonzÃ¡lez Sax y cÃ³mo reservar.',
+    'Un resumen directo para parejas, buscadores y asistentes que necesitan entender rápido qué ofrece Benito González Sax y cómo reservar.',
   answerCards: buildHomeAnswerCards(),
   serviceTypes: sharedServiceTypes,
   packsTitle: 'Packs para boda',
