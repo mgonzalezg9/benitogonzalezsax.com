@@ -11,6 +11,8 @@ import JackAvatar from '../../assets/testimonials/jack.jpg';
 import YolandaAvatar from '../../assets/testimonials/yolanda.jpg';
 import type { LandingPageData } from '../../data/landingPages';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
+import LandingAccordionSection from './LandingAccordionSection.astro';
 
 interface Props {
   page: LandingPageData;
@@ -30,27 +32,9 @@ const testimonialAvatars = {
   jack: JackAvatar,
   yolanda: YolandaAvatar,
 } as const;
-
-const stripSegmentAAccents = (value: string) =>
-  value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 ---
 
-<details
-  id="opiniones"
-  data-accordion-section
-  class="group border-t border-gray-200 bg-white [&_summary::-webkit-details-marker]:hidden"
->
-  <summary class="cursor-pointer list-none">
-    <div class="container mx-auto flex items-center justify-between gap-6 px-4 py-6 md:py-7">
-      <span class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-        {t.landing.testimonials.eyebrow}
-      </span>
-      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/30 text-[1.6rem] leading-none text-primary transition duration-300 group-open:rotate-45">
-        +
-      </span>
-    </div>
-  </summary>
-
+<LandingAccordionSection id="opiniones" eyebrow={t.landing.testimonials.eyebrow}>
   <section class="pb-20 pt-2">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
@@ -99,4 +83,4 @@ const stripSegmentAAccents = (value: string) =>
       </div>
     </div>
   </section>
-</details>
+</LandingAccordionSection>

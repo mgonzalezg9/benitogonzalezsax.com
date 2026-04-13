@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import AboutImage from '../../assets/about-image.jpg';
 import type { LandingPageData } from '../../data/landingPages';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getYouTubeEmbedUrl } from '../../lib/embeds';
+import { stripSegmentAAccents } from '../../lib/typography';
 
 interface Props {
   page: LandingPageData;
@@ -11,30 +13,9 @@ interface Props {
 const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
 
-const stripSegmentAAccents = (value: string) =>
-  value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-
 const introDemoVideo = {
   title: 'Vídeo demostración para Bodas',
-  platform: 'youtube' as const,
   url: 'https://www.youtube.com/shorts/-it5RoaROgU',
-};
-
-const getYouTubeEmbedUrl = (rawUrl: string) => {
-  try {
-    const url = new URL(rawUrl);
-    if (url.hostname.includes('youtu.be')) {
-      const id = url.pathname.split('/').filter(Boolean)[0];
-      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
-    }
-    if (url.hostname.includes('youtube.com')) {
-      const id = url.searchParams.get('v') ?? url.pathname.split('/').filter(Boolean).pop();
-      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
-    }
-  } catch {
-    return null;
-  }
-  return null;
 };
 
 const introDemoEmbedUrl = getYouTubeEmbedUrl(introDemoVideo.url);
