@@ -2,6 +2,8 @@
 import type { LandingPageData } from '../../data/landingPages';
 import { BUSINESS } from '../../lib/site';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
+import LandingAccordionSection from './LandingAccordionSection.astro';
 
 interface Props {
   page: LandingPageData;
@@ -11,29 +13,13 @@ const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
-<details
-  id="contacto"
-  data-accordion-section
-  open
-  class="group border-t border-gray-200 bg-white [&_summary::-webkit-details-marker]:hidden"
->
-  <summary class="cursor-pointer list-none">
-    <div class="container mx-auto flex items-center justify-between gap-6 px-4 py-6 md:py-7">
-      <span class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
-        {t.landing.contact.eyebrow}
-      </span>
-      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/30 text-[1.6rem] leading-none text-primary transition duration-300 group-open:rotate-45">
-        +
-      </span>
-    </div>
-  </summary>
-
+<LandingAccordionSection id="contacto" eyebrow={t.landing.contact.eyebrow} open>
   <section class="pb-20 pt-2">
     <div class="container mx-auto px-4">
       <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
         <div class="rounded-[2rem] bg-primary p-8 text-white md:p-10">
           <h2 class="font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] md:text-[4.4rem]">
-            {page.contactTitle}
+            {stripSegmentAAccents(page.contactTitle)}
           </h2>
           <p class="mt-6 text-base leading-7 text-white/85">{page.contactDescription}</p>
           <p class="mt-4 text-sm leading-6 text-white/75">{page.contactHighlight}</p>
@@ -62,6 +48,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
         <div class="rounded-[2rem] bg-white p-8 shadow-lg md:p-10">
           <form
             id="lead-form"
+            data-mail-to={BUSINESS.emailHref}
             data-mail-subject={page.formSubject}
             data-whatsapp-base={BUSINESS.whatsappHref}
             class="space-y-5"
@@ -136,7 +123,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
       </div>
     </div>
   </section>
-</details>
+</LandingAccordionSection>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -170,9 +157,10 @@ const t = useTranslations(getLangFromUrl(Astro.url));
         return;
       }
 
+      const mailTo = form.dataset.mailTo || 'mailto:info@benitogonzalezsax.com';
       const subject = form.dataset.mailSubject || 'Solicitud de presupuesto';
       const body = buildMessage();
-      window.location.href = `mailto:info@benitogonzalezsax.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `${mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
 
     const whatsappButton = form.querySelector('[data-action="whatsapp"]');
