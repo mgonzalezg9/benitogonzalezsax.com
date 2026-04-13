@@ -31,9 +31,9 @@ This is a **static Astro site** for a saxophone musician's portfolio, with bilin
 - `src/layouts/Layout.astro` — root HTML shell; accepts `title`, `description`, and other SEO props
 - `src/components/parts/` — one component per page section:
   - English page sections: `Hero`, `About`, `Services`, `Gallery`, `Testimonials`, `Contact`
-  - Spanish landing page sections: `LandingHero`, `LandingAbout`, `LandingServices`, `LandingAnswerBlock`, `LandingVideos`, `LandingRepertoire`, `LandingPacks`, `LandingTestimonials`, `LandingContact`, `LandingFaq`, `LandingCities`, `LandingFloatingCta`
+  - Spanish landing page sections: `LandingHero`, `LandingAbout`, `LandingServices`, `LandingAnswerBlock`, `LandingVideos`, `LandingRepertoire`, `LandingPacks`, `LandingTestimonials`, `LandingContact`, `LandingFaq`, `LandingCities`, `LandingFloatingCta` — **these components are not used by `WeddingLandingPage`**
   - Shared UI: `Header`, `Footer`, `LanguagePicker`
-- `src/components/pages/WeddingLandingPage.astro` — thin composition layer for Spanish landing pages; composes the `Landing*` section components above
+- `src/components/pages/WeddingLandingPage.astro` — **monolithic component** for Spanish landing pages; all sections are inlined directly (the `Landing*` components above are unused). Nav anchor IDs must match the i18n anchor values in `es.ts` (`inicio`, `propuesta`, `servicios`, `ciudades`, `opiniones`, `contacto`).
 - `src/components/animations/` — `FadeIn.astro` and `Counter.astro` use Intersection Observer via inline `<script define:vars={...}>` (no JS framework)
 - Pages in `src/pages/` simply import and compose the section components
 
