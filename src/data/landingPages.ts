@@ -499,7 +499,7 @@ export const buildHomePageData = (): LandingPageData => ({
     'Saxofonista para bodas en España. Benito González Sax ofrece música en directo para ceremonia, cóctel, banquete y barra libre con presupuesto personalizado.',
   canonicalPath: '/',
   heroTitle: 'Saxofonista para bodas',
-  heroLabel: 'Música en directo para bodas en España',
+  heroLabel: 'Benito González Sax',
   heroSummary: 'Saxofonista para bodas en toda España.',
   heroBody:
     'Benito González ayuda a parejas a montar una boda inolvidable con saxo en directo.',
@@ -507,7 +507,7 @@ export const buildHomePageData = (): LandingPageData => ({
   primaryCtaHref: '#contacto',
   secondaryCtaLabel: 'Ver vídeos',
   secondaryCtaHref: '#videos',
-  introTitle: 'Saxo para bodas en España para momentos que de verdad se recuerdan',
+  introTitle: 'Saxo para bodas para momentos que de verdad se recuerdan',
   introParagraphs: [
     'Benito González pone el saxo en directo al servicio de bodas que quieren emocionar, sorprender y dejar un recuerdo potente en cada momento importante.',
     'Desde la ceremonia hasta la barra libre, la música se adapta al estilo de la pareja y al ritmo real de la celebración para que todo fluya de forma natural.',
@@ -572,7 +572,10 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => (
   description: `Saxofonista para bodas en ${location.city}. Música en directo para ceremonia, cóctel, banquete y barra libre con presupuesto personalizado y cobertura en ${location.province}.`,
   canonicalPath: `/${location.slug}`,
   heroTitle: `Saxofonista para bodas en ${location.city}`,
-  heroLabel: `${location.city}, ${location.province}`,
+  heroLabel:
+    location.city === location.province
+      ? `${location.city}, Provincia de ${location.province}`
+      : `${location.city}, ${location.province}`,
   heroSummary: `Saxofonista para bodas en ${location.city}.`,
   heroBody: `Benito González ayuda a parejas de ${location.city} a montar una boda inolvidable con saxo en directo.`,
   primaryCtaLabel: 'Consultar disponibilidad',
