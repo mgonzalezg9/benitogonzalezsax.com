@@ -8,68 +8,85 @@ interface Props {
 
 const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
+
+const stripSegmentAAccents = (value: string) =>
+  value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 ---
 
-<section id="repertorio" class="bg-white py-20">
-  <div class="container mx-auto px-4">
-    <div class="max-w-3xl">
-      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
+<details
+  id="repertorio"
+  data-accordion-section
+  class="group border-t border-gray-200 bg-white [&_summary::-webkit-details-marker]:hidden"
+>
+  <summary class="cursor-pointer list-none">
+    <div class="container mx-auto flex items-center justify-between gap-6 px-4 py-6 md:py-7">
+      <span class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
         {t.landing.repertoire.eyebrow}
-      </p>
-      <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
-        {page.repertoireTitle}
-      </h2>
-      <p class="mt-6 text-lg leading-8 text-gray-700">{page.repertoireIntro}</p>
+      </span>
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/30 text-[1.6rem] leading-none text-primary transition duration-300 group-open:rotate-45">
+        +
+      </span>
     </div>
+  </summary>
 
-    <div class="mt-10 grid gap-6 lg:grid-cols-3">
-      {page.repertoireCategories.map((category) => (
-        <article class="rounded-[1.75rem] border border-gray-200 bg-gray-50 p-6 shadow-sm">
-          <h3 class="font-segmentA text-[2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.2rem]">
-            {category.title}
-          </h3>
-          <ul class="mt-5 space-y-3 text-base leading-7 text-gray-700">
-            {category.songs.map((song) => (
-              <li class="flex gap-3">
-                <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent"></span>
-                <span>{song}</span>
-              </li>
-            ))}
-          </ul>
-        </article>
-      ))}
-    </div>
+  <section class="bg-white pb-20 pt-2">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl">
+        <h2 class="font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+          {stripSegmentAAccents(page.repertoireTitle)}
+        </h2>
+        <p class="mt-6 text-lg leading-8 text-gray-700">{page.repertoireIntro}</p>
+      </div>
 
-    <div class="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <p class="max-w-2xl text-sm leading-6 text-gray-500">
-        {t.landing.repertoire.downloadNote}
-      </p>
-      <a
-        href={page.repertoireDownloadHref}
-        target="_blank"
-        rel="noreferrer"
-        class="inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-5 py-3 text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-primary/90"
-      >
-        {page.repertoireDownloadLabel}
-      </a>
-    </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        {page.repertoireCategories.map((category) => (
+          <article class="rounded-[1.75rem] border border-gray-200 bg-gray-50 p-6 shadow-sm">
+            <h3 class="font-segmentA text-[2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.2rem]">
+              {stripSegmentAAccents(category.title)}
+            </h3>
+            <ul class="mt-5 space-y-3 text-base leading-7 text-gray-700">
+              {category.songs.map((song) => (
+                <li class="flex gap-3">
+                  <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent"></span>
+                  <span>{song}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
 
-    <div class="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-      {page.repertoirePreviewImages.map((imageSrc, index) => (
+      <div class="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="max-w-2xl text-sm leading-6 text-gray-500">
+          {t.landing.repertoire.downloadNote}
+        </p>
         <a
-          href={imageSrc}
+          href={page.repertoireDownloadHref}
           target="_blank"
           rel="noreferrer"
-          class="overflow-hidden rounded-[1.5rem] border border-gray-200 bg-gray-50 shadow-sm transition hover:-translate-y-1 hover:border-accent"
+          class="inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-5 py-3 text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-primary/90"
         >
-          <img
-            src={imageSrc}
-            alt={`${t.landing.repertoire.previewAlt} ${index + 1}`}
-            class="h-full w-full object-cover"
-            loading="lazy"
-          />
+          {page.repertoireDownloadLabel}
         </a>
-      ))}
+      </div>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {page.repertoirePreviewImages.map((imageSrc, index) => (
+          <a
+            href={imageSrc}
+            target="_blank"
+            rel="noreferrer"
+            class="overflow-hidden rounded-[1.5rem] border border-gray-200 bg-gray-50 shadow-sm transition hover:-translate-y-1 hover:border-accent"
+          >
+            <img
+              src={imageSrc}
+              alt={`${t.landing.repertoire.previewAlt} ${index + 1}`}
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </a>
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</details>

@@ -8,30 +8,63 @@ interface Props {
 
 const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
+
+const stripSegmentAAccents = (value: string) =>
+  value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 ---
 
-<section id={t.nav.cities.anchor} class="bg-white py-20">
-  <div class="container mx-auto px-4">
-    <div class="max-w-3xl">
-      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">{t.landing.cities.eyebrow}</p>
-      <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
-        {page.citiesTitle}
-      </h2>
-      <p class="mt-6 text-lg leading-8 text-gray-700">{page.citiesIntro}</p>
+<details
+  id="ciudades"
+  data-accordion-section
+  class="group border-t border-b border-gray-200 bg-white [&_summary::-webkit-details-marker]:hidden"
+>
+  <summary class="cursor-pointer list-none">
+    <div class="container mx-auto flex items-center justify-between gap-6 px-4 py-6 md:py-7">
+      <span class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
+        {t.landing.cities.eyebrow}
+      </span>
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/30 text-[1.6rem] leading-none text-primary transition duration-300 group-open:rotate-45">
+        +
+      </span>
     </div>
+  </summary>
 
-    {page.cityLinks.length > 0 && (
-      <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {page.cityLinks.map((link) => (
-          <a
-            href={link.href}
-            class="rounded-[1.5rem] border border-gray-200 bg-gray-50 p-6 transition hover:-translate-y-1 hover:border-accent"
-          >
-            <p class="font-segmentA text-[2.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.5rem]">{link.label}</p>
-            <p class="mt-2 text-sm text-gray-600">{link.description}</p>
-          </a>
-        ))}
+  <section class="bg-white pb-20 pt-2">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl">
+        <h2 class="font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+          {stripSegmentAAccents(page.citiesTitle)}
+        </h2>
+        <p class="mt-6 text-lg leading-8 text-gray-700">{page.citiesIntro}</p>
       </div>
-    )}
-  </div>
-</section>
+
+      {page.cityLinks.length > 0 && (
+        <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {page.cityLinks.map((link) => (
+            <a
+              href={link.href}
+              class="rounded-[1.5rem] border border-gray-200 bg-gray-50 p-6 transition hover:-translate-y-1 hover:border-accent"
+            >
+              <p class="font-segmentA text-[2.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.5rem]">{stripSegmentAAccents(link.label)}</p>
+              <p class="mt-2 text-sm text-gray-600">{link.description}</p>
+            </a>
+          ))}
+        </div>
+      )}
+
+      {page.type === 'city' && (
+        <div class="mt-10">
+          <a
+            href="/"
+            class="block rounded-[1.5rem] border border-gray-200 bg-gray-50 p-6 transition hover:-translate-y-1 hover:border-accent"
+          >
+            <p class="font-segmentA text-[2.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.5rem]">
+              {stripSegmentAAccents('Página general')}
+            </p>
+            <p class="mt-2 text-sm text-gray-600">Saxofonista para bodas en España</p>
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+</details>

@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import HeroImage from '../../assets/hero-image.jpg';
+import AboutImage from '../../assets/about-image.jpg';
 import type { LandingPageData } from '../../data/landingPages';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
@@ -12,10 +12,10 @@ const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
-<section id="inicio" class="relative overflow-hidden bg-primary pb-24 pt-36 text-white">
-  <div class="absolute inset-0 opacity-15 md:hidden">
+<section id="inicio" class="relative overflow-hidden bg-black pb-24 pt-36 text-white">
+  <div class="absolute inset-0 md:hidden">
     <Image
-      src={HeroImage}
+      src={AboutImage}
       alt={page.heroTitle}
       class="h-full w-full object-cover"
       loading="eager"
@@ -24,36 +24,21 @@ const t = useTranslations(getLangFromUrl(Astro.url));
     />
   </div>
   <video
-    class="absolute inset-0 hidden h-full w-full object-cover opacity-20 md:block"
+    class="absolute inset-0 hidden h-full w-full object-cover md:block"
     autoplay
     muted
     loop
     playsinline
     preload="metadata"
-    poster={HeroImage.src}
+    poster={AboutImage.src}
     aria-hidden="true"
   >
     <source src="/videos/hero-background.mp4" type="video/mp4" />
   </video>
 
-  <div class="container relative mx-auto px-4">
-    {page.breadcrumb && (
-      <nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/80">
-        <ol class="flex flex-wrap gap-2">
-          {page.breadcrumb.map((crumb, index) => (
-            <li class="flex items-center gap-2">
-              {index > 0 && <span>/</span>}
-              {index === page.breadcrumb!.length - 1 ? (
-                <span>{crumb.label}</span>
-              ) : (
-                <a href={crumb.href} class="hover:text-accent">{crumb.label}</a>
-              )}
-            </li>
-          ))}
-        </ol>
-      </nav>
-    )}
+  <div class="absolute inset-0 bg-black/35"></div>
 
+  <div class="container relative mx-auto px-4">
     <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
       <div>
         <p class="mb-4 text-[1rem] font-semibold uppercase tracking-[0.32em] text-accent md:text-[1.18rem]">
@@ -65,11 +50,11 @@ const t = useTranslations(getLangFromUrl(Astro.url));
         <p class="mt-6 max-w-3xl text-lg text-white/90 md:text-xl">
           {page.heroSummary}
         </p>
-        <p class="mt-4 max-w-3xl text-base leading-7 text-white/80 md:text-lg">
+        <p class="mt-1 max-w-3xl text-base leading-7 text-white/80 md:text-lg">
           {page.heroBody}
         </p>
 
-        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+        <div class="mt-14 flex flex-col gap-4 sm:mt-8 sm:flex-row">
           <a
             href={page.primaryCtaHref}
             data-primary-hero-cta
@@ -86,7 +71,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
         </div>
       </div>
 
-      <div class="rounded-[2rem] border border-white/15 bg-white/10 p-5 backdrop-blur-sm md:p-6">
+      <div class="mt-8 rounded-[2rem] border border-white/15 bg-white/10 p-5 backdrop-blur-sm sm:mt-0 md:p-6">
         <p class="text-[1.16rem] font-semibold uppercase tracking-[0.15em] text-accent md:text-[1.34rem]">
           {t.landing.hero.trustTitle}
         </p>
