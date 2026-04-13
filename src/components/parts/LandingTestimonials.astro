@@ -30,56 +30,73 @@ const testimonialAvatars = {
   jack: JackAvatar,
   yolanda: YolandaAvatar,
 } as const;
+
+const stripSegmentAAccents = (value: string) =>
+  value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 ---
 
-<section id="opiniones" class="py-20">
-  <div class="container mx-auto px-4">
-    <div class="max-w-3xl">
-      <p class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
+<details
+  id="opiniones"
+  data-accordion-section
+  class="group border-t border-gray-200 bg-white [&_summary::-webkit-details-marker]:hidden"
+>
+  <summary class="cursor-pointer list-none">
+    <div class="container mx-auto flex items-center justify-between gap-6 px-4 py-6 md:py-7">
+      <span class="text-[0.98rem] font-semibold uppercase tracking-[0.24em] text-accent md:text-[1.12rem]">
         {t.landing.testimonials.eyebrow}
-      </p>
-      <h2 class="mt-4 font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
-        {page.testimonialsTitle}
-      </h2>
-      <p class="mt-6 text-lg leading-8 text-gray-700">
-        {page.testimonialsDescription}
-      </p>
+      </span>
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/30 text-[1.6rem] leading-none text-primary transition duration-300 group-open:rotate-45">
+        +
+      </span>
     </div>
+  </summary>
 
-    <div class="mt-10 grid gap-6 md:grid-cols-3">
-      {page.testimonials.map((testimonial) => {
-        const avatar = testimonial.avatar
-          ? testimonialAvatars[testimonial.avatar as keyof typeof testimonialAvatars]
-          : null;
+  <section class="pb-20 pt-2">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl">
+        <h2 class="font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+          {stripSegmentAAccents(page.testimonialsTitle)}
+        </h2>
+        <p class="mt-6 text-lg leading-8 text-gray-700">
+          {page.testimonialsDescription}
+        </p>
+      </div>
 
-        return (
-          <article class="rounded-[1.5rem] bg-white p-6 shadow-md">
-            <p class="text-base leading-7 text-gray-700">"{testimonial.quote}"</p>
-            <div class="mt-6 flex items-center gap-4">
-              <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-accent/40 bg-gray-100 shadow-sm">
-                {avatar ? (
-                  <Image
-                    src={avatar}
-                    alt={testimonial.name}
-                    class="h-full w-full scale-[1.08] object-cover"
-                    loading="lazy"
-                    widths={[64, 96]}
-                    sizes="64px"
-                  />
-                ) : (
-                  <div class="flex h-full w-full items-center justify-center bg-primary text-sm font-semibold uppercase tracking-[0.12em] text-white">
-                    {testimonial.name.slice(0, 2)}
-                  </div>
-                )}
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {page.testimonials.map((testimonial) => {
+          const avatar = testimonial.avatar
+            ? testimonialAvatars[testimonial.avatar as keyof typeof testimonialAvatars]
+            : null;
+
+          return (
+            <article class="rounded-[1.5rem] bg-white p-6 shadow-md">
+              <p class="text-base leading-7 text-gray-700">"{testimonial.quote}"</p>
+              <div class="mt-6 flex items-center gap-4">
+                <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-accent/40 bg-gray-100 shadow-sm">
+                  {avatar ? (
+                    <Image
+                      src={avatar}
+                      alt={testimonial.name}
+                      class="h-full w-full scale-[1.08] object-cover"
+                      loading="lazy"
+                      widths={[64, 96]}
+                      sizes="64px"
+                    />
+                  ) : (
+                    <div class="flex h-full w-full items-center justify-center bg-primary text-sm font-semibold uppercase tracking-[0.12em] text-white">
+                      {testimonial.name.slice(0, 2)}
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <p class="font-segmentA text-[2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.2rem]">{stripSegmentAAccents(testimonial.name)}</p>
+                  <p class="text-sm text-gray-500">{testimonial.role}</p>
+                </div>
               </div>
-              <div>
-                <p class="font-segmentA text-[2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.2rem]">{testimonial.name}</p>
-                <p class="text-sm text-gray-500">{testimonial.role}</p>
-              </div>
-            </div>
-          </article>
-        );
-      })}
+            </article>
+          );
+        })}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</details>

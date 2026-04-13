@@ -31,9 +31,11 @@ This is a **static Astro site** for a saxophone musician's portfolio, with bilin
 - `src/layouts/Layout.astro` — root HTML shell; accepts `title`, `description`, and other SEO props
 - `src/components/parts/` — one component per page section:
   - English page sections: `Hero`, `About`, `Services`, `Gallery`, `Testimonials`, `Contact`
-  - Spanish landing page sections: `LandingHero`, `LandingAbout`, `LandingServices`, `LandingAnswerBlock`, `LandingVideos`, `LandingRepertoire`, `LandingPacks`, `LandingTestimonials`, `LandingContact`, `LandingFaq`, `LandingCities`, `LandingFloatingCta` — **these components are not used by `WeddingLandingPage`**
+  - Spanish landing page sections: `LandingHero`, `LandingAbout`, `LandingServices`, `LandingAnswerBlock`, `LandingVideos`, `LandingRepertoire`, `LandingPacks`, `LandingTestimonials`, `LandingContact`, `LandingFaq`, `LandingCities`, `LandingFloatingCta`
   - Shared UI: `Header`, `Footer`, `LanguagePicker`
-- `src/components/pages/WeddingLandingPage.astro` — **monolithic component** for Spanish landing pages; all sections are inlined directly (the `Landing*` components above are unused). Nav anchor IDs must match the i18n anchor values in `es.ts` (`inicio`, `propuesta`, `servicios`, `ciudades`, `opiniones`, `contacto`).
+- `src/components/pages/WeddingLandingPage.astro` — thin composition layer; imports and renders all `Landing*` section components in order, plus a small script that opens accordion sections when navigating to a hash anchor. Nav anchor IDs in each component must match the i18n values in `es.ts` (`inicio`, `propuesta`, `servicios`, `ciudades`, `opiniones`, `contacto`).
+- Most `Landing*` sections (everything after `LandingAbout`) are rendered as `<details>` accordion elements. `LandingContact` starts open (`open` attribute). `LandingAbout` uses a mobile/desktop split: the `<section id="propuesta">` shows an embedded video; a sibling `<details>` (mobile-only, `md:hidden`) accordion reveals the text content.
+- `stripSegmentAAccents` (strips NFD diacritics for Segment A font rendering) is defined inline in each `Landing*` component that needs it.
 - `src/components/animations/` — `FadeIn.astro` and `Counter.astro` use Intersection Observer via inline `<script define:vars={...}>` (no JS framework)
 - Pages in `src/pages/` simply import and compose the section components
 
