@@ -40,7 +40,7 @@ const schemas = buildPageSchemas(page, canonical, location);
   ogImage={absoluteUrl(DEFAULT_OG_IMAGE)}
   alternates={[
     { hreflang: 'es', href: canonical },
-    { hreflang: 'x-default', href: absoluteUrl('/') },
+    { hreflang: 'x-default', href: canonical },
   ]}
   schemas={schemas}
 >
