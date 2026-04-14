@@ -182,7 +182,7 @@ export const es = {
     },
     services: {
       eyebrow: 'Servicios para bodas',
-      extrasIntro: 'Una propuesta flexible para ceremonia, cóctel, banquete y fiesta, pensada para que la música encaje de verdad con cada momento de la boda.',
+      extrasIntro: 'Ceremonia, cóctel, banquete y barra libre, todo pensado para que la música transforme la atmósfera de la boda, desde la emoción de la ceremonia hasta la fiesta de la barra libre.',
     },
     answerBlock: {
       eyebrow: 'Datos clave',
@@ -210,7 +210,7 @@ export const es = {
       eyebrow: 'Reserva y disponibilidad',
       phoneLabel: 'Teléfono',
       emailLabel: 'Email',
-      whatsappLabel: 'Escribir ahora',
+      whatsappLabel: 'Pincha para escribir ahora por whatsapp',
       form: {
         nameLabel: 'Nombre',
         emailLabel: 'Email',

@@ -10,6 +10,15 @@ interface Props {
 
 const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
+const heroTitleDisplay = page.heroTitle;
+const heroTitleClass =
+  'max-w-4xl text-[1.75rem] font-[525] uppercase leading-[0.96] tracking-[0.038em] md:text-[2.95rem]';
+const cityName =
+  page.type === 'city' ? page.heroTitle.replace('Saxofonista para bodas en ', '') : null;
+const trustTitle =
+  page.type === 'city' && cityName
+    ? `¿Por qué contar con mis servicios en ${cityName}?`
+    : t.landing.hero.trustTitle;
 ---
 
 <section id="inicio" class="relative overflow-hidden bg-black pb-24 pt-36 text-white">
@@ -44,8 +53,8 @@ const t = useTranslations(getLangFromUrl(Astro.url));
         <p class="mb-4 text-[1rem] font-semibold uppercase tracking-[0.32em] text-accent md:text-[1.18rem]">
           {page.heroLabel}
         </p>
-        <h1 class="max-w-4xl font-segmentA text-[3.5rem] font-bold uppercase leading-[0.92] tracking-[0.1em] md:text-[5.2rem]">
-          {page.heroTitle}
+        <h1 class={heroTitleClass}>
+          {heroTitleDisplay}
         </h1>
         <p class="mt-6 max-w-3xl text-lg text-white/90 md:text-xl">
           {page.heroSummary}
@@ -73,7 +82,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
 
       <div class="mt-8 rounded-[2rem] border border-white/15 bg-white/10 p-5 backdrop-blur-sm sm:mt-0 md:p-6">
         <p class="text-[1.16rem] font-semibold uppercase tracking-[0.15em] text-accent md:text-[1.34rem]">
-          {t.landing.hero.trustTitle}
+          {trustTitle}
         </p>
         <ul class="mt-6 space-y-4 text-base text-white/90">
           {page.trustPoints.map((point) => (

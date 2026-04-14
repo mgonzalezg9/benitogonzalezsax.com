@@ -168,17 +168,17 @@ const sharedMoments = [
   {
     title: 'Ceremonia',
     description:
-      'Versiones emotivas para entradas, firmas o momentos clave sin romper el ritmo de la ceremonia.',
+      'Versiones emotivas, entradas, momentos clave para una banda sonora perfecta para tu ceremonia.',
   },
   {
     title: 'Cóctel',
     description:
-      'Saxo en directo para crear ambiente, conectar con los invitados y elevar el aperitivo con repertorio sofisticado y actual.',
+      'Saxo en directo para animar, conectar con los invitados y elevar la copa de bienvenida con energía.',
   },
   {
     title: 'Banquete',
     description:
-      'Intervenciones puntuales para entradas especiales, sorpresas y momentos del banquete que merecen un punto más memorable.',
+      'Show de banquete para animar a todos tus invitados y entrar a la barra libre bailando, entrada a banquete incluida.',
   },
   {
     title: 'Barra libre y Saxo + DJ',
@@ -190,7 +190,7 @@ const sharedMoments = [
 const sharedExtras = [
   'Repertorio adaptable a estilos elegantes, house, versiones, hits comerciales y fiesta final.',
   'Coordinación con wedding planners, DJs, fincas, hoteles y equipos técnicos del lugar.',
-  'Desplazamiento para bodas en capitales de provincia de la Península y Baleares.',
+  'Equipo de sonido de hasta 2400W incluido en el precio.',
   'Formato pensado para que cada bloque de la boda tenga su propia energía sin perder coherencia.',
 ];
 
@@ -206,7 +206,7 @@ const buildHomeAnswerCards = (): AnswerCard[] => [
   {
     title: 'Qué hace Benito González Sax',
     body:
-      'Ofrece saxo en directo para bodas y eventos, con formatos pensados para ceremonia, cóctel, banquete, barra libre y sesiones con DJ.',
+      'Anima tu boda o evento con saxo en directo, con formatos pensados para ceremonia, cóctel, banquete, barra libre y sesiones con DJ, desde los momentos más elegantes hasta la fiesta.',
   },
   {
     title: 'Dónde trabaja',
@@ -228,15 +228,15 @@ const buildHomeAnswerCards = (): AnswerCard[] => [
 const buildCityAnswerCards = (location: LocationEntry): AnswerCard[] => [
   {
     title: `Qué ofrece en ${location.city}`,
-    body: `Saxo en directo para bodas en ${location.city} con servicio adaptable a ceremonia, cóctel, banquete, barra libre y formato Saxo + DJ.`,
+    body: `Anima tu boda o evento con saxo en directo en ${location.city}, con formatos pensados para ceremonia, cóctel, banquete, barra libre y sesiones con DJ, desde los momentos más elegantes hasta la fiesta.`,
   },
   {
     title: `Dónde trabaja en ${location.province}`,
     body: `Cubre bodas en ${location.city}, ${location.province} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
   },
   {
-    title: 'Qué tipo de formato encaja mejor',
-    body: `El formato está pensado para ${location.serviceAngle}, ajustando repertorio, intensidad y coordinación técnica según el evento.`,
+    title: `Cómo transforma tu boda o evento en ${location.city}`,
+    body: `Desde ceremonias emotivas a levantar y animar a todos tus invitados a bailar, el saxo en directo se adapta a casi todos los gustos y repertorios para bodas y celebraciones en ${location.city} y alrededores.`,
   },
   {
     title: `Cómo reservar en ${location.city}`,
@@ -434,7 +434,7 @@ const sharedHomeFaqs: LandingFaq[] = [
   {
     question: '¿En qué zonas trabajas?',
     answer:
-      'Estoy disponible para bodas en Murcia, Alicante, Madrid, Valencia, Barcelona, Sevilla, Málaga, Zaragoza, Palma, Valladolid y otras capitales de provincia de la Península y Baleares.',
+      'Estoy disponible para bodas en Murcia, Alicante, Madrid, Valencia, Barcelona, Sevilla, Málaga, Zaragoza, Palma, Valladolid y otras provincias de la Península y Baleares.',
   },
   {
     question: '¿Cómo se solicita presupuesto?',
@@ -523,9 +523,9 @@ export const buildHomePageData = (): LandingPageData => ({
   moments: sharedMoments,
   extrasTitle: '¿Cuál es mi propuesta para bodas o eventos?',
   extras: sharedExtras,
-  answerBlockTitle: 'Respuesta rápida sobre el servicio',
+  answerBlockTitle: 'Por qué elegir un saxofonista para tu boda o evento',
   answerBlockIntro:
-    'Un resumen directo para parejas, buscadores y asistentes que necesitan entender rápido qué ofrece Benito González Sax y cómo reservar.',
+    'Qué ofrece un saxofonista y como puede animar tu boda o evento',
   answerCards: buildHomeAnswerCards(),
   serviceTypes: sharedServiceTypes,
   packsTitle: 'Packs para boda',
@@ -557,7 +557,7 @@ export const buildHomePageData = (): LandingPageData => ({
   faqs: sharedHomeFaqs,
   contactTitle: 'Solicita presupuesto para tu boda',
   contactDescription:
-    'Cuanto más contexto nos deis sobre fecha, ciudad, lugar y momento de la actuación, más fácil será dar una propuesta realista y una respuesta rápida.',
+    'Dinos fecha, ciudad, lugar, momento de la actuación y pack de actuación que necesitáis, así os podremos dar una respuesta rápida.',
   contactHighlight:
     'También puedes llamar o escribir por WhatsApp si prefieres una vía más directa.',
   formSubject: 'Solicitud de presupuesto - Saxofonista para bodas',
@@ -582,17 +582,17 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => (
   primaryCtaHref: '#contacto',
   secondaryCtaLabel: 'Ver vídeos',
   secondaryCtaHref: '#videos',
-  introTitle: `Música en directo para bodas en ${location.city}`,
+  introTitle: `Saxofonista en directo para bodas en ${location.city}`,
   introParagraphs: [
-    `Si estás buscando un saxofonista para bodas en ${location.city}, aquí puedes ver una propuesta pensada para acompañar desde los momentos más elegantes hasta la parte más animada del evento.`,
-    `La música en directo se adapta al estilo de la pareja, al lugar de la celebración y al tipo de ambiente que queréis crear en ${location.city}.`,
+    `Si estás buscando un saxofonista para bodas en ${location.city} estás en el lugar correcto.`,
+    `Benito González con más de 200 eventos y más de 10 años de experiencia se adapta al estilo de la pareja, al lugar de la celebración y al tipo de ambiente que queréis crear para vuestra boda o evento en ${location.city}.`,
   ],
   trustPoints: [
     `Cobertura habitual en ${location.city} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
     `Formato adaptable a ceremonia, cóctel, banquete, barra libre y servicio Saxo + DJ en ${location.city}.`,
     `Propuesta pensada para adaptarse a wedding planners, fincas, hoteles y espacios de boda de ${location.province}.`,
   ],
-  serviceTitle: `Cómo se vive el saxo en una boda en ${location.city}`,
+  serviceTitle: `Que servicios cubre un saxofonista para bodas en ${location.city}`,
   serviceDescription: `Cada boda es distinta, por eso el servicio se adapta al estilo del evento, al espacio y a los momentos que queréis destacar en ${location.city} y alrededores.`,
   moments: sharedMoments,
   extrasTitle: `Claves del servicio en ${location.city}`,
@@ -600,8 +600,8 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => (
     ...sharedExtras,
     `Cobertura local y zonas cercanas: ${location.nearbyAreas.join(', ')}.`,
   ],
-  answerBlockTitle: `Respuesta rápida para bodas en ${location.city}`,
-  answerBlockIntro: `Datos claros para entender rápido qué ofrece Benito González Sax en ${location.city}, cómo trabaja y cómo reservar.`,
+  answerBlockTitle: `Por que elegir saxofonista para bodas en ${location.city}`,
+  answerBlockIntro: `Qué ofrece Benito González Sax en ${location.city}, cómo transforma tu boda o evento, cómo trabaja y cómo reservar.`,
   answerCards: buildCityAnswerCards(location),
   serviceTypes: sharedServiceTypes,
   packsTitle: `Packs para boda en ${location.city}`,
@@ -626,7 +626,7 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => (
       : 'Si todavía no tenéis cerrada la ciudad, también podéis volver a la página principal para ver la propuesta general.',
   cityLinks: buildNearbyLinks(location),
   cityCoverageBullets: [],
-  testimonialsTitle: `Opiniones y confianza para bodas en ${location.city}`,
+  testimonialsTitle: `Opiniones y Testimonios para bodas en ${location.city}`,
   testimonialsDescription: `Opiniones reales de clientes y parejas que ayudan a entender cómo se vive el servicio en una boda.`,
   testimonials: sharedTestimonials.map((testimonial) => ({
     ...testimonial,
