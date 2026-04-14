@@ -2,6 +2,16 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Before making any changes
+
+Always pull the latest remote changes on the current branch before editing any file:
+
+```bash
+git pull
+```
+
+If there are uncommitted local changes, stash them first (`git stash`), pull, then reapply (`git stash pop`).
+
 ## Commands
 
 ```bash
