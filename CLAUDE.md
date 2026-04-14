@@ -4,7 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Before making any changes
 
-Always pull the latest remote changes on the current branch before editing any file:
+1. Check the current branch:
+
+```bash
+git branch --show-current
+```
+
+2. If on branch `benito`, rebase it with `main`:
+
+```bash
+git fetch origin
+git rebase origin/main
+```
+
+If on any other branch, rebase it with `main` before proceeding:
+
+```bash
+git fetch origin
+git rebase origin/main
+```
+
+3. Always pull the latest remote changes on the current branch before editing any file:
 
 ```bash
 git pull
