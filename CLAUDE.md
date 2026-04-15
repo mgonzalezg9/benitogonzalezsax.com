@@ -89,6 +89,14 @@ Tailwind CSS with a custom theme:
 - `accent`: `#e5c029` (gold)
 - Fonts: `Inter` (body) and `Segment A` (display), loaded from `public/fonts/`
 
+### Code Review Subagents
+
+Three subagents for code review live in `.claude/agents/`. Codex can also make use of them when asked:
+
+- **`architectural-review`** — component composition, DRY principles, reusability, structural patterns. Use when refactoring or adding new components.
+- **`correctness-review`** — UI labels vs. behaviour, content accuracy, SEO/metadata fields. Use when a feature is complete and needs a final sanity check.
+- **`types-and-testing`** — TypeScript type safety and build validation. Use when adding data structures, changing interfaces, or validating a feature end-to-end.
+
 ### Deployment
 
 Hosted on Firebase Hosting (europe-west1). Build output is `dist/`. Google Analytics is injected via `src/scripts/GoogleAnalyticsTag.astro`.
