@@ -13,7 +13,7 @@ const navBase = isLandingPage ? pathname : getRouteForLanguage('/', lang);
 
 const navSections = [
   { id: t.nav.home.anchor, label: t.nav.home.label, ariaLabel: t.nav.home.ariaDescription },
-  { id: 'videos', label: 'Vídeos', ariaLabel: 'Ir a la sección de vídeos' },
+  { id: 'videos', label: 'Videos', ariaLabel: 'Ir a la sección de vídeos' },
   { id: t.nav.services.anchor, label: t.nav.services.label, ariaLabel: t.nav.services.ariaDescription },
   { id: t.nav.testimonials.anchor, label: t.nav.testimonials.label, ariaLabel: t.nav.testimonials.ariaDescription },
   { id: t.nav.contact.anchor, label: t.nav.contact.label, ariaLabel: t.nav.contact.ariaDescription },
@@ -75,24 +75,13 @@ const navSections = [
   <div id="mobile-menu" class="hidden md:hidden bg-primary w-full">
     <div class="container mx-auto px-4 py-4">
       <ul class="space-y-4">
-        {navSections.map((section, index) => (
+        {navSections.map(section => (
           <>
             <li>
               <a href={`${navBase}#${section.id}`} class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
                 {section.label}
               </a>
             </li>
-            {index === 0 && (
-              <li>
-                <a
-                  href={`${navBase}#contacto`}
-                  class="inline-flex items-center rounded-[0.35rem] border-2 border-white px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-accent hover:text-accent"
-                  aria-label="Ir a la sección de contacto para pedir presupuesto"
-                >
-                  Pide presupuesto
-                </a>
-              </li>
-            )}
           </>
         ))}
       </ul>
