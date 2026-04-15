@@ -1,0 +1,50 @@
+---
+import Footer from '../components/parts/Footer.astro';
+import Header from '../components/parts/Header.astro';
+import WeddingLandingPage from '../components/pages/WeddingLandingPage.astro';
+import { buildCityPageData } from '../data/landingPages';
+import { getLaunchedLocations, getLocationBySlug } from '../data/locations';
+import { DEFAULT_OG_IMAGE, absoluteUrl } from '../lib/site';
+import { buildPageSchemas } from '../lib/schemas';
+import Layout from '../layouts/Layout.astro';
+
+export const getStaticPaths = () =>
+  getLaunchedLocations().map((location) => ({
+    params: { slug: location.slug },
+    props: { locationSlug: location.slug },
+  }));
+
+interface Props {
+  locationSlug: string;
+}
+
+const { locationSlug } = Astro.props;
+const location = getLocationBySlug(locationSlug);
+
+if (!location) {
+  throw new Error(`Unknown location slug: ${locationSlug}`);
+}
+
+const page = buildCityPageData(location);
+const canonical = absoluteUrl(page.canonicalPath);
+const schemas = buildPageSchemas(page, canonical, location);
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  lang="es"
+  canonical={canonical}
+  ogTitle={page.title}
+  ogDescription={page.description}
+  ogImage={absoluteUrl(DEFAULT_OG_IMAGE)}
+  alternates={[
+    { hreflang: 'es', href: canonical },
+    { hreflang: 'x-default', href: canonical },
+  ]}
+  schemas={schemas}
+>
+  <Header />
+  <WeddingLandingPage page={page} />
+  <Footer />
+</Layout>

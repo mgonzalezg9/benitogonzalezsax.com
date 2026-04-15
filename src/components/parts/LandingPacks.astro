@@ -1,0 +1,79 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
+import LandingAccordionSection from './LandingAccordionSection.astro';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<LandingAccordionSection id="packs" eyebrow={t.landing.packs.eyebrow}>
+  <section class="bg-white pb-20 pt-2">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl">
+        <h2 class="font-segmentA text-[3rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+          {stripSegmentAAccents(page.packsTitle)}
+        </h2>
+        <p class="mt-6 max-w-xl text-lg leading-8 text-gray-700">{page.packsIntro}</p>
+      </div>
+
+      <div class="mt-10 grid max-w-3xl gap-6 lg:max-w-none lg:grid-cols-2">
+        {page.packs.map((pack, index) => (
+          <article
+            class:list={[
+              'rounded-[1.9rem] border p-6 shadow-sm md:p-7',
+              index === 0
+                ? 'border-accent/40 bg-primary text-white'
+                : 'border-gray-200 bg-gray-50 text-gray-900',
+            ]}
+          >
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p class="text-[0.9rem] font-semibold uppercase tracking-[0.24em] text-accent">
+                  {index === 0 ? t.landing.packs.recommendedLabel : t.landing.packs.flexibleLabel}
+                </p>
+                <div class="mt-4 flex flex-wrap items-center gap-3">
+                  <h3
+                    class:list={[
+                      'font-segmentA text-[2.5rem] font-bold uppercase tracking-[0.08em] md:text-[3rem]',
+                      index === 0 ? 'text-white' : 'text-primary',
+                    ]}
+                  >
+                    {stripSegmentAAccents(pack.name)}
+                  </h3>
+                  <span
+                    class:list={[
+                      'hidden rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] sm:inline-flex',
+                      index === 0 ? 'bg-white/10 text-white' : 'bg-primary/8 text-primary',
+                    ]}
+                  >
+                    {index === 0 ? t.landing.packs.morePersonalisationLabel : t.landing.packs.moreDirectLabel}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <ul class="mt-6 space-y-4">
+              {pack.bullets.map((bullet) => (
+                <li class="flex gap-3">
+                  <span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-accent"></span>
+                  <span class:list={[
+                    'text-base leading-7',
+                    index === 0 ? 'text-white/85' : 'text-gray-700',
+                  ]}>
+                    {bullet}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</LandingAccordionSection>

@@ -1,26 +1,34 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/parts/Header.astro';
-import Hero from '../components/parts/Hero.astro';
-import About from '../components/parts/About.astro';
-import Services from '../components/parts/Services.astro';
-import Gallery from '../components/parts/Gallery.astro';
-import Testimonials from '../components/parts/Testimonials.astro';
-import Contact from '../components/parts/Contact.astro';
 import Footer from '../components/parts/Footer.astro';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Header from '../components/parts/Header.astro';
+import WeddingLandingPage from '../components/pages/WeddingLandingPage.astro';
+import { buildHomePageData } from '../data/landingPages';
+import { DEFAULT_OG_IMAGE, absoluteUrl } from '../lib/site';
+import { buildPageSchemas } from '../lib/schemas';
+import Layout from '../layouts/Layout.astro';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const page = buildHomePageData();
+const canonical = absoluteUrl(page.canonicalPath);
+const englishCanonical = absoluteUrl('/en');
+const schemas = buildPageSchemas(page, canonical);
 ---
 
-<Layout title={t.meta.title} description={t.meta.description} lang={lang}>
+<Layout
+  title={page.title}
+  description={page.description}
+  lang="es"
+  canonical={canonical}
+  ogTitle={page.title}
+  ogDescription={page.description}
+  ogImage={absoluteUrl(DEFAULT_OG_IMAGE)}
+  alternates={[
+    { hreflang: 'es', href: canonical },
+    { hreflang: 'en', href: englishCanonical },
+    { hreflang: 'x-default', href: canonical },
+  ]}
+  schemas={schemas}
+>
   <Header />
-  <Hero />
-  <About />
-  <Services />
-  <Gallery />
-  <Testimonials />
-  <Contact />
+  <WeddingLandingPage page={page} />
   <Footer />
 </Layout>

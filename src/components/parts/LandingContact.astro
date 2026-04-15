@@ -1,0 +1,177 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import { BUSINESS } from '../../lib/site';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
+import LandingAccordionSection from './LandingAccordionSection.astro';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<LandingAccordionSection id="contacto" eyebrow={t.landing.contact.eyebrow} open>
+  <section class="pb-20 pt-2">
+    <div class="container mx-auto px-4">
+      <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+        <div class="rounded-[2rem] bg-primary p-8 text-white md:p-10">
+          <h2 class="font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] md:text-[4.4rem]">
+            {stripSegmentAAccents(page.contactTitle)}
+          </h2>
+          <p class="mt-6 text-base leading-7 text-white/85">{page.contactDescription}</p>
+          <p class="mt-4 text-sm leading-6 text-white/75">{page.contactHighlight}</p>
+
+          <div class="mt-8 space-y-4">
+            <a class="block rounded-2xl bg-white/10 p-4 transition hover:bg-white/15" href={BUSINESS.phoneHref}>
+              <span class="block text-sm uppercase tracking-[0.18em] text-accent">{t.landing.contact.phoneLabel}</span>
+              <span class="mt-2 block text-lg">{BUSINESS.phone}</span>
+            </a>
+            <a class="block rounded-2xl bg-white/10 p-4 transition hover:bg-white/15" href={BUSINESS.emailHref}>
+              <span class="block text-sm uppercase tracking-[0.18em] text-accent">{t.landing.contact.emailLabel}</span>
+              <span class="mt-2 block text-lg">{BUSINESS.email}</span>
+            </a>
+            <a
+              class="block rounded-2xl bg-white/10 p-4 transition hover:bg-white/15"
+              href={page.whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span class="block text-sm uppercase tracking-[0.18em] text-accent">WhatsApp</span>
+              <span class="mt-2 block text-lg">{t.landing.contact.whatsappLabel}</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] bg-white p-8 shadow-lg md:p-10">
+          <form
+            id="lead-form"
+            data-mail-to={BUSINESS.emailHref}
+            data-mail-subject={page.formSubject}
+            data-whatsapp-base={BUSINESS.whatsappHref}
+            class="space-y-5"
+          >
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.nameLabel}</span>
+                <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="text" name="nombre" required />
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.emailLabel}</span>
+                <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="email" name="email" required />
+              </label>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.phoneLabel}</span>
+                <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="tel" name="telefono" />
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.weddingDateLabel}</span>
+                <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="date" name="fecha" />
+              </label>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <label class="block">
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.cityOrVenueLabel}</span>
+                <input class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" type="text" name="ciudad" required />
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.serviceTypeLabel}</span>
+                <select class="min-h-12 w-full rounded-2xl border border-gray-300 px-4 py-3" name="servicio" required>
+                  {t.landing.contact.form.serviceOptions.map((option) => (
+                    <option value={option}>{option}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
+
+            <label class="block">
+              <span class="mb-2 block text-sm font-semibold uppercase tracking-[0.12em] text-primary">{t.landing.contact.form.messageLabel}</span>
+              <textarea
+                class="min-h-36 w-full rounded-2xl border border-gray-300 px-4 py-3"
+                name="mensaje"
+                placeholder={t.landing.contact.form.messagePlaceholder}
+              ></textarea>
+            </label>
+
+            <div class="flex flex-col gap-4 sm:flex-row">
+              <button
+                type="submit"
+                class="inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-7 py-3 font-segmentA text-[1.45rem] font-bold uppercase tracking-[0.12em] text-white transition hover:bg-amber-400 md:text-[1.7rem]"
+              >
+                {t.landing.contact.form.submitEmailLabel}
+              </button>
+              <button
+                type="button"
+                data-action="whatsapp"
+                class="inline-flex min-h-12 items-center justify-center rounded-full border border-primary px-7 py-3 font-segmentA text-[1.45rem] font-bold uppercase tracking-[0.12em] text-primary transition hover:bg-primary hover:text-white md:text-[1.7rem]"
+              >
+                {t.landing.contact.form.submitWhatsAppLabel}
+              </button>
+            </div>
+
+            <p class="text-sm leading-6 text-gray-500">
+              {t.landing.contact.form.helpText}
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</LandingAccordionSection>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('lead-form');
+
+    if (!(form instanceof HTMLFormElement)) {
+      return;
+    }
+
+    const buildMessage = () => {
+      const data = new FormData(form);
+      const fields = [
+        ['Nombre', data.get('nombre') || ''],
+        ['Email', data.get('email') || ''],
+        ['Teléfono', data.get('telefono') || ''],
+        ['Fecha', data.get('fecha') || ''],
+        ['Ciudad o lugar', data.get('ciudad') || ''],
+        ['Servicio', data.get('servicio') || ''],
+        ['Mensaje', data.get('mensaje') || ''],
+      ];
+
+      return fields
+        .filter(([, value]) => String(value).trim().length > 0)
+        .map(([label, value]) => `${label}: ${value}`)
+        .join('\n');
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      const mailTo = form.dataset.mailTo || 'mailto:info@benitogonzalezsax.com';
+      const subject = form.dataset.mailSubject || 'Solicitud de presupuesto';
+      const body = buildMessage();
+      window.location.href = `${mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+
+    const whatsappButton = form.querySelector('[data-action="whatsapp"]');
+    whatsappButton?.addEventListener('click', () => {
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      const base = form.dataset.whatsappBase || 'https://wa.me/34615977190';
+      const body = buildMessage();
+      window.open(`${base}?text=${encodeURIComponent(body)}`, '_blank', 'noopener,noreferrer');
+    });
+  });
+</script>

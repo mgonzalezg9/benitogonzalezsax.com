@@ -1,0 +1,57 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import LandingHero from '../parts/LandingHero.astro';
+import LandingAbout from '../parts/LandingAbout.astro';
+import LandingServices from '../parts/LandingServices.astro';
+import LandingAnswerBlock from '../parts/LandingAnswerBlock.astro';
+import LandingVideos from '../parts/LandingVideos.astro';
+import LandingRepertoire from '../parts/LandingRepertoire.astro';
+import LandingPacks from '../parts/LandingPacks.astro';
+import LandingTestimonials from '../parts/LandingTestimonials.astro';
+import LandingContact from '../parts/LandingContact.astro';
+import LandingFaq from '../parts/LandingFaq.astro';
+import LandingCities from '../parts/LandingCities.astro';
+import LandingFloatingCta from '../parts/LandingFloatingCta.astro';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+---
+
+<main class="bg-gray-50 text-gray-900">
+  <LandingHero page={page} />
+  <LandingAbout page={page} />
+  <LandingServices page={page} />
+  <LandingAnswerBlock page={page} />
+  <LandingVideos page={page} />
+  <LandingRepertoire page={page} />
+  <LandingPacks page={page} />
+  <LandingTestimonials page={page} />
+  <LandingContact page={page} />
+  <LandingFaq page={page} />
+  <LandingCities page={page} />
+  <LandingFloatingCta />
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const openAccordionTarget = (hash: string) => {
+      if (!hash.startsWith('#')) return;
+      const target = document.getElementById(hash.slice(1));
+      if (target instanceof HTMLDetailsElement) {
+        target.open = true;
+      }
+    };
+
+    openAccordionTarget(window.location.hash);
+    window.addEventListener('hashchange', () => openAccordionTarget(window.location.hash));
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href');
+        if (href) openAccordionTarget(href);
+      });
+    });
+  });
+</script>

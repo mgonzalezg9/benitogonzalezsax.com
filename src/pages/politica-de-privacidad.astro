@@ -1,397 +1,127 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/parts/Header.astro';
 import Footer from '../components/parts/Footer.astro';
-import { getLangFromUrl } from '../i18n/utils';
+import Header from '../components/parts/Header.astro';
+import { absoluteUrl } from '../lib/site';
+import Layout from '../layouts/Layout.astro';
 
-const lang = getLangFromUrl(Astro.url);
+const canonical = absoluteUrl('/politica-de-privacidad');
 ---
 
-<Layout 
-  title="Política de Privacidad - Benito González García" 
-  description="Política de privacidad y aviso legal de Benito González García - Saxofonista profesional" 
-  lang={lang}
+<Layout
+  title="Política de privacidad | Benito González Sax"
+  description="Política de privacidad de Benito González Sax para solicitudes de presupuesto, formularios de contacto y comunicaciones comerciales."
+  lang="es"
+  canonical={canonical}
+  alternates={[
+    { hreflang: 'es', href: canonical },
+    { hreflang: 'en', href: absoluteUrl('/en/privacy-policy') },
+    { hreflang: 'x-default', href: absoluteUrl('/') },
+  ]}
 >
   <Header />
-  
-  <main class="pt-20 pb-16">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <h1 class="text-8xl font-segmentA uppercase tracking-wide font-bold mb-8 text-primary">Aviso legal y Politica de Privacidad</h1>
-      
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">1. Informacion</h2>
-        <p class="mb-4">
-          Esta web es propiedad de <strong>Benito González García</strong> (en adelante, de forma indistinta,
-          <strong>benitogonzalezsax</strong> o <strong>benitogonzalezsax.com</strong>).
-        </p>
-        <p class="mb-4">
-          <strong>C.I.F.:</strong> 49440443-B<br />
-          <strong>Domicilio:</strong> Calle Andrés Ureña Román nº 57, 30870 Mazarrón (Murcia).<br />
-          <strong>Email de contacto:</strong>
-          <a href="mailto:info@benitogonzalezsax.com" class="text-primary underline">
-            info@benitogonzalezsax.com
-          </a>
-        </p>
-        <p class="mb-4">
-          Mediante esta declaración se informa a los visitantes y usuarios de <strong>benitogonzalezsax.com</strong>
-          (en adelante, <strong>LA WEB</strong>) de la política que nuestra empresa sigue en el tratamiento de los
-          datos que se reciben en este sitio web. El objetivo de nuestra política de privacidad es respetar al máximo
-          la legislación vigente de protección de datos personales. Si usted tiene cualquier duda sobre la
-          confidencialidad o el tratamiento que reciben sus datos, así como si desea ejercer alguno de los derechos de
-          información, oposición, rectificación, cancelación y portabilidad que legalmente le corresponden (o cualquier
-          otro derecho que usted crea que le puede asistir) puede dirigirse a:
-        </p>
-        <p class="mb-4">
-          <strong>BENITOGONZALEZSAX</strong><br />
-          Correo electrónico:
-          <a href="mailto:info@benitogonzalezsax.com" class="text-primary underline">
-            info@benitogonzalezsax.com
-          </a>
-        </p>
-        <p class="mb-4">
-          Todo ello en cumplimiento del art. 11 de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos
-          Personales y garantía de los derechos digitales, así como de los arts. 12 a 14 del Reglamento (UE) 2016/679
-          del Parlamento Europeo y del Consejo, de 27 de abril de 2016 (en adelante, <strong>RGPD</strong>).
-        </p>
 
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">2. Finalidad de los datos recabados y consentimiento al tratamiento</h2>
-        <p>
-          Según lo establecido en el artículo 14 del RGPD, se informa al <strong>USUARIO</strong> que, a través de los
-          formularios de contacto o suscripciones, se recaban datos que se almacenan en un fichero con la exclusiva
-          finalidad de envío de comunicaciones electrónicas, tales como boletines (<em>newsletters</em>), nuevas
-          entradas (<em>posts</em>), ofertas comerciales, así como otras comunicaciones que
-          <strong>BENITOGONZALEZSAX</strong> entiende interesantes para sus USUARIOS.
-        </p>
-        <p class="mb-4">
-          Los campos marcados como de cumplimentación obligatoria son imprescindibles para realizar la finalidad
-          expresada. Asimismo, podrá darse cumplimiento mediante los datos a los requerimientos solicitados por los
-          USUARIOS.
-        </p>
-        <p class="mb-4">
-          Únicamente el titular tendrá acceso a sus datos y, bajo ningún concepto, estos datos serán cedidos, compartidos,
-          transferidos ni vendidos a ningún tercero.
-        </p>
-        <p class="mb-4">
-          La aceptación de la política de privacidad, mediante el procedimiento establecido, se entenderá a todos los
-          efectos como la prestación de <strong>CONSENTIMIENTO INEQUÍVOCO</strong> –del artículo 6 de la Ley Orgánica
-          3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales– del USUARIO
-          al tratamiento de los datos de carácter personal en los términos que se exponen en el presente documento, así
-          como a la transferencia internacional de datos que se produce, exclusivamente, debido a la ubicación física de
-          las instalaciones de los proveedores de servicios y encargados del tratamiento de datos.
-        </p>
+  <main class="pb-16 pt-20">
+    <div class="container mx-auto max-w-4xl px-4">
+      <h1 class="mb-8 font-segmentA text-6xl uppercase tracking-wide font-bold text-primary md:text-8xl">
+        Política de privacidad
+      </h1>
 
-        <h3 class="text-4xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">Datos tratados</h3>
-        <h4 class="text-lg uppercase font-bold mb-2 text-primary">A. Datos de profesionales</h4>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Nombre y apellidos / nombre comercial</li>
-          <li>Nombre del proyecto</li>
-          <li>Usuario y contraseña</li>
-          <li>Descripción de servicios</li>
-          <li>Tarifas o caché</li>
-          <li>Provincia y localidad de residencia</li>
-          <li>Provincias donde quiere trabajar</li>
-          <li>Fotografías, vídeos, portfolio</li>
-          <li>Teléfono, email y redes sociales</li>
-          <li>Valoraciones recibidas</li>
-        </ul>
+      <div class="space-y-10 text-gray-700">
+        <section>
+          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
+            1. Responsable del tratamiento
+          </h2>
+          <p>
+            El responsable del tratamiento de los datos es <strong>Benito González García</strong>, profesional que opera comercialmente como
+            <strong> Benito González Sax</strong>.
+          </p>
+          <p class="mt-4">
+            Email de contacto:
+            <a href="mailto:info@benitogonzalezsax.com" class="text-primary underline"> info@benitogonzalezsax.com</a><br />
+            Teléfono:
+            <a href="tel:+34615977190" class="text-primary underline"> +34 615 97 71 90</a><br />
+            Domicilio profesional: Mazarrón, Murcia, España.
+          </p>
+        </section>
 
-        <h4 class="text-lg uppercase font-bold mb-2 text-primary">B. Datos de clientes</h4>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Nombre y apellidos (si se registran manualmente)</li>
-          <li>Email</li>
-          <li>Teléfono (opcional)</li>
-          <li>Usuario y contraseña</li>
-          <li>Datos aportados en las valoraciones</li>
-          <li>Datos obtenidos mediante Google Sign-In (si se usa): nombre, email, foto</li>
-        </ul>
+        <section>
+          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
+            2. Datos que se recogen
+          </h2>
+          <p>
+            Esta web solo solicita los datos necesarios para responder a peticiones comerciales y de contacto. Los datos pueden incluir nombre,
+            email, teléfono, fecha del evento, ciudad o lugar de la boda, tipo de servicio solicitado y mensaje enviado por el usuario.
+          </p>
+          <p class="mt-4">
+            Además, la web puede recopilar datos técnicos básicos de navegación y analítica para medir el rendimiento del sitio.
+          </p>
+        </section>
 
-        <h4 class="text-lg uppercase font-bold mb-4 text-primary">C. Datos de navegación</h4>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Cookies técnicas, estadísticas o de personalización</li>
-          <li>Dirección IP</li>
-          <li>Logs de acceso</li>
-        </ul>
-
-        <h3 class="text-lg uppercase font-bold mb-2 text-primary">3. Finalidades del tratamiento</h3>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Gestionar el registro de profesionales y clientes</li>
-          <li>Permitir la publicación y visibilidad de los perfiles profesionales</li>
-          <li>Permitir el sistema de valoraciones, siendo estas públicas</li>
-          <li>Proporcionar herramientas de contacto externo entre las partes</li>
-          <li>Mejorar la seguridad y el funcionamiento de la Plataforma</li>
-          <li>Cumplimiento de obligaciones legales</li>
-        </ul>
-
-        <h2 class="text-lg uppercase font-bold mb-2 text-primary">4. Base jurídica</h2>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Ejecución de contrato (art. 6.1.b RGPD): registro y uso del servicio</li>
-          <li>Consentimiento (art. 6.1.a): cookies, newsletters, datos multimedia</li>
-          <li>Interés legítimo (art. 6.1.f): lucha contra el fraude, valoración de profesionales</li>
-          <li>Obligación legal (art. 6.1.c): conservación de datos, requerimientos de autoridades</li>
-        </ul>
-
-        <h2 class="text-lg uppercase font-bold mb-2 text-primary">5. Publicidad de datos de profesionales</h2>
-        <p>Los profesionales aceptan que:</p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Sus datos de contacto (teléfono, email, redes) serán públicos y visibles para clientes.</li>
-          <li>Las valoraciones realizadas por clientes podrán mostrarse en su perfil.</li>
-        </ul>
-
-        <h2 class="text-lg uppercase font-bold mb-2 text-primary">6. Cesiones de datos</h2>
-        <p>No se ceden datos a terceros salvo:</p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Proveedores tecnológicos (hosting, email, analítica), mediante contratos RGPD.</li>
-          <li>Exigencias legales.</li>
-        </ul>
-
-        <h2 class="text-lg uppercase font-bold mb-2 text-primary">7. Conservación</h2>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Cuenta activa: mientras el usuario mantenga su registro.</li>
-          <li>Tras la baja: bloqueo de datos durante 5 años por responsabilidad legal.</li>
-          <li>Valoraciones: podrán anonimizarse o eliminarse previa solicitud justificada.</li>
-        </ul>
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">3. Cumplimiento de la normativa de aplicacion</h2>
-        <p class="mb-4">
-          LA WEB cumple con las directrices de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos
-          Personales y garantía de los derechos digitales, así como el Reglamento (UE) 2016/679 (RGPD – Reglamento
-          General de Protección de Datos) y demás normativa vigente y de aplicación en cada momento, velando por
-          garantizar un correcto uso y tratamiento de los datos personales del usuario.
-        </p>
-        <p class="mb-4">
-          Asimismo, LA WEB informa que da cumplimiento a la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de
-          la Información y el Comercio Electrónico, y le solicitará su consentimiento al USUARIO para el tratamiento de
-          su correo electrónico con fines comerciales en cada momento.
-        </p>
-        <p class="mb-4">
-          En cumplimiento de lo establecido en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos
-          Personales y garantía de los derechos digitales (LOPDP y GDD), le informamos que los datos suministrados, así
-          como aquellos datos derivados de su navegación, podrán ser almacenados en los ficheros de LA WEB y tratados
-          para la finalidad de atender su solicitud y el mantenimiento de la relación que se establezca en los
-          formularios que suscriba.
-        </p>
-        <p class="mb-4">
-          Adicionalmente, el USUARIO consiente el tratamiento de sus datos con la finalidad de informarle, por cualquier
-          medio, incluido el correo electrónico, de productos y servicios de LA WEB.
-        </p>
-        <p class="mb-4">
-          En caso de no autorizar el tratamiento de sus datos con la finalidad señalada anteriormente, el USUARIO podrá
-          ejercer su derecho de oposición al tratamiento de sus datos en los términos y condiciones previstos más
-          adelante en el apartado “Ejercicio de Derechos ARCOP”, conforme al art. 12 y siguientes de la Ley Orgánica
-          3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales.
-        </p>
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">4. Medidas de seguridad</h2>
-        <p class="mb-4">
-          <strong>BENITOGONZALEZSAX</strong> le informa que tiene implantadas las medidas de seguridad de índole técnica
-          y organizativa necesarias para garantizar la seguridad de sus datos de carácter personal y evitar su
-          alteración, pérdida y tratamiento y/o acceso no autorizado, habida cuenta del estado de la tecnología, la
-          naturaleza de los datos almacenados y los riesgos a que están expuestos, ya provengan de la acción humana o
-          del medio físico o natural. Todo ello de conformidad con lo previsto en los arts. 28 y siguientes de la Ley
-          Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales y
-          el art. 32 del RGPD.
-        </p>
-        <p class="mb-4">
-          Asimismo, <strong>BENITOGONZALEZSAX</strong> ha establecido medidas adicionales en orden a reforzar la
-          confidencialidad e integridad de la información en su organización, manteniendo continuamente la supervisión,
-          control y evaluación de los procesos para asegurar el respeto a la privacidad de los datos.
-        </p>
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">5. Ejercicio de derechos ARCOP: acceso, rectificacion, cancelacion, oposicion y portabilidad</h2>
-        <div class="flex flex-col gap-4 mb-4">
-
-          <p>
-            Aquellas personas físicas que hayan facilitado sus datos a través de la web podrán dirigirse al titular de la
-            misma con el fin de poder ejercitar gratuitamente sus derechos de acceso, rectificación, cancelación,
-            oposición y portabilidad respecto de los datos incorporados en sus ficheros, conforme al art. 12 y siguientes
-            de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos
-            digitales.
-          </p>
-          <p>
-            El método más rápido y sencillo sería accediendo a tu cuenta de usuario directamente y modificar tus datos o
-            borrar tu cuenta de usuario. Cualquier información que necesitemos almacenar, en virtud de una obligación
-            legal o contractual, será bloqueada y sólo utilizada para dichos fines en lugar de ser borrada.
-          </p>
-          <p>
-            El interesado podrá ejercitar sus derechos mediante comunicación por escrito dirigida a
-            <strong> BENITOGONZALEZSAX</strong> con la referencia “Protección de datos”, especificando sus datos,
-            acreditando su identidad y los motivos de su solicitud en la siguiente dirección:
-          </p>
-          <p>
-            <strong>BENITOGONZALEZSAX</strong><br />
-            Domicilio: Calle Andrés Ureña Román nº 57, 30870 Mazarrón (Murcia).
-          </p>
-          <p>
-            También podrá ejercitar los derechos ARCOP a través del correo electrónico:
-            <a href="mailto:leadslend@gmail.com" class="text-primary underline">
-              leadslend@gmail.com
-            </a>
-          </p>
-        </div>
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">6. Links o enlaces externos</h2>
-        <div class="flex flex-col gap-4 mb-4">
-          <p>
-            Como un servicio a nuestros visitantes, nuestro sitio web puede incluir hipervínculos a otros sitios que no
-            son operados o controlados por el Sitio Web. Por ello, <strong>LEADSLEND</strong> no garantiza, ni se hace
-            responsable de la licitud, fiabilidad, utilidad, veracidad y actualidad de los contenidos de tales sitios web
-            o de sus prácticas de privacidad.
-          </p>
-          <p>
-            Por favor, antes de proporcionar su información personal a estos sitios web ajenos a
-            <strong> BENITOGONZALEZSAX</strong>, tenga en cuenta que sus prácticas de privacidad pueden diferir de las
-            nuestras.
-          </p>
-          <p>
-            El único objeto de los enlaces es proporcionar al Usuario la posibilidad de acceder a dichos enlaces y conocer
-            nuestro trabajo, aunque no ofrece ni comercializa por sí ni por medio de terceros la información, contenidos
-            y servicios disponibles en los sitios enlazados, ni aprueba, supervisa o controla en modo alguno los contenidos
-            y servicios y cualquier material de cualquier naturaleza existente en los mismos.
-            <strong> BENITOGONZALEZSAX</strong> no se responsabiliza en ningún caso de los resultados que puedan derivarse
-            al Usuario por acceso a dichos enlaces.
-          </p>
-        </div>
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">7. Modificacion de la politica de privacidad</h2>
-        <div class="flex flex-col gap-4 mb-4">
-          <p>
-            <strong>BENITOGONZALEZSAX</strong> se reserva el derecho a modificar su Política de Privacidad, de acuerdo a su propio criterio, motivado por un cambio legislativo, jurisprudencial o doctrinal de la Agencia Española de Protección de Datos.
-          </p>
-          <p>
-            Cualquier modificación de la Política de Privacidad será publicada al menos diez días antes de su efectiva aplicación. El uso de la Web después de dichos cambios implicará la aceptación de los mismos.
-          </p>
-        </div>
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">8. Responsable del fichero y encargados del tratamiento</h2>
-        <div class="flex flex-col gap-4 mb-4">
-          <p>
-            El responsable del fichero de datos es BENITOGONZALEZSAX.
-          </p>
-          <p>
-            Como encargados de tratamiento ajenos al citado responsable:
-            <strong>BENITOGONZALEZSAX</strong> ha contratado los servicios de Hosting a FIREBASE GOOGLE IRELAND LIMITED Empresa establecida y que opera bajo las leyes de Irlanda
-          <p>
-            (con número de registro: 368047/número de IVA: IE6388047V)<br/>
-            Gordon House, Barrow Street Dublín 4 Irlanda. 
-          </p>
-          <p>
-            Política de privacidad de fuentes de rastreo utilizadas en este sitio: Google (Analytics).
-          </p>
-          <p>
-            En La Web también se estudian las preferencias de sus usuarios, sus características demográficas, sus patrones de tráfico, y otra información en conjunto para comprender mejor quiénes constituyen nuestra audiencia y qué es lo que necesita. El rastreo de las preferencias de nuestros usuarios también nos ayuda a mostrarle los avisos publicitarios más relevantes.
-          </p>
-          <p>
-            El usuario y, en general, cualquier persona física o jurídica, podrá establecer un hiperenlace o dispositivo técnico de enlace (por ejemplo, links o botones) desde su sitio web a La Web (el “Hiperenlace“). El establecimiento del Hiperenlace no implica en ningún caso la existencia de relaciones entre La Web y el propietario del sitio o de la página web en la que se establezca el Hiperenlace, ni la aceptación o aprobación por parte de La Web de sus contenidos o servicios. En todo caso, La Web se reserva el derecho de prohibir o inutilizar en cualquier momento cualquier Hiperenlace al Sitio Web.
-          </p>
-        </div>
-        
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">9. No deseas recibir información de nosotros o deseas revocar tu consentimiento?</h2>
-        <div class="flex flex-col gap-4 mb-4">
-          <p>
-            De conformidad con lo dispuesto en la Ley 34/2002, de 11 de junio, de Servicios de la Sociedad de la
-            Información y del Comercio Electrónico, puedes oponerte al uso de tu información para fines publicitarios,
-            investigaciones de mercado o desarrollo de encuestas de satisfacción en cualquier momento, así como revocar tu
-            consentimiento en cualquier momento (sin efecto retroactivo).
-          </p>
-          <p>
-            Para ello, deberás enviar un correo electrónico a la dirección:
-            <a href="mailto:leadslend@gmail.com" class="text-primary underline">
-              leadslend@gmail.com
-            </a>
-          </p>
-          <p>
-            Si has recibido publicidad por correo electrónico, también podrás oponerte desde dicho correo electrónico,
-            pinchando en el enlace incluido en el mismo y siguiendo las instrucciones que te sean facilitadas. Otra forma
-            más sencilla sería acceder a tu cuenta de usuario y seleccionar las opciones correspondientes.
-          </p>
-          <p>
-            Por favor, ten en cuenta que nuestros sistemas pueden requerir un lapso de tiempo que en ningún caso superará
-            48 horas para que tu oposición o revocación se hagan efectivas, entendiéndose que durante dicho periodo de
-            tiempo puedes seguir recibiendo mensajes.
-          </p>
-          <p>
-            En relación con la gestión de tus datos asociados a los perfiles sociales de
-            <strong> BENITOGONZALEZSAX</strong>, el ejercicio del derecho de acceso dependerá de la funcionalidad de la
-            red social y las posibilidades de acceso a la información de los perfiles de los usuarios. Con relación a los
-            derechos de acceso y rectificación, le recomendamos que solo podrá satisfacerse en relación a aquella
-            información que se encuentre bajo el control de <strong>BENITOGONZALEZSAX</strong>.
-          </p>
-          <p>
-            Además, podrás dejar de interactuar, seguir o recibir información de los perfiles sociales de
-            <strong> BENITOGONZALEZSAX</strong>, eliminar los contenidos que dejen de interesarte o restringir con quién
-            compartes tus conexiones, mediante los mecanismos estipulados en las diferentes redes sociales.
-          </p>
-          <p>
-            El usuario podrá acceder a las políticas de privacidad de cada Red Social, así como configurar su perfil para
-            garantizar su privacidad. <strong>BENITOGONZALEZSAX</strong> anima a los usuarios a familiarizarse con las
-            condiciones de uso de las distintas redes sociales antes de comenzar a usarlas:
-          </p>
-          <ul>
-            <li>
-              Facebook:
-              <a href="https://www.facebook.com/help/323540651073243/" target="_blank" rel="noopener noreferrer" class="text-primary underline">
-                Política de privacidad de Facebook
-              </a>
-            </li>
-            <li>
-              Google:
-              <a href="http://www.google.es/intl/es/policies/privacy/" target="_blank" rel="noopener noreferrer" class="text-primary underline">
-                Política de privacidad de Google
-              </a>
-            </li>
-            <li>
-              Twitter:
-              <a href="https://twitter.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary underline">
-                Política de privacidad de Twitter
-              </a>
-            </li>
+        <section>
+          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
+            3. Finalidad del tratamiento
+          </h2>
+          <ul class="list-disc space-y-2 pl-6">
+            <li>Responder a solicitudes de presupuesto o consultas sobre bodas y eventos.</li>
+            <li>Gestionar la comunicación posterior por email, teléfono o WhatsApp si el usuario la inicia.</li>
+            <li>Medir el uso de la web y mejorar su rendimiento comercial y técnico.</li>
           </ul>
-        </div>
+        </section>
 
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">10. Aceptacion y consentimiento</h2>
-        <p class="mb-4">
-          El Usuario declara haber sido informado de las condiciones sobre protección de datos de carácter personal,
-          aceptando y consintiendo el tratamiento de los mismos por parte de <strong>BENITOGONZALEZSAX</strong> en la
-          forma y para las finalidades indicadas en el aviso legal.
-        </p>
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">11. Cambios en la presente Política de Privacidad</h2>
-        <p class="mb-4">
-          <strong>BENITOGONZALEZSAX</strong> se reserva el derecho a modificar la presente política para adaptarla a
-          novedades legislativas o jurisprudenciales, así como a prácticas de la industria. En dichos supuestos, el
-          Prestador anunciará en esta página los cambios introducidos con razonable antelación a su puesta en práctica.
-        </p>
-
-        <h2 class="text-6xl font-segmentA uppercase tracking-wide font-bold mb-4 text-primary">12. Propiedad intelectual y uso de los contenidos</h2>
-        <div class="flex flex-col gap-4 mb-4">
+        <section>
+          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
+            4. Base legal
+          </h2>
           <p>
-            Los contenidos generales de la web (imágenes, textos, logotipos) son propiedad de
-            <strong> BENITOGONZALEZSAX</strong>. Ningún contenido de la web puede ser reproducido, mencionado ni enlazado
-            por cualquier medio técnico sin el permiso expreso por escrito de <strong>BENITOGONZALEZSAX</strong>.
+            La base legal para tratar los datos es el consentimiento del usuario al enviar una consulta y, cuando procede,
+            la aplicación de medidas precontractuales solicitadas por el propio interesado para recibir información o presupuesto.
           </p>
+        </section>
+
+        <section>
+          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
+            5. Conservación de los datos
+          </h2>
           <p>
-            Eventualmente, esta web puede publicar contenidos de otros colaboradores en forma de artículos especializados
-            o entradas de blog. En todo caso, los permisos de reproducción y enlace serán los mencionados en este punto
-            para los contenidos propios.
+            Los datos se conservarán durante el tiempo necesario para atender la solicitud y mantener las conversaciones comerciales derivadas de ella,
+            salvo que exista una obligación legal de conservación por más tiempo.
           </p>
-        </div>
+        </section>
+
+        <section>
+          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
+            6. Destinatarios y herramientas
+          </h2>
+          <p>
+            Los datos no se venden ni se ceden a terceros ajenos a la prestación del servicio. El sitio puede apoyarse en proveedores de alojamiento web,
+            analítica y correo electrónico para su funcionamiento. Actualmente la web utiliza Google Analytics para medición y Firebase Hosting para alojamiento.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
+            7. Derechos del usuario
+          </h2>
+          <p>
+            Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a
+            <a href="mailto:info@benitogonzalezsax.com" class="text-primary underline"> info@benitogonzalezsax.com</a>.
+          </p>
+          <p class="mt-4">
+            Si consideras que el tratamiento no se ajusta a la normativa, puedes presentar una reclamación ante la Agencia Española de Protección de Datos.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="mb-4 font-segmentA text-4xl uppercase tracking-wide font-bold text-primary md:text-5xl">
+            8. Cambios en esta política
+          </h2>
+          <p>
+            Esta política de privacidad puede actualizarse para reflejar cambios legales, técnicos o de funcionamiento de la web. La versión vigente será siempre la publicada en esta página.
+          </p>
+        </section>
+      </div>
     </div>
   </main>
 
   <Footer />
 </Layout>
-
-<style>
-  .prose h2 {
-    color: #1a1a1a;
-    margin-top: 2rem;
-  }
-  
-  .prose ul {
-    margin-bottom: 1rem;
-  }
-  
-  .prose li {
-    margin-bottom: 0.5rem;
-  }
-</style>

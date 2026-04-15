@@ -1,23 +1,44 @@
 ---
 import type { Language } from '../i18n/ui';
+import JsonLd from '../components/seo/JsonLd.astro';
 import GoogleAnalyticsTag from '../scripts/GoogleAnalyticsTag.astro';
-import PersonJsonLd from '../scripts/PersonJsonLd.astro';
+
+interface AlternateLink {
+  hreflang: string;
+  href: string;
+}
 
 interface Props {
   title: string;
   description: string;
   lang: Language;
+  canonical?: string;
+  robots?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  alternates?: AlternateLink[];
+  schemas?: Record<string, unknown>[];
 }
 
-const { title, description, lang } = Astro.props;
+const {
+  title,
+  description,
+  lang,
+  canonical,
+  robots = 'index, follow, max-image-preview:large',
+  ogTitle = title,
+  ogDescription = description,
+  ogImage,
+  ogType = 'website',
+  alternates = [],
+  schemas = [],
+} = Astro.props;
 
 const preloadedFonts = [
-  "/fonts/SegmentAKeyTrial-Black.otf",
-  "/fonts/SegmentAKeyTrial-Bold.otf",
-  "/fonts/SegmentAKeyTrial-Regular.otf",
-  "/fonts/Inter-Black.otf",
-  "/fonts/Inter-Bold.otf",
-  "/fonts/Inter-Regular.otf"
+  '/fonts/SegmentAKeyTrial-Bold.otf',
+  '/fonts/Inter-Regular.otf',
 ];
 ---
 
@@ -25,31 +46,43 @@ const preloadedFonts = [
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+jpg" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content={title} />
     <title>{title}</title>
 
-    <!-- Icons -->
+    {canonical && <link rel="canonical" href={canonical} />}
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+    ))}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    
-    <link rel="stylesheet" href="/fonts/styles.css">
-    {preloadedFonts.map(font => (
+
+    <link rel="stylesheet" href="/fonts/styles.css" />
+    {preloadedFonts.map((font) => (
       <link rel="preload" href={font} as="font" type="font/otf" crossorigin="anonymous" />
     ))}
 
-    <!-- Scripts -->
     <GoogleAnalyticsTag />
-    <PersonJsonLd lang={lang} />
+    {schemas.map((schema) => <JsonLd schema={schema} />)}
   </head>
   <body class="bg-gray-50 text-gray-800">
     <slot />
@@ -60,8 +93,11 @@ const preloadedFonts = [
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     font-family: 'Inter', sans-serif;
+  }
+  summary::-webkit-details-marker {
+    display: none;
   }
 </style>

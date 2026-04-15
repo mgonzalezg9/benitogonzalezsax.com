@@ -1,0 +1,36 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
+import LandingAccordionSection from './LandingAccordionSection.astro';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+<LandingAccordionSection id="faq" eyebrow={t.landing.faq.eyebrow}>
+  <section class="bg-white pb-20 pt-2">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl">
+        <h2 class="font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+          {stripSegmentAAccents(page.faqTitle)}
+        </h2>
+      </div>
+
+      <div class="mt-10 grid gap-4">
+        {page.faqs.map((faq) => (
+          <details class="rounded-[1.5rem] border border-gray-200 bg-gray-50 p-6">
+            <summary class="cursor-pointer list-none text-[1rem] font-semibold uppercase tracking-[0.15em] text-primary md:text-[1.12rem]">
+              {faq.question}
+            </summary>
+            <p class="mt-4 text-base leading-7 text-gray-700">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</LandingAccordionSection>
