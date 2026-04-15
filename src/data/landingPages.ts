@@ -50,6 +50,7 @@ export interface LandingPageData {
   canonicalPath: string;
   heroTitle: string;
   heroLabel: string;
+  trustTitle: string;
   heroSummary: string;
   heroBody: string;
   primaryCtaLabel: string;
@@ -63,6 +64,7 @@ export interface LandingPageData {
   serviceDescription: string;
   moments: Array<{ title: string; description: string }>;
   extrasTitle: string;
+  extrasIntro: string;
   extras: string[];
   answerBlockTitle: string;
   answerBlockIntro: string;
@@ -189,7 +191,7 @@ const sharedMoments = [
 
 const sharedExtras = [
   'Repertorio adaptable a estilos elegantes, house, versiones, hits comerciales y fiesta final.',
-  'Coordinación con wedding planners, DJs, fincas, hoteles y equipos técnicos del lugar.',
+      'Coordinación con organizadores de bodas, DJs, fincas, hoteles y equipos técnicos del lugar.',
   'Equipo de sonido de hasta 2400W incluido en el precio.',
   'Formato pensado para que cada bloque de la boda tenga su propia energía sin perder coherencia.',
 ];
@@ -216,7 +218,7 @@ const buildHomeAnswerCards = (): AnswerCard[] => [
   {
     title: 'Qué formatos ofrece',
     body:
-      'Puede actuar solo sobre bases, coordinarse con wedding planners y espacios, o integrarse en un formato Saxo + DJ más potente para la fiesta.',
+      'Puede actuar solo sobre bases, coordinarse con organizadores de bodas y espacios, o integrarse en un formato Saxo + DJ más potente para la fiesta.',
   },
   {
     title: 'Cómo pedir presupuesto',
@@ -224,6 +226,15 @@ const buildHomeAnswerCards = (): AnswerCard[] => [
       'La forma más rápida es enviar fecha, ciudad, lugar y momentos de actuación por formulario o WhatsApp para recibir una propuesta realista.',
   },
 ];
+
+const rotateByCity = <T>(items: T[], city: string) => {
+  if (items.length === 0) return items;
+
+  const offset =
+    city.split('').reduce((sum, character) => sum + character.charCodeAt(0), 0) % items.length;
+
+  return [...items.slice(offset), ...items.slice(0, offset)];
+};
 
 const buildCityAnswerCards = (location: LocationEntry): AnswerCard[] => [
   {
@@ -289,7 +300,7 @@ const sharedVideos: LandingVideo[] = [
     title: 'Versiones y House',
     platform: 'youtube',
     url: 'https://www.youtube.com/watch?v=HsD3AflaXnk',
-    description: 'Selección musical para bodas modernas, beach clubs y fiestas.',
+    description: 'Selección musical para bodas modernas, espacios junto al mar y fiestas.',
   },
   {
     title: 'Viva la Vida - Coldplay',
@@ -492,6 +503,332 @@ const buildNearbyLinks = (location: LocationEntry): LandingLink[] => {
     }));
 };
 
+const buildCityTrustPoints = (location: LocationEntry) => [
+  `Cobertura habitual en ${location.city} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
+  `Formato adaptable a ceremonia, cóctel, banquete, barra libre y servicio Saxo + DJ en ${location.city}.`,
+  `Propuesta pensada para adaptarse al estilo de bodas en ${location.city} y a espacios como ${location.venueStyle}.`,
+];
+
+const buildDifferentiatedIntroParagraphs = (location: LocationEntry) => [
+  `${location.serviceContext} ${location.logisticsAngle}`,
+  `Benito González, con más de 200 eventos y más de 10 años de experiencia, se adapta al estilo de la pareja, al lugar de la celebración y al tipo de ambiente que queréis crear para vuestra boda o evento en ${location.city}. ${location.musicAngle}`,
+];
+
+const buildCityExtrasIntro = (location: LocationEntry) =>
+  `En ${location.city}, ceremonia, cóctel, banquete y barra libre suelen vivirse en espacios y tiempos muy distintos. El saxo en directo ayuda a dar continuidad al evento y a que cada bloque encaje con el ritmo real de la boda en ${location.city}.`;
+
+const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
+  const serviceIncludesQuestion = `¿Qué incluye el servicio de saxofonista para bodas en ${location.city}?`;
+  const priceQuestion = `¿Cuánto cuesta contratar a un saxofonista para una boda en ${location.city}?`;
+  const fitQuestion = `¿Es apropiado tocar el saxofón en una boda en ${location.city}?`;
+  const serviceIncludesAnswer = `En ${location.city}, el servicio puede incluir ceremonia, cóctel, banquete, barra libre, entrada al banquete y formato Saxo + DJ, según el tipo de celebración, el lugar y el ambiente que queráis crear. La propuesta se adapta bien tanto a bodas en ${location.venueStyle} como a celebraciones donde cada momento del día necesita una energía distinta.`;
+  const priceAnswer = `${location.faqVariants.price} En ${location.city}, el presupuesto también suele depender del estilo de la boda, del tipo de espacio y de cómo se reparta la actuación entre ceremonia, cóctel, banquete o fiesta. Si compartís fecha, lugar y momentos de actuación, se puede preparar una propuesta realista para ${location.city}.`;
+  const fitAnswer = `${location.faqVariants.fit} En ${location.city}, donde muchas bodas se viven con un ritmo muy marcado por el espacio, el cóctel y la fiesta final, el saxo aporta elegancia al principio y más presencia cuando el ambiente pide subir la energía.`;
+  const travelAnswer = location.faqVariants.travel;
+  const timingAnswer = location.faqVariants.timing;
+  const personalizationAnswer = location.faqVariants.personalization;
+
+  switch (location.slug) {
+    case 'saxofonista-para-bodas-en-barcelona':
+      return [
+        {
+          question: '¿Encaja el saxo en una boda urbana o de destino en Barcelona?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Trabajas con organizadores de bodas y espacios en Barcelona?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel y fiesta en Barcelona?',
+          answer: `${location.musicAngle} Por eso en Barcelona muchas parejas reservan un bloque más elegante para el cóctel y otro con más presencia para la fiesta.`,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Barcelona?',
+          answer: timingAnswer,
+        },
+        {
+          question: '¿Se puede personalizar el repertorio para una boda en Barcelona?',
+          answer: personalizationAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-alicante':
+      return [
+        {
+          question: '¿Encaja el saxo en fincas, hoteles o espacios junto al mar de Alicante?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Alicante y alrededores?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel y barra libre en Alicante?',
+          answer: `${location.musicAngle} Por eso en Alicante muchas parejas combinan un bloque más elegante para cóctel con un segundo tramo más potente para barra libre o fiesta junto a DJ.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Alicante?',
+          answer: timingAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-murcia':
+      return [
+        {
+          question: '¿Qué momentos se suelen contratar en una boda en Murcia?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Murcia y alrededores?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel y barra libre en Murcia?',
+          answer: `${location.musicAngle} Por eso en Murcia muchas parejas combinan un bloque más elegante para cóctel con un segundo tramo más potente para barra libre o fiesta junto a DJ.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Se puede personalizar el repertorio para vuestra boda en Murcia?',
+          answer: personalizationAnswer,
+        },
+        {
+          question: fitQuestion,
+          answer: fitAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-madrid':
+      return [
+        {
+          question: '¿Encaja el saxo en una boda premium o con organizador en Madrid?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Trabajas con organizadores, DJs y espacios de boda en Madrid?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo reservar varios bloques de saxo en una boda de Madrid?',
+          answer: `${location.musicAngle} En Madrid es habitual repartir el servicio entre ceremonia, cóctel, banquete o un cierre más potente con DJ.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Madrid?',
+          answer: timingAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-malaga':
+      return [
+        {
+          question: '¿Encaja el saxo en bodas de destino y espacios junto al mar en Málaga?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Trabajas bodas en Málaga y la Costa del Sol?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel al atardecer y fiesta en Málaga?',
+          answer: `${location.musicAngle} Por eso en Málaga muchas parejas reservan una parte más elegante al inicio y un cierre con más energía para barra libre o Saxo + DJ.`,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Málaga?',
+          answer: timingAnswer,
+        },
+        {
+          question: '¿Se puede personalizar el repertorio para vuestra boda en Málaga?',
+          answer: personalizationAnswer,
+        },
+        {
+          question: fitQuestion,
+          answer: fitAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-palma':
+      return [
+        {
+          question: '¿Encaja el saxo en una boda de destino en Palma o Mallorca?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Trabajas con hoteles, fincas y villas en Palma?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel al atardecer y fiesta en Palma?',
+          answer: `${location.musicAngle} Por eso en Palma muchas parejas combinan una parte más elegante durante el día con un bloque final más potente para banquete o barra libre.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Palma?',
+          answer: timingAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-sevilla':
+      return [
+        {
+          question: '¿Encaja el saxo en haciendas y bodas grandes en Sevilla?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Sevilla y alrededores?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para ceremonia, aperitivo y fiesta en Sevilla?',
+          answer: `${location.musicAngle} En Sevilla funciona muy bien repartir el servicio entre una parte más elegante y una segunda intervención con más fuerza para la fiesta.`,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Sevilla?',
+          answer: timingAnswer,
+        },
+        {
+          question: '¿Se puede personalizar el repertorio para vuestra boda en Sevilla?',
+          answer: personalizationAnswer,
+        },
+        {
+          question: fitQuestion,
+          answer: fitAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-valencia':
+      return [
+        {
+          question: '¿Encaja el saxo en fincas y bodas mediterráneas en Valencia?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Trabajas bodas en Valencia y alrededores?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel, banquete y barra libre en Valencia?',
+          answer: `${location.musicAngle} Por eso en Valencia muchas parejas reparten el directo entre un cóctel con ritmo, entrada al banquete y una fiesta final más dinámica.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Se puede personalizar el repertorio para vuestra boda en Valencia?',
+          answer: personalizationAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+    default:
+      return [
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: fitQuestion,
+          answer: fitAnswer,
+        },
+        {
+          question: `¿Te desplazas para bodas en ${location.city} y alrededores?`,
+          answer: travelAnswer,
+        },
+        {
+          question: `¿Puedo contratar saxo para cóctel y barra libre en ${location.city}?`,
+          answer: `${location.musicAngle} Por eso en ${location.city} muchas parejas combinan un bloque más elegante para cóctel con un segundo tramo más potente para barra libre o fiesta junto a DJ.`,
+        },
+        {
+          question: `¿Con cuánta antelación conviene reservar en ${location.city}?`,
+          answer: timingAnswer,
+        },
+        {
+          question: `¿Se puede personalizar el repertorio para vuestra boda en ${location.city}?`,
+          answer: personalizationAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+  }
+};
+
+const buildDifferentiatedAnswerCards = (location: LocationEntry): AnswerCard[] => [
+  {
+    title: `Que ofrece en ${location.city}`,
+    body: `${location.cityIntentVariant} con una propuesta pensada para ceremonia, cóctel, banquete, barra libre y sesiones con DJ, adaptando el formato a cómo se vive el evento en ${location.city}.`,
+  },
+  {
+    title: `Donde trabaja en ${location.province}`,
+    body: `${location.logisticsAngle} También cubre bodas en ${location.city}, ${location.province} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
+  },
+  {
+    title: `Como transforma tu boda o evento en ${location.city}`,
+    body: `${location.musicAngle} Así la música puede acompañar desde los momentos más emotivos hasta la fiesta sin sentirse fuera de lugar.`,
+  },
+  {
+    title: `Como reservar en ${location.city}`,
+    body: `${location.bookingAngle} Con esos datos, se puede preparar una propuesta clara para ${location.city} por formulario, email o WhatsApp.`,
+  },
+];
+
+const buildLegacyCityFaqs = (location: LocationEntry): LandingFaq[] => [
+  {
+    question: '¿Cuánto cuesta contratar a un saxofonista para una boda?',
+    answer: `${location.faqVariants.price} Si compartís fecha, lugar y momentos de actuación, se puede preparar una propuesta realista para ${location.city}.`,
+  },
+  {
+    question: '¿Es apropiado tocar el saxofón en una boda?',
+    answer: location.faqVariants.fit,
+  },
+  {
+    question: `¿Te desplazas para bodas en ${location.city} y alrededores?`,
+    answer: location.faqVariants.travel,
+  },
+  {
+    question: `¿Puedo contratar saxo para cóctel y barra libre en ${location.city}?`,
+    answer: `${location.musicAngle} Por eso en ${location.city} muchas parejas combinan un bloque más elegante para cóctel con un segundo tramo más potente para barra libre o fiesta junto a DJ.`,
+  },
+  {
+    question: `¿Con cuánta antelación conviene reservar en ${location.city}?`,
+    answer: location.faqVariants.timing,
+  },
+  {
+    question: `¿Se puede personalizar el repertorio para vuestra boda en ${location.city}?`,
+    answer: location.faqVariants.personalization,
+  },
+];
+
 export const buildHomePageData = (): LandingPageData => ({
   type: 'home',
   title: 'Saxofonista para bodas | Benito González Sax',
@@ -500,6 +837,7 @@ export const buildHomePageData = (): LandingPageData => ({
   canonicalPath: '/',
   heroTitle: 'Saxofonista para bodas',
   heroLabel: 'Benito González Sax',
+  trustTitle: '¿Por qué contar con mis servicios?',
   heroSummary: 'Saxofonista para bodas en toda España.',
   heroBody:
     'Benito González ayuda a parejas a montar una boda inolvidable con saxo en directo.',
@@ -522,6 +860,8 @@ export const buildHomePageData = (): LandingPageData => ({
     'Un servicio pensado para acompañar la boda desde los momentos más elegantes hasta la parte más animada, con un formato flexible y fácil de adaptar al ritmo del evento.',
   moments: sharedMoments,
   extrasTitle: '¿Cuál es mi propuesta para bodas o eventos?',
+  extrasIntro:
+    'Ceremonia, cóctel, banquete y barra libre, todo pensado para que la música transforme la atmósfera de la boda, desde la emoción de la ceremonia hasta la fiesta de la barra libre.',
   extras: sharedExtras,
   answerBlockTitle: 'Por qué elegir un saxofonista para tu boda o evento',
   answerBlockIntro:
@@ -576,6 +916,7 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => (
     location.city === location.province
       ? `${location.city}, Provincia de ${location.province}`
       : `${location.city}, ${location.province}`,
+  trustTitle: `¿Por qué contar con mis servicios en ${location.city}?`,
   heroSummary: `Saxofonista para bodas en ${location.city}.`,
   heroBody: `Benito González ayuda a parejas de ${location.city} a montar una boda inolvidable con saxo en directo.`,
   primaryCtaLabel: 'Consultar disponibilidad',
@@ -583,19 +924,13 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => (
   secondaryCtaLabel: 'Ver vídeos',
   secondaryCtaHref: '#videos',
   introTitle: `Saxofonista en directo para bodas en ${location.city}`,
-  introParagraphs: [
-    `Si estás buscando un saxofonista para bodas en ${location.city} estás en el lugar correcto.`,
-    `Benito González con más de 200 eventos y más de 10 años de experiencia se adapta al estilo de la pareja, al lugar de la celebración y al tipo de ambiente que queréis crear para vuestra boda o evento en ${location.city}.`,
-  ],
-  trustPoints: [
-    `Cobertura habitual en ${location.city} y zonas cercanas como ${location.nearbyAreas.join(', ')}.`,
-    `Formato adaptable a ceremonia, cóctel, banquete, barra libre y servicio Saxo + DJ en ${location.city}.`,
-    `Propuesta pensada para adaptarse a wedding planners, fincas, hoteles y espacios de boda de ${location.province}.`,
-  ],
+  introParagraphs: buildDifferentiatedIntroParagraphs(location),
+  trustPoints: buildCityTrustPoints(location),
   serviceTitle: `Que servicios cubre un saxofonista para bodas en ${location.city}`,
   serviceDescription: `Cada boda es distinta, por eso el servicio se adapta al estilo del evento, al espacio y a los momentos que queréis destacar en ${location.city} y alrededores.`,
   moments: sharedMoments,
   extrasTitle: `Claves del servicio en ${location.city}`,
+  extrasIntro: buildCityExtrasIntro(location),
   extras: [
     ...sharedExtras,
     `Cobertura local y zonas cercanas: ${location.nearbyAreas.join(', ')}.`,
@@ -633,7 +968,7 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => (
     role: testimonial.role === 'Boda' ? location.testimonialTag : testimonial.role,
   })),
   faqTitle: `FAQ sobre contratar saxofonista para bodas en ${location.city}`,
-  faqs: buildCityFaqs(location),
+  faqs: buildDifferentiatedCityFaqs(location),
   contactTitle: `Pide presupuesto para tu boda en ${location.city}`,
   contactDescription: `Comparte fecha, lugar, ciudad y el momento de la boda en el que quieres el saxo. Así podré darte una propuesta para ${location.city} y alrededores.`,
   contactHighlight: `Si ya tenéis fecha y lugar, WhatsApp suele ser la vía más rápida para revisar disponibilidad en ${location.city}.`,

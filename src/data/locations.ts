@@ -12,6 +12,24 @@ export interface LocationEntry {
   localIntro: string;
   faqAngle: string;
   testimonialTag: string;
+  serviceContext: string;
+  logisticsAngle: string;
+  musicAngle: string;
+  bookingAngle: string;
+  venueStyle: string;
+  proofHighlights: string[];
+  faqVariants: {
+    price: string;
+    fit: string;
+    travel: string;
+    timing: string;
+    personalization: string;
+  };
+  repertoireAngle: string;
+  videoAngle: string;
+  packAngle: string;
+  testimonialAngle: string;
+  cityIntentVariant: string;
   rolloutPhase: 1 | 2 | 3;
   relatedSlugs: string[];
 }
@@ -31,21 +49,52 @@ type Seed = [
   relatedSlugs: string[],
 ];
 
-const createLocation = (seed: Seed): LocationEntry => ({
-  city: seed[0],
-  province: seed[1],
-  autonomousCommunity: seed[2],
-  latitude: seed[3],
-  longitude: seed[4],
-  nearbyAreas: seed[5],
-  serviceAngle: seed[6],
-  localIntro: seed[7],
-  faqAngle: seed[8],
-  testimonialTag: seed[9],
-  rolloutPhase: seed[10],
-  relatedSlugs: seed[11],
-  slug: `saxofonista-para-bodas-en-${slugify(seed[0])}`,
-});
+const createLocation = (seed: Seed): LocationEntry => {
+  const city = seed[0];
+  const province = seed[1];
+  const nearbyAreas = seed[5];
+  const serviceAngle = seed[6];
+  const localIntro = seed[7];
+  const faqAngle = seed[8];
+
+  return {
+    city,
+    province,
+    autonomousCommunity: seed[2],
+    latitude: seed[3],
+    longitude: seed[4],
+    nearbyAreas,
+    serviceAngle,
+    localIntro,
+    faqAngle,
+    testimonialTag: seed[9],
+    serviceContext: localIntro,
+    logisticsAngle: `La propuesta se adapta al tipo de espacio, la coordinación con el lugar de celebración y la logística habitual de bodas en ${city}.`,
+    musicAngle: `El directo funciona muy bien en ${city} cuando la boda necesita pasar de una atmósfera elegante a una fiesta con más energía sin perder coherencia.`,
+    bookingAngle: `Lo más útil para cerrar una propuesta en ${city} es compartir fecha, lugar, momentos de actuación y el ambiente que queréis crear.`,
+    venueStyle: `organizadores de bodas, fincas, hoteles y espacios de boda de ${province}`,
+    proofHighlights: [
+      localIntro,
+      `Cobertura habitual en ${city} y zonas cercanas como ${nearbyAreas.join(', ')}.`,
+      `Montaje adaptable a ceremonia, cóctel, banquete, barra libre y formato Saxo + DJ en ${city}.`,
+    ],
+    faqVariants: {
+      price: `El presupuesto en ${city} depende de la fecha, el lugar, el desplazamiento, la duración y si queréis uno o varios momentos de actuación.`,
+      fit: `En ${city} el saxo encaja muy bien cuando buscáis elegancia en la ceremonia, buen ambiente en el cóctel y una entrada potente en la fiesta.`,
+      travel: `Trabajo bodas en ${city}, ${province} y zonas cercanas como ${nearbyAreas.join(', ')}, coordinando horarios, montaje y desplazamiento con cada espacio.`,
+      timing: `En ${city} conviene consultar disponibilidad cuanto antes, sobre todo para primavera, verano y sábados con más demanda.`,
+      personalization: `El repertorio y la intensidad del directo se ajustan en ${city} al tipo de boda, al espacio y al momento que queréis destacar.`,
+    },
+    repertoireAngle: `Una selección orientativa para entender qué repertorio suele encajar mejor en bodas de ${city}, desde momentos emotivos hasta fiesta final.`,
+    videoAngle: `Vídeos reales para ver cómo suena el saxo en bodas y eventos de un estilo parecido al que muchas parejas buscan en ${city}.`,
+    packAngle: `Dos formas de reservar el servicio en ${city}: una más cerrada y otra más personalizada, según el protagonismo que queráis dar al saxo en la boda.`,
+    testimonialAngle: `Opiniones reales que ayudan a entender cómo se vive el directo cuando el servicio se adapta al ritmo de una boda en ${city}.`,
+    cityIntentVariant: `saxofonista para bodas en ${city}`,
+    rolloutPhase: seed[10],
+    relatedSlugs: seed[11],
+    slug: `saxofonista-para-bodas-en-${slugify(city)}`,
+  };
+};
 
 export const ACTIVE_ROLLOUT_PHASE = 1;
 
@@ -86,7 +135,7 @@ const seeds: Seed[] = [
     -0.481,
     ['Elche', 'Benidorm', 'Altea'],
     'bodas junto al mar, fincas de interior y celebraciones de destino con saxo en directo',
-    'Trabajo bodas en Alicante con formatos flexibles para ceremonias, cócteles al aire libre, beach clubs y barras libres donde el saxo necesita sonar con energía y elegancia.',
+      'Trabajo bodas en Alicante con formatos flexibles para ceremonias, cócteles al aire libre, espacios junto al mar y barras libres donde el saxo necesita sonar con energía y elegancia.',
     'bodas de destino en Alicante, desplazamiento y coordinación con DJs del espacio',
     'Boda en Alicante',
     1,
@@ -143,7 +192,7 @@ const seeds: Seed[] = [
     ['Sitges', 'Mataró', 'Sant Cugat del Vallès'],
     'bodas urbanas, de destino y celebraciones premium con saxo para cada momento',
     'Trabajo bodas en Barcelona para parejas que quieren una puesta en escena cuidada, repertorio moderno y una actuación que eleve tanto el cóctel como la fiesta.',
-    'coordinación con wedding planners y espacios premium de Barcelona',
+      'coordinación con organizadores de bodas y espacios premium de Barcelona',
     'Boda en Barcelona',
     1,
     ['saxofonista-para-bodas-en-valencia', 'saxofonista-para-bodas-en-palma'],
@@ -198,7 +247,7 @@ const seeds: Seed[] = [
     -6.2886,
     ['Jerez de la Frontera', 'El Puerto de Santa María', 'Chiclana de la Frontera'],
     'bodas junto al mar y celebraciones andaluzas con saxo para cóctel y fiesta',
-    'Ofrezco saxo para bodas en Cádiz con formatos que funcionan muy bien en beach weddings, fincas, bodegas y hoteles con fiesta final.',
+      'Ofrezco saxo para bodas en Cádiz con formatos que funcionan muy bien en celebraciones junto al mar, fincas, bodegas y hoteles con fiesta final.',
     'bodas en la costa gaditana, timing y repertorio',
     'Boda en Cádiz',
     2,
@@ -269,7 +318,7 @@ const seeds: Seed[] = [
     ['Hondarribia', 'Irún', 'Zarautz'],
     'bodas premium junto al mar y celebraciones cuidadas en Gipuzkoa',
     'Trabajo bodas en Donostia-San Sebastián con repertorios elegantes y modernos, pensados para cócteles con estilo y fiestas con mucha presencia escénica.',
-    'bodas premium en Gipuzkoa y coordinación con planners',
+      'bodas premium en Gipuzkoa y coordinación con organizadores',
     'Boda en Gipuzkoa',
     2,
     ['saxofonista-para-bodas-en-bilbao', 'saxofonista-para-bodas-en-vitoria-gasteiz'],
@@ -324,7 +373,7 @@ const seeds: Seed[] = [
     -6.9447,
     ['Punta Umbría', 'Lepe', 'El Rompido'],
     'bodas costeras y celebraciones andaluzas con saxo elegante y festivo',
-    'Trabajo bodas en Huelva con una propuesta de saxo ideal para beach clubs, fincas, hoteles y celebraciones con muy buena energía.',
+      'Trabajo bodas en Huelva con una propuesta de saxo ideal para espacios junto al mar, fincas, hoteles y celebraciones con muy buena energía.',
     'desplazamiento a la costa onubense y repertorio adaptable',
     'Boda en Huelva',
     3,
@@ -422,8 +471,8 @@ const seeds: Seed[] = [
     -3.7038,
     ['Alcalá de Henares', 'Pozuelo de Alarcón', 'San Lorenzo de El Escorial'],
     'bodas urbanas, fincas exclusivas y celebraciones premium con saxo para cada bloque del día',
-    'Trabajo bodas en Madrid para parejas y planners que buscan un saxo en directo elegante, moderno y fácil de integrar en producciones de alto nivel.',
-    'coordinación con planners, DJs y espacios premium en Madrid',
+      'Trabajo bodas en Madrid para parejas y organizadores que buscan un saxo en directo elegante, moderno y fácil de integrar en producciones de alto nivel.',
+      'coordinación con organizadores, DJs y espacios premium en Madrid',
     'Boda en Madrid',
     1,
     ['saxofonista-para-bodas-en-valladolid', 'saxofonista-para-bodas-en-valencia'],
@@ -436,7 +485,7 @@ const seeds: Seed[] = [
     -4.4214,
     ['Marbella', 'Estepona', 'Nerja'],
     'bodas de destino en la Costa del Sol con saxo para cóctel, cena y fiesta',
-    'Ofrezco saxo para bodas en Málaga con un formato muy bien preparado para beach clubs, fincas premium, hoteles y bodas internacionales.',
+      'Ofrezco saxo para bodas en Málaga con un formato muy bien preparado para espacios junto al mar, fincas premium, hoteles y bodas internacionales.',
     'bodas de destino en Málaga y coordinación con producciones premium',
     'Boda en Málaga',
     1,
@@ -505,9 +554,9 @@ const seeds: Seed[] = [
     39.5696,
     2.6502,
     ['Calvià', 'Llucmajor', 'Alcúdia'],
-    'bodas de destino en Mallorca con saxo elegante para ceremonia, sunset cocktail y fiesta',
-    'Ofrezco saxo para bodas en Palma y Mallorca para parejas que buscan una actuación premium en hoteles, villas, beach clubs y fincas de la isla.',
-    'bodas de destino en Mallorca, coordinación con planners y timing del evento',
+      'bodas de destino en Mallorca con saxo elegante para ceremonia, cóctel al atardecer y fiesta',
+      'Ofrezco saxo para bodas en Palma y Mallorca para parejas que buscan una actuación premium en hoteles, villas, espacios junto al mar y fincas de la isla.',
+      'bodas de destino en Mallorca, coordinación con organizadores y ritmo del evento',
     'Boda en Mallorca',
     1,
     ['saxofonista-para-bodas-en-barcelona', 'saxofonista-para-bodas-en-valencia'],
@@ -591,7 +640,7 @@ const seeds: Seed[] = [
     ['Dos Hermanas', 'Alcalá de Guadaíra', 'Carmona'],
     'bodas andaluzas, haciendas y celebraciones premium con saxo para cada bloque del día',
     'Ofrezco saxo para bodas en Sevilla con una actuación elegante y muy dinámica para ceremonia, cóctel, banquete y barra libre junto a DJ.',
-    'haciendas de Sevilla, planners y montajes para bodas grandes',
+      'haciendas de Sevilla, organizadores y montajes para bodas grandes',
     'Boda en Sevilla',
     1,
     ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-cadiz'],
@@ -618,7 +667,7 @@ const seeds: Seed[] = [
     1.2445,
     ['Reus', 'Salou', 'Cambrils'],
     'bodas junto al Mediterráneo con saxo para cóctel, banquete y fiesta',
-    'Trabajo bodas en Tarragona con una propuesta de saxo en directo ideal para hoteles, masías, beach clubs y celebraciones de destino.',
+      'Trabajo bodas en Tarragona con una propuesta de saxo en directo ideal para hoteles, masías, espacios junto al mar y celebraciones de destino.',
     'bodas de costa en Tarragona y coordinación con DJs del lugar',
     'Boda en Tarragona',
     2,
@@ -675,7 +724,7 @@ const seeds: Seed[] = [
     ['Tordesillas', 'Medina del Campo', 'Arroyo de la Encomienda'],
     'bodas elegantes en Castilla con saxo para ceremonia, cóctel y fiesta',
     'Trabajo bodas en Valladolid con una propuesta muy equilibrada entre elegancia, cercanía y un directo que funciona tanto en aperitivos como en la fiesta final.',
-    'servicio en Valladolid, fincas cercanas y reserva con planners',
+      'servicio en Valladolid, fincas cercanas y reserva con organizadores',
     'Boda en Valladolid',
     1,
     ['saxofonista-para-bodas-en-madrid', 'saxofonista-para-bodas-en-salamanca'],
@@ -724,7 +773,287 @@ const seeds: Seed[] = [
   ],
 ];
 
-export const allLocations = seeds.map(createLocation);
+const locationOverrides: Record<string, Partial<LocationEntry>> = {
+  'saxofonista-para-bodas-en-murcia': {
+    serviceContext:
+      'Murcia es una ciudad donde muchas bodas se viven con cercanía, un cóctel largo y espacios amplios en fincas y haciendas donde la música tiene que acompañar sin invadir. También es habitual que el banquete y la barra libre tengan mucho peso dentro de la celebración.',
+    logisticsAngle:
+      'En Murcia suelo coordinarme con fincas, haciendas y espacios de boda donde el timing del cóctel y la entrada al banquete marcan mucho la experiencia.',
+    musicAngle:
+      'En Murcia suele funcionar muy bien una combinación de elegancia en ceremonia y cóctel con un tramo final más energético para barra libre y Saxo + DJ.',
+    bookingAngle:
+      'Para bodas en Murcia, lo más importante al pedir presupuesto suele ser definir fecha, finca o espacio, momentos de actuación y si queréis un final de fiesta más potente.',
+    venueStyle: 'fincas, haciendas y espacios de boda de la Región de Murcia',
+    proofHighlights: [
+      'Propuesta muy trabajada para bodas en Murcia donde el cóctel, la entrada al banquete y la barra libre son momentos clave.',
+      'Cobertura habitual en Murcia, Cartagena, Molina de Segura y Lorca.',
+      'Muy buena integración con fincas cercanas y formatos saxo + DJ cuando la fiesta necesita un extra de energía.',
+    ],
+    faqVariants: {
+      price:
+        'El presupuesto en Murcia suele depender mucho de si queréis solo cóctel, varios bloques durante el día o un formato más potente para banquete y barra libre.',
+      fit:
+        'En Murcia encaja especialmente bien cuando buscáis acompañar una ceremonia emotiva, dar ambiente a un cóctel largo y rematar con una fiesta muy viva.',
+      travel:
+        'Sí. Trabajo bodas en Murcia capital y en zonas cercanas como Cartagena, Molina de Segura y Lorca, adaptando desplazamiento, montaje y horarios al tipo de finca o espacio.',
+      timing:
+        'En Murcia conviene reservar con antelación, sobre todo en primavera y verano, porque muchas bodas se concentran en sábados y en fincas con mucho movimiento.',
+      personalization:
+        'Sí. El repertorio se ajusta a la energía que queréis en cada momento, desde una ceremonia más emocional hasta un banquete o barra libre con más fuerza.',
+    },
+  },
+  'saxofonista-para-bodas-en-alicante': {
+    serviceContext:
+        'Alicante es una ciudad mediterránea donde conviven bodas en fincas, hoteles, villas y espacios junto al mar, muchas veces con espacios exteriores y un cóctel muy protagonista. En este tipo de celebraciones la música tiene que acompañar bien la luz, el entorno y el paso natural hacia la fiesta.',
+      logisticsAngle:
+        'En Alicante suelen importar mucho la coordinación con hoteles, fincas de interior, espacios junto al mar y bodas de destino donde cada bloque del evento tiene un ritmo distinto.',
+    musicAngle:
+      'En Alicante funciona especialmente bien una mezcla de elegancia mediterránea para el cóctel y un tramo de fiesta muy dinámico para banquete, barra libre o Saxo + DJ.',
+      bookingAngle:
+        'Cuando la boda es en Alicante, lo más útil es concretar fecha, tipo de espacio, si hay organización de boda y si queréis un servicio más de cóctel elegante o más enfocado a fiesta.',
+      venueStyle: 'organizadores de bodas, fincas, hoteles, villas y espacios junto al mar de Alicante',
+    proofHighlights: [
+      'Servicio muy adaptado a bodas de destino en Alicante, fincas de interior y celebraciones junto al mar.',
+      'Cobertura habitual en Alicante, Elche, Benidorm y Altea.',
+        'Buena coordinación con DJs, organizadores y espacios donde el saxo acompaña tanto el cóctel como la fiesta.',
+    ],
+    faqVariants: {
+      price:
+          'En Alicante el presupuesto suele variar según si la boda es en finca, hotel o espacio junto al mar, el número de bloques de actuación y la logística del espacio.',
+      fit:
+        'Sí. En Alicante el saxo funciona muy bien tanto en ceremonias y cócteles elegantes como en bodas de destino y fiestas con más energía frente al mar o en finca.',
+      travel:
+        'Sí. Trabajo bodas en Alicante y alrededores, incluyendo zonas como Elche, Benidorm y Altea, coordinando montaje, horarios y necesidades técnicas con cada espacio.',
+      timing:
+          'En Alicante conviene reservar pronto, especialmente en temporada alta y en bodas de destino, donde organizadores, espacios y proveedores se cierran con bastante antelación.',
+      personalization:
+        'Sí. El repertorio y el formato se adaptan a si buscáis una boda más elegante, más mediterránea o con una parte final muy enfocada a la fiesta.',
+    },
+  },
+  'saxofonista-para-bodas-en-almeria': {
+    serviceContext:
+        'Almería es una provincia donde muchas bodas se celebran en terrazas, hoteles y espacios abiertos donde el clima, el paisaje y la amplitud del lugar condicionan mucho el ritmo del evento. En estas celebraciones suele funcionar muy bien una música elegante al principio y una fiesta más libre después.',
+    logisticsAngle:
+      'En Almería suelen ser importantes los montajes en espacios abiertos, hoteles, terrazas y bodas costeras donde el horario y el sonido tienen mucho peso.',
+    musicAngle:
+      'En Almería suele funcionar muy bien un servicio que arranca elegante en ceremonia o cóctel y termina con mucha interacción en banquete o barra libre.',
+    bookingAngle:
+      'Para bodas en Almería, lo más práctico es definir fecha, espacio, si hay exterior o interior y qué momentos queréis reforzar con el saxo.',
+    venueStyle: 'hoteles, terrazas, fincas y espacios de boda de la provincia de Almería',
+    proofHighlights: [
+      'Formato pensado para bodas en Almería donde el entorno y los espacios abiertos piden una propuesta elegante y flexible.',
+      'Cobertura habitual en Almería, Roquetas de Mar, El Ejido y Aguadulce.',
+      'Muy buena adaptación a bodas costeras y celebraciones donde el directo debe acompañar sin frenar el ritmo del evento.',
+    ],
+  },
+  'saxofonista-para-bodas-en-barcelona': {
+    serviceContext:
+      'Barcelona es una ciudad mediterránea con bodas urbanas, masías, hoteles singulares y muchas celebraciones de destino donde la estética y la producción están muy cuidadas. En este tipo de bodas suele importar mucho que la música encaje con distintos espacios, timings y perfiles de invitados.',
+      logisticsAngle:
+        'En Barcelona suele ser clave la coordinación con organizadores de bodas, hoteles, fincas premium y bodas urbanas o de destino con una producción muy cuidada.',
+    musicAngle:
+      'En Barcelona funciona especialmente bien una propuesta elegante y moderna, con un cóctel muy fino y un tramo final con presencia escénica y mucha energía.',
+    bookingAngle:
+      'Para bodas en Barcelona suele ayudar mucho concretar si el evento es urbano, de destino o en finca, y si queréis más protagonismo en el cóctel, el banquete o la fiesta.',
+      venueStyle: 'organizadores de bodas, hoteles premium, fincas y espacios de boda de Barcelona',
+    proofHighlights: [
+      'Propuesta muy orientada a bodas urbanas, de destino y celebraciones premium en Barcelona.',
+      'Cobertura habitual en Barcelona, Sitges, Mataró y Sant Cugat del Vallès.',
+        'Buena coordinación con organizadores, DJs y espacios donde la estética y el ritmo del evento importan mucho.',
+    ],
+    faqVariants: {
+      price:
+          'En Barcelona el presupuesto depende bastante del tipo de espacio, del número de intervenciones y de la coordinación técnica que necesite la boda.',
+      fit:
+        'Sí. En Barcelona el saxo encaja muy bien en bodas urbanas, de destino y celebraciones premium donde se busca una propuesta elegante, moderna y bien integrada.',
+      travel:
+        'Sí. Trabajo bodas en Barcelona y zonas cercanas como Sitges, Mataró y Sant Cugat del Vallès, adaptando la propuesta a ciudad, costa o finca.',
+      timing:
+          'En Barcelona conviene reservar con tiempo, especialmente en temporada alta y en bodas con organizador o espacio premium, donde los calendarios se cierran pronto.',
+      personalization:
+        'Sí. El repertorio se ajusta al estilo de la boda y al tipo de público, tanto si buscáis un cóctel más fino como una fiesta con más presencia escénica.',
+    },
+  },
+  'saxofonista-para-bodas-en-madrid': {
+    serviceContext:
+        'Madrid es una ciudad con bodas muy variadas: fincas exclusivas, hoteles, espacios urbanos y celebraciones donde la producción y la coordinación con organizadores suelen tener mucho peso. En este tipo de eventos la música necesita integrarse bien en un ritmo cuidado y en varios momentos del día.',
+      logisticsAngle:
+        'En Madrid suelen pesar mucho la coordinación con organizadores, el nivel técnico del espacio y el encaje exacto entre ceremonia, cóctel, banquete y fiesta.',
+    musicAngle:
+      'En Madrid funciona muy bien una propuesta versátil que pase de la elegancia del día a una fiesta con mucha presencia, especialmente en formato Saxo + DJ.',
+    bookingAngle:
+        'En bodas de Madrid ayuda mucho definir desde el principio espacio, organizador, ritmo de cada bloque y si el saxo tendrá un papel más elegante, más festivo o mixto.',
+      venueStyle: 'organizadores de bodas, fincas exclusivas, hoteles y espacios premium de Madrid',
+    proofHighlights: [
+      'Servicio muy adaptado a bodas premium y producciones cuidadas en Madrid.',
+      'Cobertura habitual en Madrid, Alcalá de Henares, Pozuelo de Alarcón y San Lorenzo de El Escorial.',
+        'Buena coordinación con organizadores, técnicos y DJs cuando el evento exige precisión y presencia escénica.',
+    ],
+    faqVariants: {
+      price:
+        'En Madrid el presupuesto depende bastante del tipo de espacio, del número de bloques de actuación y del nivel de coordinación técnica que requiera el evento.',
+      fit:
+        'Sí. En Madrid el saxo encaja muy bien en bodas donde hay varios momentos marcados y se necesita una propuesta elegante al principio y más potente al final.',
+      travel:
+          'Sí. Trabajo bodas en Madrid y alrededores, incluyendo zonas como Alcalá de Henares, Pozuelo y San Lorenzo de El Escorial, adaptando montaje y tiempos al espacio.',
+      timing:
+          'En Madrid conviene consultar disponibilidad cuanto antes, sobre todo en fechas premium y bodas con organizador, porque la demanda suele ser alta.',
+      personalization:
+        'Sí. El servicio se puede enfocar más a ceremonia y cóctel o ganar peso en banquete y Saxo + DJ, según el papel que queráis dar al directo.',
+    },
+  },
+  'saxofonista-para-bodas-en-malaga': {
+    serviceContext:
+        'Málaga y la Costa del Sol concentran muchas bodas de destino, celebraciones premium y eventos en espacios junto al mar, fincas y hoteles donde la experiencia del invitado es fundamental. En estas bodas suele haber varios espacios, un cóctel muy visual y una fiesta final con mucha energía.',
+      logisticsAngle:
+        'En Málaga suelen ser importantes la coordinación con bodas de destino, montajes premium, ritmos de cóctel al atardecer y espacios con mucha producción.',
+    musicAngle:
+      'En Málaga suele funcionar especialmente bien una propuesta elegante al inicio y muy energética al final, con mucho peso en cóctel, banquete y Saxo + DJ.',
+    bookingAngle:
+        'Cuando la boda es en Málaga, ayuda mucho saber si es una boda de destino, el tipo de espacio y qué peso tendrá la fiesta final dentro del evento.',
+      venueStyle: 'espacios junto al mar, fincas premium, hoteles y espacios de boda de Málaga',
+    proofHighlights: [
+      'Formato muy trabajado para bodas de destino en Málaga y celebraciones premium en la Costa del Sol.',
+      'Cobertura habitual en Málaga, Marbella, Estepona y Nerja.',
+        'Buena adaptación a organizadores, DJs y producciones donde la estética y el ambiente del evento importan mucho.',
+    ],
+    faqVariants: {
+      price:
+          'En Málaga el presupuesto suele variar según si la boda es de destino, el tipo de espacio, los bloques de actuación y la producción que requiera el lugar.',
+        fit:
+          'Sí. En Málaga el saxo funciona muy bien en bodas premium, espacios junto al mar, fincas y celebraciones internacionales donde hay varios momentos y mucha importancia del ambiente.',
+        travel:
+          'Sí. Trabajo bodas en Málaga y alrededores, incluyendo Marbella, Estepona y Nerja, coordinando horarios, montaje y necesidades técnicas con cada espacio.',
+        timing:
+          'En Málaga conviene reservar con tiempo, especialmente en bodas de destino y en temporada alta, donde organizadores, espacios y proveedores suelen cerrar agenda pronto.',
+        personalization:
+          'Sí. El repertorio y el formato se adaptan tanto a un cóctel al atardecer elegante como a una barra libre con mucha interacción junto a DJ.',
+    },
+  },
+  'saxofonista-para-bodas-en-palma': {
+    serviceContext:
+        'Palma y Mallorca son un escenario muy habitual para bodas de destino en hoteles, villas, espacios junto al mar y fincas donde muchos invitados viajan desde fuera y todo se organiza con bastante detalle. En este tipo de celebraciones el ritmo del día, el cóctel al atardecer y la coordinación con el espacio tienen mucho peso.',
+      logisticsAngle:
+        'En Palma suelen ser importantes la coordinación con organizadores de destino, ritmos muy cerrados y espacios donde el saxo acompaña tanto la ceremonia como el cóctel al atardecer y la fiesta.',
+    musicAngle:
+      'En Palma funciona especialmente bien una propuesta elegante y mediterránea durante el día, con un cierre más potente para banquete o barra libre.',
+    bookingAngle:
+      'En bodas de Palma ayuda mucho concretar si la boda es de destino, el tipo de villa, hotel o finca y qué momentos queréis destacar con el saxo.',
+      venueStyle: 'hoteles, villas, fincas y espacios junto al mar de Mallorca',
+    proofHighlights: [
+      'Propuesta orientada a bodas de destino en Palma y celebraciones premium en Mallorca.',
+      'Cobertura habitual en Palma, Calvià, Llucmajor y Alcúdia.',
+        'Muy buena coordinación con organizadores y espacios donde el ritmo del evento y la experiencia del invitado son clave.',
+    ],
+    faqVariants: {
+      price:
+          'En Palma el presupuesto depende mucho del tipo de hotel, finca, villa o espacio junto al mar, del número de momentos de actuación y de la logística propia de la isla.',
+        fit:
+          'Sí. En Palma el saxo encaja muy bien en bodas de destino y celebraciones premium donde se busca acompañar ceremonia, cóctel al atardecer y una fiesta cuidada.',
+        travel:
+          'Sí. Trabajo bodas en Palma y en otras zonas de Mallorca como Calvià, Llucmajor y Alcúdia, adaptando la propuesta al ritmo y a la logística del espacio.',
+        timing:
+          'En Palma conviene reservar con bastante antelación, especialmente en bodas de destino, porque muchas parejas organizan el evento con organizadores y espacios cerrados con tiempo.',
+      personalization:
+        'Sí. El formato se adapta al estilo de la boda, al tipo de invitados y a si queréis más protagonismo en ceremonia, cóctel, banquete o fiesta final.',
+    },
+  },
+  'saxofonista-para-bodas-en-sevilla': {
+    serviceContext:
+      'Sevilla es una ciudad donde muchas bodas se celebran en haciendas, fincas y espacios con mucha personalidad, y donde la música suele tener un papel muy marcado en la ceremonia, el aperitivo y la fiesta. En este contexto funciona muy bien una propuesta que combine emoción, elegancia y fuerza final.',
+    logisticsAngle:
+        'En Sevilla suelen ser importantes las haciendas, las bodas grandes, los organizadores y una muy buena coordinación para que cada bloque del día entre con fuerza.',
+    musicAngle:
+      'En Sevilla funciona muy bien una combinación de elegancia al principio y mucha energía en la fiesta, con especial peso en entrada al banquete y barra libre.',
+    bookingAngle:
+      'Para bodas en Sevilla ayuda mucho definir si queréis más protagonismo en cóctel, banquete o fiesta final y qué tipo de montaje necesita el espacio.',
+    venueStyle: 'haciendas, hoteles, fincas y espacios de boda de Sevilla',
+    proofHighlights: [
+      'Servicio muy adaptado a bodas andaluzas, haciendas y celebraciones premium en Sevilla.',
+      'Cobertura habitual en Sevilla, Dos Hermanas, Alcalá de Guadaíra y Carmona.',
+      'Muy buena respuesta en bodas grandes donde el saxo acompaña ceremonia, aperitivo y una fiesta con mucha energía.',
+    ],
+    faqVariants: {
+      price:
+        'En Sevilla el presupuesto suele depender del tipo de hacienda, finca u hotel, de los bloques de actuación y del peso que vaya a tener la fiesta dentro de la boda.',
+      fit:
+        'Sí. En Sevilla el saxo encaja muy bien cuando buscáis elegancia en ceremonia y cóctel, pero también una entrada al banquete o una barra libre con mucha energía.',
+      travel:
+        'Sí. Trabajo bodas en Sevilla y alrededores, incluyendo Dos Hermanas, Alcalá de Guadaíra y Carmona, adaptando la propuesta al espacio y al horario real del evento.',
+      timing:
+        'En Sevilla conviene mirar disponibilidad con tiempo, sobre todo en primavera y otoño, cuando la demanda de bodas en haciendas y fincas suele ser muy alta.',
+      personalization:
+        'Sí. El repertorio se ajusta al tono de la boda, desde momentos más elegantes y emotivos hasta una fiesta muy animada junto a DJ.',
+    },
+  },
+  'saxofonista-para-bodas-en-valencia': {
+    serviceContext:
+      'Valencia es una ciudad mediterránea con bodas en fincas, hoteles y espacios urbanos donde el cóctel, los cambios de ambiente y la transición hacia la fiesta suelen estar muy trabajados. En este tipo de celebraciones la música tiene que ayudar a unir elegancia, dinamismo y buen ritmo durante todo el día.',
+    logisticsAngle:
+        'En Valencia suelen pesar mucho las fincas mediterráneas, los espacios de ciudad, el ritmo del cóctel y la coordinación técnica con DJs y organizadores.',
+    musicAngle:
+      'En Valencia encaja muy bien una propuesta mediterránea con un cóctel fluido y una fiesta final muy dinámica para que el saxo tenga recorrido durante todo el día.',
+    bookingAngle:
+      'Cuando la boda es en Valencia, ayuda mucho definir tipo de espacio, bloques de actuación y si la fiesta va a tener un papel muy protagonista.',
+      venueStyle: 'fincas, hoteles, espacios urbanos y espacios de boda de Valencia',
+    proofHighlights: [
+      'Formato muy adaptado a bodas mediterráneas y celebraciones con ritmo en Valencia.',
+      'Cobertura habitual en Valencia, Paterna, Torrent y Sagunto.',
+        'Buena coordinación con organizadores, espacios y DJs para que el saxo acompañe desde ceremonia hasta barra libre.',
+    ],
+    faqVariants: {
+      price:
+        'En Valencia el presupuesto depende del tipo de finca u hotel, del número de bloques de actuación y de si queréis reforzar más el cóctel, el banquete o la fiesta.',
+      fit:
+        'Sí. En Valencia el saxo encaja muy bien cuando buscáis una boda con elegancia al principio, un cóctel con ritmo y una barra libre con mucha vida.',
+      travel:
+          'Sí. Trabajo bodas en Valencia y zonas cercanas como Paterna, Torrent y Sagunto, coordinando montaje, tiempos y necesidades del espacio.',
+      timing:
+          'En Valencia conviene reservar con margen, especialmente en fechas de alta demanda y en bodas donde participan varios proveedores y organizadores.',
+      personalization:
+        'Sí. El repertorio y el formato se adaptan muy bien a bodas mediterráneas, espacios con varios ambientes y celebraciones que mezclan elegancia y fiesta.',
+    },
+  },
+  'saxofonista-para-bodas-en-valladolid': {
+    serviceContext:
+      'Valladolid reúne bodas en fincas, hoteles y espacios más tranquilos donde suele valorarse mucho una propuesta elegante, cercana y bien medida. En estas celebraciones funciona especialmente bien un directo que acompañe el aperitivo y gane presencia poco a poco hacia la fiesta.',
+    logisticsAngle:
+      'En Valladolid suelen importar mucho la finura del cóctel, la facilidad de montaje en fincas y la flexibilidad para adaptarse al ritmo real del evento.',
+    musicAngle:
+      'En Valladolid funciona muy bien un servicio que acompañe con elegancia el día y gane intensidad cuando llega la entrada al banquete o la fiesta.',
+    bookingAngle:
+      'En bodas de Valladolid conviene definir pronto si el servicio estará más centrado en aperitivo, banquete, fiesta o una combinación de varios bloques.',
+    venueStyle: 'fincas, hoteles y espacios de boda de Valladolid',
+    proofHighlights: [
+      'Propuesta equilibrada para bodas en Valladolid donde se busca elegancia, cercanía y un final de fiesta con más ritmo.',
+      'Cobertura habitual en Valladolid, Tordesillas, Medina del Campo y Arroyo de la Encomienda.',
+        'Muy buena adaptación a fincas cercanas, organizadores y bodas donde el saxo acompaña varios momentos del día.',
+    ],
+  },
+  'saxofonista-para-bodas-en-zaragoza': {
+    serviceContext:
+      'Zaragoza mezcla bodas urbanas y celebraciones en finca donde suele importar mucho que la música acompañe bien desde el cóctel hasta la fiesta final. En este tipo de eventos encaja muy bien una propuesta que arranque elegante y termine con más energía cuando el ambiente lo pide.',
+    logisticsAngle:
+      'En Zaragoza suelen tener peso los espacios urbanos, las fincas y la necesidad de que el servicio se integre bien en cóctel, cena y fiesta.',
+    musicAngle:
+      'En Zaragoza funciona muy bien un servicio que empiece con un tono elegante y termine con una parte más potente para barra libre o Saxo + DJ.',
+    bookingAngle:
+      'Para bodas en Zaragoza ayuda mucho concretar fecha, espacio, si habrá DJ y qué momento queréis reforzar más con el directo.',
+    venueStyle: 'fincas, hoteles y espacios de boda de Zaragoza',
+    proofHighlights: [
+      'Servicio orientado a bodas urbanas y de finca en Zaragoza con un final de fiesta muy trabajado.',
+      'Cobertura habitual en Zaragoza, Utebo, Cuarte de Huerva y La Muela.',
+        'Buena coordinación con espacios y DJs cuando el saxo acompaña varias fases del día.',
+    ],
+  },
+};
+
+export const allLocations = seeds
+  .map(createLocation)
+  .map((location) => ({
+    ...location,
+    ...(locationOverrides[location.slug] ?? {}),
+  }));
 
 export const launchedLocations = allLocations.filter(
   (location) => location.rolloutPhase <= ACTIVE_ROLLOUT_PHASE,
