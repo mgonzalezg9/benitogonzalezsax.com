@@ -38,7 +38,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
           <div>
             <h3 class="text-[1.42rem] font-semibold uppercase tracking-[0.08em] text-accent md:text-[1.72rem]">{page.extrasTitle}</h3>
             <p class="mt-4 text-base leading-7 text-white/80">
-              {t.landing.services.extrasIntro}
+              {page.extrasIntro ?? t.landing.services.extrasIntro}
             </p>
           </div>
           <ul class="grid gap-4 md:grid-cols-2">
