@@ -2,6 +2,43 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Rules
+
+### Before editing any file
+
+1. Check the current branch: `git branch --show-current`
+2. Rebase with main:
+   ```bash
+   git fetch origin
+   git rebase origin/main
+   ```
+3. Pull the latest remote changes:
+   ```bash
+   git pull
+   ```
+   If there are uncommitted local changes, stash first (`git stash`), pull, then reapply (`git stash pop`).
+
+### i18n parity
+
+When adding or changing any user-facing string, update both language files together:
+
+- `src/i18n/lang/es.ts` — Spanish (default language)
+- `src/i18n/lang/en.ts` — English
+
+Exception: the `landing` section exists only in `es.ts` because English landing pages use a separate component set with no `useTranslations` dependency.
+
+### No hardcoded contact details
+
+Never hardcode phone numbers, email addresses, WhatsApp links, or social URLs in components or pages. Always import and use the `BUSINESS` object from `src/lib/site.ts`. The only exception is fallback strings inside `<script>` blocks that cannot import server-side modules — keep those in sync with `BUSINESS` manually.
+
+### Landing anchor IDs
+
+Every `Landing*` component that acts as a nav target must use its anchor ID from `es.ts` nav values: `inicio`, `propuesta`, `servicios`, `ciudades`, `opiniones`, `contacto`. The hash-anchor script in `WeddingLandingPage.astro` opens accordion `<details>` elements by matching these IDs — mismatches break scroll-to-section navigation.
+
+### JSON-LD via schemas prop
+
+Never write inline `<script type="application/ld+json">` tags in pages or components. Always use `buildPageSchemas(page, canonical, location?)` from `src/lib/schemas.ts` and pass the result to `Layout` via the `schemas` prop.
+
 ## Commands
 
 ```bash
