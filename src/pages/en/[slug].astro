@@ -2,15 +2,37 @@
 import Footer from '../../components/parts/Footer.astro';
 import Header from '../../components/parts/Header.astro';
 import WeddingLandingPage from '../../components/pages/WeddingLandingPage.astro';
-import { buildEnglishHomePageData } from '../../data/landingPagesEn';
+import { buildEnglishCityPageData } from '../../data/landingPagesEn';
+import {
+  getEnglishLocationSlug,
+  getLaunchedLocations,
+  getLocationByEnglishSlug,
+} from '../../data/locations';
 import { DEFAULT_OG_IMAGE, absoluteUrl } from '../../lib/site';
 import { buildPageSchemas } from '../../lib/schemas';
 import Layout from '../../layouts/Layout.astro';
 
-const page = buildEnglishHomePageData();
+export const getStaticPaths = () =>
+  getLaunchedLocations().map((location) => ({
+    params: { slug: getEnglishLocationSlug(location) },
+    props: { locationSlug: getEnglishLocationSlug(location) },
+  }));
+
+interface Props {
+  locationSlug: string;
+}
+
+const { locationSlug } = Astro.props;
+const location = getLocationByEnglishSlug(locationSlug);
+
+if (!location) {
+  throw new Error(`Unknown English location slug: ${locationSlug}`);
+}
+
+const page = buildEnglishCityPageData(location);
 const canonical = absoluteUrl(page.canonicalPath);
-const spanishCanonical = absoluteUrl('/');
-const schemas = buildPageSchemas(page, canonical);
+const spanishCanonical = absoluteUrl(`/${location.slug}`);
+const schemas = buildPageSchemas(page, canonical, location);
 ---
 
 <Layout

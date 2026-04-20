@@ -43,6 +43,13 @@ export interface AnswerCard {
   body: string;
 }
 
+export interface LandingServiceCard {
+  title: string;
+  description: string;
+  href?: string;
+  icon: 'weddings' | 'corporate' | 'private' | 'hospitality';
+}
+
 export interface LandingPageData {
   type: 'home' | 'city';
   title: string;
@@ -60,6 +67,10 @@ export interface LandingPageData {
   introTitle: string;
   introParagraphs: string[];
   trustPoints: string[];
+  eventServicesEyebrow?: string;
+  eventServicesTitle?: string;
+  eventServicesDescription?: string;
+  eventServices?: LandingServiceCard[];
   serviceTitle: string;
   serviceDescription: string;
   moments: Array<{ title: string; description: string }>;

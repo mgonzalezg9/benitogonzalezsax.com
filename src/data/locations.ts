@@ -1063,3 +1063,19 @@ export const getLocationBySlug = (slug: string) =>
   allLocations.find((location) => location.slug === slug);
 
 export const getLaunchedLocations = () => launchedLocations;
+
+export const getEnglishLocationName = (location: LocationEntry) => {
+  const englishNames: Record<string, string> = {
+    Málaga: 'Malaga',
+    Palma: 'Mallorca',
+    Sevilla: 'Seville',
+  };
+
+  return englishNames[location.city] ?? location.city;
+};
+
+export const getEnglishLocationSlug = (location: LocationEntry) =>
+  `saxophonist-${slugify(getEnglishLocationName(location))}`;
+
+export const getLocationByEnglishSlug = (slug: string) =>
+  allLocations.find((location) => getEnglishLocationSlug(location) === slug);

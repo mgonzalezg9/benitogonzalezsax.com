@@ -13,11 +13,17 @@ const navBase = isLandingPage ? pathname : getRouteForLanguage('/', lang);
 
 const navSections = [
   { id: t.nav.home.anchor, label: t.nav.home.label, ariaLabel: t.nav.home.ariaDescription },
-  { id: 'videos', label: 'Videos', ariaLabel: 'Ir a la sección de vídeos' },
+  { id: 'videos', label: 'Videos', ariaLabel: t.landing.floatingCta.videosLabel },
   { id: t.nav.services.anchor, label: t.nav.services.label, ariaLabel: t.nav.services.ariaDescription },
   { id: t.nav.testimonials.anchor, label: t.nav.testimonials.label, ariaLabel: t.nav.testimonials.ariaDescription },
   { id: t.nav.contact.anchor, label: t.nav.contact.label, ariaLabel: t.nav.contact.ariaDescription },
 ];
+
+const budgetCtaLabel = lang === 'en' ? 'Request quote' : 'Pide presupuesto';
+const budgetCtaAriaLabel =
+  lang === 'en'
+    ? 'Go to the contact section to request a quote'
+    : 'Ir a la sección de contacto para pedir presupuesto';
 ---
 
 <header class="fixed w-full bg-primary backdrop-blur-sm shadow-sm z-50">
@@ -31,9 +37,9 @@ const navSections = [
       <a
         href={`${navBase}#contacto`}
         class="md:hidden inline-flex shrink-0 items-center justify-center rounded-[0.35rem] border-2 border-white px-3 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-accent hover:text-accent"
-        aria-label="Ir a la sección de contacto para pedir presupuesto"
+        aria-label={budgetCtaAriaLabel}
       >
-        Pide presupuesto
+        {budgetCtaLabel}
       </a>
       
       <nav class="hidden md:flex items-end gap-10">
@@ -50,9 +56,9 @@ const navSections = [
                   <a
                     href={`${navBase}#contacto`}
                     class="mt-1 inline-flex items-center rounded-[0.35rem] border-2 border-white px-5 py-1.5 text-[1rem] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-accent hover:text-accent"
-                    aria-label="Ir a la sección de contacto para pedir presupuesto"
+                    aria-label={budgetCtaAriaLabel}
                   >
-                    Pide presupuesto
+                    {budgetCtaLabel}
                   </a>
                 </li>
               )}

@@ -11,10 +11,11 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const t = useTranslations(getLangFromUrl(Astro.url));
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const introDemoVideo = {
-  title: 'Vídeo demostración para Bodas',
+  title: lang === 'en' ? 'Wedding demo video' : 'Vídeo demostración para Bodas',
   url: 'https://www.youtube.com/shorts/-it5RoaROgU',
 };
 

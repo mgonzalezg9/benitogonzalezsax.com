@@ -9,7 +9,12 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const t = useTranslations(getLangFromUrl(Astro.url));
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const generalPageHref = lang === 'en' ? '/en' : '/';
+const generalPageLabel = lang === 'en' ? 'General page' : 'Página general';
+const generalPageDescription =
+  lang === 'en' ? 'Wedding saxophonist in Spain' : 'Saxofonista para bodas en España';
 ---
 
 <LandingAccordionSection id="ciudades" eyebrow={t.landing.cities.eyebrow} bottomBorder>
@@ -39,13 +44,13 @@ const t = useTranslations(getLangFromUrl(Astro.url));
       {page.type === 'city' && (
         <div class="mt-10">
           <a
-            href="/"
+            href={generalPageHref}
             class="block rounded-[1.5rem] border border-gray-200 bg-gray-50 p-6 transition hover:-translate-y-1 hover:border-accent"
           >
             <p class="font-segmentA text-[2.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.5rem]">
-              {stripSegmentAAccents('Página general')}
+              {stripSegmentAAccents(generalPageLabel)}
             </p>
-            <p class="mt-2 text-sm text-gray-600">Saxofonista para bodas en España</p>
+            <p class="mt-2 text-sm text-gray-600">{generalPageDescription}</p>
           </a>
         </div>
       )}

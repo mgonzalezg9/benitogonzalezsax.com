@@ -13,12 +13,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
 const heroTitleDisplay = page.heroTitle;
 const heroTitleClass =
   'max-w-4xl text-[1.75rem] font-[525] uppercase leading-[0.96] tracking-[0.038em] md:text-[2.95rem]';
-const cityName =
-  page.type === 'city' ? page.heroTitle.replace('Saxofonista para bodas en ', '') : null;
-const trustTitle =
-  page.type === 'city' && cityName
-    ? `¿Por qué contar con mis servicios en ${cityName}?`
-    : t.landing.hero.trustTitle;
+const trustTitle = page.trustTitle || t.landing.hero.trustTitle;
 ---
 
 <section id="inicio" class="relative overflow-hidden bg-black pb-24 pt-36 text-white">

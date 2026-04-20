@@ -2,6 +2,7 @@
 import type { LandingPageData } from '../../data/landingPages';
 import LandingHero from '../parts/LandingHero.astro';
 import LandingAbout from '../parts/LandingAbout.astro';
+import LandingEventServices from '../parts/LandingEventServices.astro';
 import LandingServices from '../parts/LandingServices.astro';
 import LandingAnswerBlock from '../parts/LandingAnswerBlock.astro';
 import LandingVideos from '../parts/LandingVideos.astro';
@@ -23,6 +24,7 @@ const { page } = Astro.props;
 <main class="bg-gray-50 text-gray-900">
   <LandingHero page={page} />
   <LandingAbout page={page} />
+  <LandingEventServices page={page} />
   <LandingServices page={page} />
   <LandingAnswerBlock page={page} />
   <LandingVideos page={page} />

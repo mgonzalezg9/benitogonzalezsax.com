@@ -3,7 +3,7 @@ import Footer from '../components/parts/Footer.astro';
 import Header from '../components/parts/Header.astro';
 import WeddingLandingPage from '../components/pages/WeddingLandingPage.astro';
 import { buildCityPageData } from '../data/landingPages';
-import { getLaunchedLocations, getLocationBySlug } from '../data/locations';
+import { getEnglishLocationSlug, getLaunchedLocations, getLocationBySlug } from '../data/locations';
 import { DEFAULT_OG_IMAGE, absoluteUrl } from '../lib/site';
 import { buildPageSchemas } from '../lib/schemas';
 import Layout from '../layouts/Layout.astro';
@@ -27,6 +27,7 @@ if (!location) {
 
 const page = buildCityPageData(location);
 const canonical = absoluteUrl(page.canonicalPath);
+const englishCanonical = absoluteUrl(`/en/${getEnglishLocationSlug(location)}`);
 const schemas = buildPageSchemas(page, canonical, location);
 ---
 
@@ -40,6 +41,7 @@ const schemas = buildPageSchemas(page, canonical, location);
   ogImage={absoluteUrl(DEFAULT_OG_IMAGE)}
   alternates={[
     { hreflang: 'es', href: canonical },
+    { hreflang: 'en', href: englishCanonical },
     { hreflang: 'x-default', href: canonical },
   ]}
   schemas={schemas}
