@@ -2,11 +2,13 @@
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const t = useTranslations(getLangFromUrl(Astro.url));
+const contactAnchor = t.nav.contact.anchor;
+const videosAnchor = t.landing.videos.anchor;
 ---
 
 <div class="md:contents">
   <a
-    href="#contacto"
+    href={`#${contactAnchor}`}
     data-floating-cta
     class="pointer-events-none fixed bottom-20 right-4 z-40 inline-flex min-h-11 translate-y-4 items-center justify-center rounded-[999px] bg-accent px-6 py-2.5 text-[0.67rem] font-semibold uppercase tracking-[0.06em] text-white opacity-0 shadow-lg shadow-black/15 transition duration-300 hover:bg-amber-400 md:bottom-6 md:left-[calc(50%-7rem)] md:right-auto md:min-h-11 md:-translate-x-1/2 md:px-5 md:py-3 md:text-[0.82rem] md:tracking-[0.08em]"
   >
@@ -14,7 +16,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
   </a>
 
   <a
-    href="#videos"
+    href={`#${videosAnchor}`}
     data-floating-videos-cta
     class="pointer-events-none fixed bottom-20 left-4 z-30 inline-flex min-h-10 translate-y-4 items-center justify-center rounded-[999px] border border-accent bg-white px-5 py-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-accent opacity-0 shadow-lg shadow-black/10 transition duration-300 hover:bg-amber-50 md:bottom-6 md:left-[calc(50%+7rem)] md:min-h-11 md:-translate-x-1/2 md:px-5 md:py-3 md:text-[0.82rem]"
   >
@@ -22,7 +24,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
   </a>
 </div>
 
-<script>
+<script define:vars={{ contactAnchor, videosAnchor }}>
   document.addEventListener('DOMContentLoaded', () => {
     const primaryHeroCta = document.querySelector('[data-primary-hero-cta]');
     const floatingCta = document.querySelector('[data-floating-cta]');
@@ -35,8 +37,8 @@ const t = useTranslations(getLangFromUrl(Astro.url));
           return rect.bottom > 0 && rect.top < window.innerHeight;
         })();
 
-        const contactSection = document.getElementById('contacto');
-        const videosSection = document.getElementById('videos');
+        const contactSection = document.getElementById(contactAnchor);
+        const videosSection = document.getElementById(videosAnchor);
         const nearContact = contactSection
           ? contactSection.getBoundingClientRect().top < window.innerHeight * 0.75
           : false;

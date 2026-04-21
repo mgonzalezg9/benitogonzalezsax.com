@@ -31,7 +31,7 @@ if (!location) {
 
 const page = buildEnglishCityPageData(location);
 const canonical = absoluteUrl(page.canonicalPath);
-const spanishCanonical = absoluteUrl(`/${location.slug}`);
+const defaultLanguageCanonical = absoluteUrl(`/${location.slug}`);
 const schemas = buildPageSchemas(page, canonical, location);
 ---
 
@@ -45,8 +45,8 @@ const schemas = buildPageSchemas(page, canonical, location);
   ogImage={absoluteUrl(DEFAULT_OG_IMAGE)}
   alternates={[
     { hreflang: 'en', href: canonical },
-    { hreflang: 'es', href: spanishCanonical },
-    { hreflang: 'x-default', href: spanishCanonical },
+    { hreflang: 'es', href: defaultLanguageCanonical },
+    { hreflang: 'x-default', href: defaultLanguageCanonical },
   ]}
   schemas={schemas}
 >

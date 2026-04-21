@@ -9,7 +9,7 @@ import Layout from '../../layouts/Layout.astro';
 
 const page = buildEnglishHomePageData();
 const canonical = absoluteUrl(page.canonicalPath);
-const spanishCanonical = absoluteUrl('/');
+const defaultLanguageCanonical = absoluteUrl('/');
 const schemas = buildPageSchemas(page, canonical);
 ---
 
@@ -23,8 +23,8 @@ const schemas = buildPageSchemas(page, canonical);
   ogImage={absoluteUrl(DEFAULT_OG_IMAGE)}
   alternates={[
     { hreflang: 'en', href: canonical },
-    { hreflang: 'es', href: spanishCanonical },
-    { hreflang: 'x-default', href: spanishCanonical },
+    { hreflang: 'es', href: defaultLanguageCanonical },
+    { hreflang: 'x-default', href: defaultLanguageCanonical },
   ]}
   schemas={schemas}
 >

@@ -7,7 +7,7 @@ export const en = {
   nav: {
     home: {
       label: 'Home',
-      anchor: 'inicio',
+      anchor: 'home',
       ariaDescription: 'Go to home section',
     },
     about: {
@@ -17,24 +17,25 @@ export const en = {
     },
     services: {
       label: 'Services',
-      anchor: 'servicios',
+      anchor: 'services',
       ariaDescription: 'Go to services section',
     },
     cities: {
       label: 'Cities',
-      anchor: 'ciudades',
+      anchor: 'cities',
       ariaDescription: 'Go to cities section',
     },
     testimonials: {
       label: 'Testimonials',
-      anchor: 'opiniones',
+      anchor: 'testimonials',
       ariaDescription: 'Go to testimonials section',
     },
     contact: {
       label: 'Contact',
-      anchor: 'contacto',
+      anchor: 'contact',
       ariaDescription: 'Go to contact section',
     },
+    mobileMenuToggleAriaLabel: 'Toggle mobile menu',
   },
   hero: {
     title: 'Saxophone player for weddings and events',
@@ -177,6 +178,10 @@ export const en = {
     about: {
       imageAlt: 'Benito Gonzalez wedding saxophonist',
       eyebrow: 'Your wedding and events saxophonist',
+      demoVideoTitle: 'Wedding demo video',
+    },
+    eventServices: {
+      eyebrow: 'Services',
     },
     services: {
       eyebrow: 'Wedding services',
@@ -188,6 +193,8 @@ export const en = {
     },
     videos: {
       eyebrow: 'Videos',
+      anchor: 'videos',
+      ariaLabel: 'Go to videos section',
       watchLabel: 'Watch video',
     },
     repertoire: {
@@ -210,6 +217,7 @@ export const en = {
       eyebrow: 'Booking and availability',
       phoneLabel: 'Phone',
       emailLabel: 'Email',
+      whatsappServiceLabel: 'WhatsApp',
       whatsappLabel: 'Tap to write now on WhatsApp',
       form: {
         nameLabel: 'Name',
@@ -240,9 +248,12 @@ export const en = {
     },
     cities: {
       eyebrow: 'Coverage',
+      generalPageLabel: 'General page',
+      generalPageDescription: 'Wedding saxophonist in Spain',
     },
     floatingCta: {
       budgetLabel: 'Request quote',
+      budgetAriaLabel: 'Go to the contact section to request a quote',
       videosLabel: 'Watch videos',
     },
   },

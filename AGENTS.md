@@ -28,23 +28,20 @@ Before editing files:
 
 ## Repository rules
 
-- Keep i18n parity for user-facing strings:
+- Keep i18n parity for reusable user-facing UI strings:
   - update `src/i18n/lang/es.ts`
   - update `src/i18n/lang/en.ts`
-- Exception:
-  - the `landing` section exists only in `src/i18n/lang/es.ts`
+- Do not hardcode user-facing UI text in Astro pages or components.
+  - Put reusable UI labels, ARIA labels, fallback labels, and section chrome in `src/i18n/lang/*.ts`
+  - Keep page-specific landing copy in the data files when it is content, not component UI
 - Do not hardcode contact details.
   - Always use `BUSINESS` from `src/lib/site.ts`
 - Do not write inline JSON-LD in pages or components.
   - Use `buildPageSchemas(page, canonical, location?)` from `src/lib/schemas.ts`
   - Pass the result to `Layout` via the `schemas` prop
-- Landing anchor IDs must stay aligned with the Spanish nav config:
-  - `inicio`
-  - `propuesta`
-  - `servicios`
-  - `ciudades`
-  - `opiniones`
-  - `contacto`
+- Landing anchor IDs must come from the active language nav config in `src/i18n/lang/*.ts`.
+  - Do not hardcode Spanish anchors in shared components.
+  - Keep links, section IDs, and accordion hash logic aligned with the translated anchor values.
 
 ## Project shape
 

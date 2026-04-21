@@ -11,12 +11,15 @@ Before editing files:
 
 ## i18n parity
 
-When changing user-facing strings, update both:
+When changing reusable user-facing UI strings, update both:
 - `src/i18n/lang/es.ts`
 - `src/i18n/lang/en.ts`
 
-Exception:
-- the `landing` section is only in `src/i18n/lang/es.ts`
+Do not hardcode user-facing UI text in Astro pages or components.
+
+Use:
+- `src/i18n/lang/*.ts` for reusable UI labels, ARIA labels, fallback labels, and section chrome
+- `src/data/landingPages*.ts` for page-specific landing copy that is content/data
 
 ## Contact details
 
@@ -39,12 +42,8 @@ Always:
 
 ## Landing anchors
 
-Landing section IDs must stay aligned with the Spanish nav anchors:
-- `inicio`
-- `propuesta`
-- `servicios`
-- `ciudades`
-- `opiniones`
-- `contacto`
+Landing section IDs must come from the active language nav config in:
+- `src/i18n/lang/es.ts`
+- `src/i18n/lang/en.ts`
 
-The accordion-opening hash logic depends on those values matching exactly.
+Do not hardcode Spanish anchors in shared components. The accordion-opening hash logic depends on links, section IDs, and translated anchor values matching exactly.

@@ -605,7 +605,7 @@ export const buildEnglishHomePageData = (): LandingPageData => ({
   heroBody:
     'Benito Gonzalez helps couples and event planners create an unforgettable celebration with professional live music and saxophone booking.',
   primaryCtaLabel: 'Request quote',
-  primaryCtaHref: '#contacto',
+  primaryCtaHref: '#contact',
   secondaryCtaLabel: 'Watch videos',
   secondaryCtaHref: '#videos',
   introTitle: 'Live saxophone for weddings and events moments guests remember',
@@ -693,7 +693,7 @@ export const buildEnglishCityPageData = (location: LocationEntry): LandingPageDa
     heroSummary: 'Live saxophone for weddings and events.',
     heroBody: `Benito Gonzalez offers professional live music and saxophone booking in ${place} for weddings, destination weddings and private events.`,
     primaryCtaLabel: 'Check availability',
-    primaryCtaHref: '#contacto',
+    primaryCtaHref: '#contact',
     secondaryCtaLabel: 'Watch videos',
     secondaryCtaHref: '#videos',
     introTitle: 'Live saxophone for weddings and events',
