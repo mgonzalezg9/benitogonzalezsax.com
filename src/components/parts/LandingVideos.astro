@@ -13,7 +13,7 @@ const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
-<LandingAccordionSection id="videos" eyebrow={t.landing.videos.eyebrow}>
+<LandingAccordionSection id={t.landing.videos.anchor} eyebrow={t.landing.videos.eyebrow}>
   <section class="bg-white pb-20 pt-2">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">

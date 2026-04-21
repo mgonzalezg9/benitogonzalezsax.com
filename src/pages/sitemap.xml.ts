@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getLaunchedLocations } from '../data/locations';
+import { getEnglishLocationSlug, getLaunchedLocations } from '../data/locations';
 import { absoluteUrl } from '../lib/site';
 
 const staticPaths = ['/', '/en', '/politica-de-privacidad', '/en/privacy-policy'];
@@ -9,6 +9,9 @@ export const GET: APIRoute = () => {
   const urls = [
     ...staticPaths.map((path) => absoluteUrl(path)),
     ...getLaunchedLocations().map((location) => absoluteUrl(`/${location.slug}`)),
+    ...getLaunchedLocations().map((location) =>
+      absoluteUrl(`/en/${getEnglishLocationSlug(location)}`),
+    ),
   ];
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls

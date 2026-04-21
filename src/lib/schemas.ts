@@ -1,5 +1,5 @@
 import type { LandingPageData } from '../data/landingPages';
-import type { LocationEntry } from '../data/locations';
+import { getEnglishLocationName, type LocationEntry } from '../data/locations';
 import { BUSINESS, absoluteUrl } from './site';
 
 export const buildPageSchemas = (
@@ -7,7 +7,12 @@ export const buildPageSchemas = (
   canonical: string,
   location?: LocationEntry,
 ) => {
-  const city = location?.city ?? BUSINESS.addressLocality;
+  const isEnglish = page.canonicalPath.startsWith('/en');
+  const city = location
+    ? isEnglish
+      ? getEnglishLocationName(location)
+      : location.city
+    : BUSINESS.addressLocality;
   const province = location?.province ?? BUSINESS.addressRegion;
   const latitude = location?.latitude ?? BUSINESS.latitude;
   const longitude = location?.longitude ?? BUSINESS.longitude;
@@ -30,8 +35,10 @@ export const buildPageSchemas = (
   const offerCatalog = {
     '@type': 'OfferCatalog',
     name: location
-      ? `Servicios de saxo para bodas en ${city}`
-      : 'Servicios de saxo para bodas',
+      ? isEnglish
+        ? `Wedding saxophonist services in ${city}`
+        : `Servicios de saxo para bodas en ${city}`
+      : page.heroTitle,
     itemListElement: page.serviceTypes.map((serviceType) => ({
       '@type': 'Offer',
       ...(location && {
@@ -42,7 +49,9 @@ export const buildPageSchemas = (
       }),
       itemOffered: {
         '@type': 'Service',
-        name: location ? `${serviceType} en ${city}` : serviceType,
+        name: location
+          ? `${serviceType} ${isEnglish ? 'in' : 'en'} ${city}`
+          : serviceType,
         serviceType,
       },
     })),
@@ -73,6 +82,7 @@ export const buildPageSchemas = (
       email: BUSINESS.email,
       serviceType: page.serviceTypes,
       knowsAbout: page.serviceTypes,
+      knowsLanguage: ['Spanish', 'English'],
       address: {
         '@type': 'PostalAddress',
         addressLocality: BUSINESS.addressLocality,
@@ -107,7 +117,7 @@ export const buildPageSchemas = (
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      name: location ? page.heroTitle : 'Saxofonista para bodas',
+      name: page.heroTitle,
       serviceType: page.serviceTypes,
       provider: {
         '@type': 'ProfessionalService',

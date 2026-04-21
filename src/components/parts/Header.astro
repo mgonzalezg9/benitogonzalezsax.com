@@ -2,6 +2,7 @@
 import Logo from '../../assets/logo.svg';
 import { getRouteForLanguage } from '../../i18n/routes';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
 import LanguagePicker from '../ui/LanguagePicker.astro';
 
 const lang = getLangFromUrl(Astro.url);
@@ -13,11 +14,14 @@ const navBase = isLandingPage ? pathname : getRouteForLanguage('/', lang);
 
 const navSections = [
   { id: t.nav.home.anchor, label: t.nav.home.label, ariaLabel: t.nav.home.ariaDescription },
-  { id: 'videos', label: 'Videos', ariaLabel: 'Ir a la sección de vídeos' },
+  { id: t.landing.videos.anchor, label: t.landing.videos.eyebrow, ariaLabel: t.landing.videos.ariaLabel },
   { id: t.nav.services.anchor, label: t.nav.services.label, ariaLabel: t.nav.services.ariaDescription },
   { id: t.nav.testimonials.anchor, label: t.nav.testimonials.label, ariaLabel: t.nav.testimonials.ariaDescription },
   { id: t.nav.contact.anchor, label: t.nav.contact.label, ariaLabel: t.nav.contact.ariaDescription },
 ];
+
+const budgetCtaLabel = t.landing.floatingCta.budgetLabel;
+const budgetCtaAriaLabel = t.landing.floatingCta.budgetAriaLabel;
 ---
 
 <header class="fixed w-full bg-primary backdrop-blur-sm shadow-sm z-50">
@@ -29,11 +33,11 @@ const navSections = [
       </a>
 
       <a
-        href={`${navBase}#contacto`}
+        href={`${navBase}#${t.nav.contact.anchor}`}
         class="md:hidden inline-flex shrink-0 items-center justify-center rounded-[0.35rem] border-2 border-white px-3 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-accent hover:text-accent"
-        aria-label="Ir a la sección de contacto para pedir presupuesto"
+        aria-label={budgetCtaAriaLabel}
       >
-        Pide presupuesto
+        {budgetCtaLabel}
       </a>
       
       <nav class="hidden md:flex items-end gap-10">
@@ -42,17 +46,17 @@ const navSections = [
             <>
               <li>
                 <a href={`${navBase}#${section.id}`} class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
-                  {section.label}
+                  {stripSegmentAAccents(section.label)}
                 </a>
               </li>
               {index === 0 && (
                 <li>
                   <a
-                    href={`${navBase}#contacto`}
+                    href={`${navBase}#${t.nav.contact.anchor}`}
                     class="mt-1 inline-flex items-center rounded-[0.35rem] border-2 border-white px-5 py-1.5 text-[1rem] font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:border-accent hover:text-accent"
-                    aria-label="Ir a la sección de contacto para pedir presupuesto"
+                    aria-label={budgetCtaAriaLabel}
                   >
-                    Pide presupuesto
+                    {budgetCtaLabel}
                   </a>
                 </li>
               )}
@@ -63,7 +67,7 @@ const navSections = [
         <LanguagePicker />
       </nav>
       
-      <button id="mobile-menu-button" class="md:hidden shrink-0 text-white" aria-label="Toggle mobile menu">
+      <button id="mobile-menu-button" class="md:hidden shrink-0 text-white" aria-label={t.nav.mobileMenuToggleAriaLabel}>
         <!-- Hamburger menu icon. Creating a component does not work idk why -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -79,7 +83,7 @@ const navSections = [
           <>
             <li>
               <a href={`${navBase}#${section.id}`} class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
-                {section.label}
+                {stripSegmentAAccents(section.label)}
               </a>
             </li>
           </>

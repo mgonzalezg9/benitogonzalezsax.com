@@ -1,0 +1,82 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import CorporateEventIcon from '../icons/CorporateEventIcon.astro';
+import HospitalityIcon from '../icons/HospitalityIcon.astro';
+import PrivatePartyIcon from '../icons/PrivatePartyIcon.astro';
+import WeddingServiceIcon from '../icons/WeddingServiceIcon.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
+import LandingAccordionSection from './LandingAccordionSection.astro';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const t = useTranslations(getLangFromUrl(Astro.url));
+const services = page.eventServices ?? [];
+
+const serviceIcons = {
+  weddings: WeddingServiceIcon,
+  corporate: CorporateEventIcon,
+  private: PrivatePartyIcon,
+  hospitality: HospitalityIcon,
+};
+---
+
+{services.length > 0 && (
+  <LandingAccordionSection id={t.nav.services.anchor} eyebrow={page.eventServicesEyebrow ?? t.landing.eventServices.eyebrow}>
+    <section class="pb-20 pt-2">
+      <div class="container mx-auto px-4">
+        {(page.eventServicesTitle || page.eventServicesDescription) && (
+          <div class="mx-auto max-w-3xl text-center">
+            {page.eventServicesTitle && (
+              <h2 class="font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+                {stripSegmentAAccents(page.eventServicesTitle)}
+              </h2>
+            )}
+            {page.eventServicesDescription && (
+              <p class="mt-6 text-lg leading-8 text-gray-700">
+                {page.eventServicesDescription}
+              </p>
+            )}
+          </div>
+        )}
+
+        <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {services.map((service) => {
+            const Icon = serviceIcons[service.icon];
+
+            return service.href ? (
+              <a href={service.href} class="block h-full focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-4">
+                <article class="flex h-full flex-col items-center rounded-[1.5rem] bg-white p-8 text-center shadow-md transition hover:-translate-y-1 hover:shadow-lg">
+                  <span class="flex h-20 w-20 items-center justify-center rounded-full bg-accent/10 text-accent">
+                    <Icon />
+                  </span>
+                  <h3 class="mt-8 text-xl font-bold uppercase tracking-[0.08em] text-gray-950">
+                    {service.title}
+                  </h3>
+                  <p class="mt-5 text-base leading-7 text-gray-700">
+                    {service.description}
+                  </p>
+                </article>
+              </a>
+            ) : (
+              <article class="flex h-full flex-col items-center rounded-[1.5rem] bg-white p-8 text-center shadow-md transition hover:-translate-y-1 hover:shadow-lg">
+                <span class="flex h-20 w-20 items-center justify-center rounded-full bg-accent/10 text-accent">
+                  <Icon />
+                </span>
+                <h3 class="mt-8 text-xl font-bold uppercase tracking-[0.08em] text-gray-950">
+                  {service.title}
+                </h3>
+                <p class="mt-5 text-base leading-7 text-gray-700">
+                  {service.description}
+                </p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </LandingAccordionSection>
+)}

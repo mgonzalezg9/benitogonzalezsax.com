@@ -11,17 +11,18 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const t = useTranslations(getLangFromUrl(Astro.url));
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const introDemoVideo = {
-  title: 'Vídeo demostración para Bodas',
+  title: t.landing.about.demoVideoTitle,
   url: 'https://www.youtube.com/shorts/-it5RoaROgU',
 };
 
 const introDemoEmbedUrl = getYouTubeEmbedUrl(introDemoVideo.url);
 ---
 
-<section id="propuesta" class="bg-white py-20">
+<section id={t.nav.about.anchor} class="bg-white py-20">
   <div class="container mx-auto px-4 md:hidden">
     <div class="overflow-hidden rounded-[2rem] bg-primary/5 shadow-lg">
       {introDemoEmbedUrl ? (
@@ -36,7 +37,7 @@ const introDemoEmbedUrl = getYouTubeEmbedUrl(introDemoVideo.url);
       ) : (
         <Image
           src={AboutImage}
-          alt="Benito González saxofonista para bodas"
+          alt={t.landing.about.imageAlt}
           class="w-full object-cover"
           loading="lazy"
         />
@@ -59,7 +60,7 @@ const introDemoEmbedUrl = getYouTubeEmbedUrl(introDemoVideo.url);
         ) : (
           <Image
             src={AboutImage}
-            alt="Benito González saxofonista para bodas"
+            alt={t.landing.about.imageAlt}
             class="w-full object-cover"
             loading="lazy"
           />

@@ -35,6 +35,7 @@ export const es = {
       anchor: 'contacto',
       ariaDescription: 'Ir a la sección de contacto',
     },
+    mobileMenuToggleAriaLabel: 'Abrir o cerrar menú móvil',
   },
   hero: {
     title: 'Saxofonista para bodas y eventos',
@@ -179,6 +180,10 @@ export const es = {
     about: {
       imageAlt: 'Benito González saxofonista para bodas',
       eyebrow: 'Tu saxofonista para bodas',
+      demoVideoTitle: 'Vídeo demostración para Bodas',
+    },
+    eventServices: {
+      eyebrow: 'Servicios',
     },
     services: {
       eyebrow: 'Servicios para bodas',
@@ -189,6 +194,8 @@ export const es = {
     },
     videos: {
       eyebrow: 'Vídeos',
+      anchor: 'videos',
+      ariaLabel: 'Ir a la sección de vídeos',
       watchLabel: 'Ver vídeo',
     },
     repertoire: {
@@ -210,6 +217,7 @@ export const es = {
       eyebrow: 'Reserva y disponibilidad',
       phoneLabel: 'Teléfono',
       emailLabel: 'Email',
+      whatsappServiceLabel: 'WhatsApp',
       whatsappLabel: 'Pincha para escribir ahora por whatsapp',
       form: {
         nameLabel: 'Nombre',
@@ -231,9 +239,12 @@ export const es = {
     },
     cities: {
       eyebrow: 'Cobertura',
+      generalPageLabel: 'Página general',
+      generalPageDescription: 'Saxofonista para bodas en España',
     },
     floatingCta: {
       budgetLabel: 'Solicita presupuesto',
+      budgetAriaLabel: 'Ir a la sección de contacto para pedir presupuesto',
       videosLabel: 'Ver vídeos',
     },
   },

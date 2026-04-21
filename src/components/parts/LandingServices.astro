@@ -10,9 +10,10 @@ interface Props {
 
 const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
+const sectionId = page.eventServices?.length ? 'wedding-services' : t.nav.services.anchor;
 ---
 
-<LandingAccordionSection id="servicios" eyebrow={t.landing.services.eyebrow}>
+<LandingAccordionSection id={sectionId} eyebrow={t.landing.services.eyebrow}>
   <section class="pb-20 pt-2">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">

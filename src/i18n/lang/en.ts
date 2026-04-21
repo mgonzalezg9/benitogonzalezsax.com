@@ -21,9 +21,9 @@ export const en = {
       ariaDescription: 'Go to services section',
     },
     cities: {
-      label: 'Gallery',
-      anchor: 'gallery',
-      ariaDescription: 'Go to gallery section',
+      label: 'Cities',
+      anchor: 'cities',
+      ariaDescription: 'Go to cities section',
     },
     testimonials: {
       label: 'Testimonials',
@@ -35,6 +35,7 @@ export const en = {
       anchor: 'contact',
       ariaDescription: 'Go to contact section',
     },
+    mobileMenuToggleAriaLabel: 'Toggle mobile menu',
   },
   hero: {
     title: 'Saxophone player for weddings and events',
@@ -158,6 +159,103 @@ export const en = {
   footer: {
     copyright: 'All rights reserved',
     privacyPolicy: 'Privacy policy',
+  },
+  landing: {
+    hero: {
+      trustTitle: 'Why choose my services?',
+      stats: {
+        eventsValue: '+200',
+        eventsLine1: 'Events',
+        eventsLine2: 'performed',
+        experienceValue: '+10',
+        experienceLine1: 'Years of',
+        experienceLine2: 'experience',
+        satisfactionValue: '100%',
+        satisfactionLine1: 'Satisfied',
+        satisfactionLine2: 'clients',
+      },
+    },
+    about: {
+      imageAlt: 'Benito Gonzalez wedding saxophonist',
+      eyebrow: 'Your wedding and events saxophonist',
+      demoVideoTitle: 'Wedding demo video',
+    },
+    eventServices: {
+      eyebrow: 'Services',
+    },
+    services: {
+      eyebrow: 'Wedding services',
+      extrasIntro:
+        'Ceremony, cocktail hour, banquet and open bar, all designed so music transforms the atmosphere of the wedding from the emotion of the ceremony to the energy of the party.',
+    },
+    answerBlock: {
+      eyebrow: 'Key details',
+    },
+    videos: {
+      eyebrow: 'Videos',
+      anchor: 'videos',
+      ariaLabel: 'Go to videos section',
+      watchLabel: 'Watch video',
+    },
+    repertoire: {
+      eyebrow: 'Repertoire',
+      downloadNote:
+        'If you want to see the full song selection, you can download the repertoire PDF.',
+      previewAlt: 'Repertoire preview',
+    },
+    packs: {
+      eyebrow: 'Packages',
+      recommendedLabel: 'Recommended package',
+      flexibleLabel: 'Flexible package',
+      morePersonalisationLabel: 'More personalisation',
+      moreDirectLabel: 'More direct',
+    },
+    testimonials: {
+      eyebrow: 'Real reviews',
+    },
+    contact: {
+      eyebrow: 'Booking and availability',
+      phoneLabel: 'Phone',
+      emailLabel: 'Email',
+      whatsappServiceLabel: 'WhatsApp',
+      whatsappLabel: 'Tap to write now on WhatsApp',
+      form: {
+        nameLabel: 'Name',
+        emailLabel: 'Email',
+        phoneLabel: 'Phone',
+        weddingDateLabel: 'Wedding date',
+        cityOrVenueLabel: 'City or venue',
+        serviceTypeLabel: 'Service type',
+        serviceOptions: [
+          'Ceremony',
+          'Cocktail hour',
+          'Banquet',
+          'Open bar',
+          'Sax + DJ',
+          'Several moments',
+        ],
+        messageLabel: 'Message',
+        messagePlaceholder:
+          'Tell me the type of wedding, approximate schedule, venue and any important details.',
+        submitEmailLabel: 'Send by email',
+        submitWhatsAppLabel: 'Send by WhatsApp',
+        helpText:
+          'The form prepares your request for email or WhatsApp with the key wedding details, so you can request a quote without missing important information.',
+      },
+    },
+    faq: {
+      eyebrow: 'FAQ',
+    },
+    cities: {
+      eyebrow: 'Coverage',
+      generalPageLabel: 'General page',
+      generalPageDescription: 'Wedding saxophonist in Spain',
+    },
+    floatingCta: {
+      budgetLabel: 'Request quote',
+      budgetAriaLabel: 'Go to the contact section to request a quote',
+      videosLabel: 'Watch videos',
+    },
   },
 } as const;
 

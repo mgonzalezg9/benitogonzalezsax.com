@@ -11,9 +11,18 @@ interface Props {
 
 const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
+const contactFieldLabels = {
+  name: t.landing.contact.form.nameLabel,
+  email: t.landing.contact.form.emailLabel,
+  phone: t.landing.contact.form.phoneLabel,
+  date: t.landing.contact.form.weddingDateLabel,
+  cityOrVenue: t.landing.contact.form.cityOrVenueLabel,
+  serviceType: t.landing.contact.form.serviceTypeLabel,
+  message: t.landing.contact.form.messageLabel,
+};
 ---
 
-<LandingAccordionSection id="contacto" eyebrow={t.landing.contact.eyebrow} open>
+<LandingAccordionSection id={t.nav.contact.anchor} eyebrow={t.landing.contact.eyebrow} open>
   <section class="pb-20 pt-2">
     <div class="container mx-auto px-4">
       <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
@@ -39,7 +48,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
               target="_blank"
               rel="noreferrer"
             >
-              <span class="block text-sm uppercase tracking-[0.18em] text-accent">WhatsApp</span>
+              <span class="block text-sm uppercase tracking-[0.18em] text-accent">{t.landing.contact.whatsappServiceLabel}</span>
               <span class="mt-2 block text-lg">{t.landing.contact.whatsappLabel}</span>
             </a>
           </div>
@@ -51,6 +60,7 @@ const t = useTranslations(getLangFromUrl(Astro.url));
             data-mail-to={BUSINESS.emailHref}
             data-mail-subject={page.formSubject}
             data-whatsapp-base={BUSINESS.whatsappHref}
+            data-field-labels={JSON.stringify(contactFieldLabels)}
             class="space-y-5"
           >
             <div class="grid gap-5 md:grid-cols-2">
@@ -135,18 +145,19 @@ const t = useTranslations(getLangFromUrl(Astro.url));
 
     const buildMessage = () => {
       const data = new FormData(form);
+      const labels = JSON.parse(form.dataset.fieldLabels || '{}');
       const fields = [
-        ['Nombre', data.get('nombre') || ''],
-        ['Email', data.get('email') || ''],
-        ['Teléfono', data.get('telefono') || ''],
-        ['Fecha', data.get('fecha') || ''],
-        ['Ciudad o lugar', data.get('ciudad') || ''],
-        ['Servicio', data.get('servicio') || ''],
-        ['Mensaje', data.get('mensaje') || ''],
+        [labels.name, data.get('nombre') || ''],
+        [labels.email, data.get('email') || ''],
+        [labels.phone, data.get('telefono') || ''],
+        [labels.date, data.get('fecha') || ''],
+        [labels.cityOrVenue, data.get('ciudad') || ''],
+        [labels.serviceType, data.get('servicio') || ''],
+        [labels.message, data.get('mensaje') || ''],
       ];
 
       return fields
-        .filter(([, value]) => String(value).trim().length > 0)
+        .filter(([label, value]) => String(label).trim().length > 0 && String(value).trim().length > 0)
         .map(([label, value]) => `${label}: ${value}`)
         .join('\n');
     };
@@ -157,8 +168,13 @@ const t = useTranslations(getLangFromUrl(Astro.url));
         return;
       }
 
-      const mailTo = form.dataset.mailTo || 'mailto:info@benitogonzalezsax.com';
-      const subject = form.dataset.mailSubject || 'Solicitud de presupuesto';
+      const mailTo = form.dataset.mailTo;
+      const subject = form.dataset.mailSubject;
+
+      if (!mailTo || !subject) {
+        return;
+      }
+
       const body = buildMessage();
       window.location.href = `${mailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
@@ -169,7 +185,12 @@ const t = useTranslations(getLangFromUrl(Astro.url));
         return;
       }
 
-      const base = form.dataset.whatsappBase || 'https://wa.me/34615977190';
+      const base = form.dataset.whatsappBase;
+
+      if (!base) {
+        return;
+      }
+
       const body = buildMessage();
       window.open(`${base}?text=${encodeURIComponent(body)}`, '_blank', 'noopener,noreferrer');
     });

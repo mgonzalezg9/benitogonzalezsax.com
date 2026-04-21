@@ -1,5 +1,6 @@
 ---
 import type { LandingPageData } from '../../data/landingPages';
+import { getRouteForLanguage } from '../../i18n/routes';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import { stripSegmentAAccents } from '../../lib/typography';
 import LandingAccordionSection from './LandingAccordionSection.astro';
@@ -9,10 +10,14 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const t = useTranslations(getLangFromUrl(Astro.url));
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const generalPageHref = getRouteForLanguage('/', lang);
+const generalPageLabel = t.landing.cities.generalPageLabel;
+const generalPageDescription = t.landing.cities.generalPageDescription;
 ---
 
-<LandingAccordionSection id="ciudades" eyebrow={t.landing.cities.eyebrow} bottomBorder>
+<LandingAccordionSection id={t.nav.cities.anchor} eyebrow={t.landing.cities.eyebrow} bottomBorder>
   <section class="bg-white pb-20 pt-2">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl">
@@ -39,13 +44,13 @@ const t = useTranslations(getLangFromUrl(Astro.url));
       {page.type === 'city' && (
         <div class="mt-10">
           <a
-            href="/"
+            href={generalPageHref}
             class="block rounded-[1.5rem] border border-gray-200 bg-gray-50 p-6 transition hover:-translate-y-1 hover:border-accent"
           >
             <p class="font-segmentA text-[2.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.5rem]">
-              {stripSegmentAAccents('Página general')}
+              {stripSegmentAAccents(generalPageLabel)}
             </p>
-            <p class="mt-2 text-sm text-gray-600">Saxofonista para bodas en España</p>
+            <p class="mt-2 text-sm text-gray-600">{generalPageDescription}</p>
           </a>
         </div>
       )}

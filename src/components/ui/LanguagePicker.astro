@@ -21,6 +21,7 @@ type LanguageOption = {
 };
 
 const currentLang = getLangFromUrl(Astro.url);
+const currentPathname = Astro.url.pathname;
 
 const flags: Record<string, Flag> = {
   en: {
@@ -34,7 +35,7 @@ const flags: Record<string, Flag> = {
 };
 
 const languageOptions: LanguageOption[] = Object.entries(translations).map(([lang]) => {
-  const href = getRouteForLanguage("/", lang as Language);
+  const href = getRouteForLanguage(currentPathname, lang as Language);
   return {
     lang,
     href,
