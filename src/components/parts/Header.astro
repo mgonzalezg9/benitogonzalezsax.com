@@ -2,6 +2,7 @@
 import Logo from '../../assets/logo.svg';
 import { getRouteForLanguage } from '../../i18n/routes';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
 import LanguagePicker from '../ui/LanguagePicker.astro';
 
 const lang = getLangFromUrl(Astro.url);
@@ -45,7 +46,7 @@ const budgetCtaAriaLabel = t.landing.floatingCta.budgetAriaLabel;
             <>
               <li>
                 <a href={`${navBase}#${section.id}`} class="font-segmentA tracking-wide text-4xl uppercase text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
-                  {section.label}
+                  {stripSegmentAAccents(section.label)}
                 </a>
               </li>
               {index === 0 && (
@@ -82,7 +83,7 @@ const budgetCtaAriaLabel = t.landing.floatingCta.budgetAriaLabel;
           <>
             <li>
               <a href={`${navBase}#${section.id}`} class="font-segmentA tracking-wide text-2xl uppercase block text-white hover:text-accent transition-colors" aria-label={section.ariaLabel}>
-                {section.label}
+                {stripSegmentAAccents(section.label)}
               </a>
             </li>
           </>

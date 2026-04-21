@@ -47,3 +47,12 @@ Landing section IDs must come from the active language nav config in:
 - `src/i18n/lang/en.ts`
 
 Do not hardcode Spanish anchors in shared components. The accordion-opening hash logic depends on links, section IDs, and translated anchor values matching exactly.
+
+## Segment A typography
+
+Segment A does not render accented characters correctly.
+
+Any visible text rendered with `font-segmentA` must pass through:
+- `stripSegmentAAccents` from `src/lib/typography.ts`
+
+Keep accents in source content, metadata, ARIA labels, schema, and normal typography. Strip accents only at the Segment A render point.
