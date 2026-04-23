@@ -598,6 +598,33 @@ const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
           answer: serviceIncludesAnswer,
         },
       ];
+    case 'saxofonista-para-bodas-en-almeria':
+      return [
+        {
+          question: '¿Encaja el saxo en bodas en terrazas, hoteles o espacios abiertos de Almería?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Almería y alrededores?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel, banquete y barra libre en Almería?',
+          answer: `${location.musicAngle} Por eso en Almería muchas parejas combinan un bloque más elegante para ceremonia o cóctel con una parte más animada para banquete, barra libre o Saxo + DJ.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Almería?',
+          answer: timingAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
     case 'saxofonista-para-bodas-en-murcia':
       return [
         {
