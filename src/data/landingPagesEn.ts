@@ -42,6 +42,20 @@ const englishCityProfiles: Record<string, EnglishCityProfile> = {
     booking:
       'For Alicante weddings, it helps to know the venue, schedule, outdoor setup and whether you want saxophone for one moment or several parts of the day.',
   },
+  'saxofonista-para-bodas-en-almeria': {
+    intro:
+      'Almeria is a Mediterranean wedding location shaped by bright light, dry climate, terraces, hotels and open-air venues near the sea or across the province.',
+    logistics:
+      'The service adapts to outdoor ceremonies, hotel weddings, coastal terraces and estates where timing, sound setup and guest flow are especially important.',
+    music:
+      'Live saxophone can begin with an elegant ceremony or cocktail atmosphere and then grow into a more interactive banquet, open-bar or Sax + DJ moment.',
+    venueStyle: 'hotels, terraces, estates, coastal spaces and Mediterranean weddings in Almeria',
+    nearbyContext: 'Roquetas de Mar, El Ejido, Aguadulce and nearby areas of the province',
+    fit:
+      'In Almeria, saxophone works especially well for Mediterranean weddings that move through outdoor spaces and need a balance of elegance, atmosphere and party energy.',
+    booking:
+      'For Almeria weddings, it helps to share the date, venue, whether the performance is indoors or outdoors, and which moments you want to highlight with live saxophone.',
+  },
   'saxofonista-para-bodas-en-barcelona': {
     intro:
       'Barcelona combines urban weddings, destination celebrations, boutique hotels and masias where design, production and guest experience are usually very important.',

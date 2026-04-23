@@ -152,8 +152,8 @@ const seeds: Seed[] = [
     'Llevo un formato pensado para bodas en Almería donde el clima, las terrazas y los espacios abiertos piden una música elegante y adaptable al ambiente.',
     'cobertura en la provincia de Almería y repertorio para bodas costeras',
     'Boda en Andalucía',
-    3,
-    ['saxofonista-para-bodas-en-granada', 'saxofonista-para-bodas-en-murcia'],
+    1,
+    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-murcia'],
   ],
   [
     'Ávila',
@@ -832,11 +832,11 @@ const locationOverrides: Record<string, Partial<LocationEntry>> = {
   },
   'saxofonista-para-bodas-en-almeria': {
     serviceContext:
-        'Almería es una provincia donde muchas bodas se celebran en terrazas, hoteles y espacios abiertos donde el clima, el paisaje y la amplitud del lugar condicionan mucho el ritmo del evento. En estas celebraciones suele funcionar muy bien una música elegante al principio y una fiesta más libre después.',
+      'Almería es una ciudad mediterránea con bodas muy marcadas por la luz, el clima seco, las terrazas, los hoteles y los espacios abiertos cerca del mar o en fincas de la provincia. En este tipo de celebraciones suele funcionar muy bien una propuesta musical que acompañe con elegancia al inicio y gane energía cuando llega el banquete o la barra libre.',
     logisticsAngle:
-      'En Almería suelen ser importantes los montajes en espacios abiertos, hoteles, terrazas y bodas costeras donde el horario y el sonido tienen mucho peso.',
+      'En Almería suelen ser importantes los montajes en exterior, la coordinación con hoteles, terrazas, fincas y espacios costeros, y un sonido bien planteado para que el directo encaje con el ritmo real del evento.',
     musicAngle:
-      'En Almería suele funcionar muy bien un servicio que arranca elegante en ceremonia o cóctel y termina con mucha interacción en banquete o barra libre.',
+      'En Almería suele funcionar muy bien un servicio que arranca elegante en ceremonia o cóctel y termina con más interacción en banquete, entrada a barra libre o formato Saxo + DJ.',
     bookingAngle:
       'Para bodas en Almería, lo más práctico es definir fecha, espacio, si hay exterior o interior y qué momentos queréis reforzar con el saxo.',
     venueStyle: 'hoteles, terrazas, fincas y espacios de boda de la provincia de Almería',
@@ -845,6 +845,18 @@ const locationOverrides: Record<string, Partial<LocationEntry>> = {
       'Cobertura habitual en Almería, Roquetas de Mar, El Ejido y Aguadulce.',
       'Muy buena adaptación a bodas costeras y celebraciones donde el directo debe acompañar sin frenar el ritmo del evento.',
     ],
+    faqVariants: {
+      price:
+        'En Almería el presupuesto depende de la fecha, el espacio, el desplazamiento, el montaje en interior o exterior y si queréis saxo en uno o varios momentos de la boda.',
+      fit:
+        'Sí. En Almería el saxo encaja muy bien en bodas mediterráneas, terrazas, hoteles, fincas y espacios abiertos donde se busca una mezcla de elegancia, ambiente y fiesta.',
+      travel:
+        'Sí. Trabajo bodas en Almería y zonas cercanas como Roquetas de Mar, El Ejido y Aguadulce, coordinando horarios, montaje y necesidades de sonido con cada espacio.',
+      timing:
+        'En Almería conviene consultar disponibilidad con tiempo, especialmente en primavera, verano y fechas con mucha demanda de bodas en espacios exteriores o costeros.',
+      personalization:
+        'Sí. El repertorio y la intensidad del directo se adaptan al estilo de la boda, al espacio y a si queréis más protagonismo en ceremonia, cóctel, banquete o barra libre.',
+    },
   },
   'saxofonista-para-bodas-en-barcelona': {
     serviceContext:
@@ -1066,6 +1078,7 @@ export const getLaunchedLocations = () => launchedLocations;
 
 export const getEnglishLocationName = (location: LocationEntry) => {
   const englishNames: Record<string, string> = {
+    Almería: 'Almeria',
     Málaga: 'Malaga',
     Palma: 'Mallorca',
     Sevilla: 'Seville',
