@@ -33,4 +33,4 @@ The site is hosted on **Firebase Hosting** (region: `europe-west1`) and deployed
 - **Push to `main`** → builds the site and deploys to the live production channel at [benitogonzalezsax.com](https://benitogonzalezsax.com).
 - **Open a pull request** → builds the site and deploys to a temporary Firebase **preview channel**, posting the preview URL as a comment on the PR.
 
-The workflows require a `FIREBASE_SERVICE_ACCOUNT_BENITOGONZALEZSAX` secret configured in the repository settings. No manual `firebase deploy` is needed — CI handles everything.
+The workflows require a `FIREBASE_SERVICE_ACCOUNT_BENITOGONZALEZSAX` secret configured in the repository settings. No manual `firebase deploy` is needed — CI handles everything
