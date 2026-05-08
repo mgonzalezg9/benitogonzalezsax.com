@@ -1,6 +1,10 @@
 import { BUSINESS, absoluteUrl, buildWhatsAppHref } from '../lib/site';
 import type { LocationEntry } from './locations';
 import { getLaunchedLocations } from './locations';
+import {
+  getRecommendedSuppliersForLocation,
+  type RecommendedSupplier,
+} from './recommendedSuppliers';
 
 export interface LandingLink {
   href: string;
@@ -108,6 +112,9 @@ export interface LandingPageData {
   contactHighlight: string;
   formSubject: string;
   whatsappHref: string;
+  recommendedSuppliers?: RecommendedSupplier[];
+  recommendedSuppliersTitle?: string;
+  recommendedSuppliersIntro?: string;
   breadcrumb?: { label: string; href: string }[];
 }
 
@@ -944,81 +951,90 @@ export const buildHomePageData = (): LandingPageData => ({
   ),
 });
 
-export const buildCityPageData = (location: LocationEntry): LandingPageData => ({
-  type: 'city',
-  title: `Saxofonista para bodas en ${location.city} | Benito González Sax`,
-  description: `Saxofonista para bodas en ${location.city}. Música en directo para ceremonia, cóctel, banquete y barra libre con presupuesto personalizado y cobertura en ${location.province}.`,
-  canonicalPath: `/${location.slug}`,
-  heroTitle: `Saxofonista para bodas en ${location.city}`,
-  heroLabel:
-    location.city === location.province
-      ? `${location.city}, Provincia de ${location.province}`
-      : `${location.city}, ${location.province}`,
-  trustTitle: `¿Por qué contar con mis servicios en ${location.city}?`,
-  heroSummary: `Saxofonista para bodas en ${location.city}.`,
-  heroBody: `Benito González ayuda a parejas de ${location.city} a montar una boda inolvidable con saxo en directo.`,
-  primaryCtaLabel: 'Consultar disponibilidad',
-  primaryCtaHref: '#contacto',
-  secondaryCtaLabel: 'Ver vídeos',
-  secondaryCtaHref: '#videos',
-  introTitle: `Saxofonista en directo para bodas en ${location.city}`,
-  introParagraphs: buildDifferentiatedIntroParagraphs(location),
-  trustPoints: buildCityTrustPoints(location),
-  serviceTitle: `Que servicios cubre un saxofonista para bodas en ${location.city}`,
-  serviceDescription: `Cada boda es distinta, por eso el servicio se adapta al estilo del evento, al espacio y a los momentos que queréis destacar en ${location.city} y alrededores.`,
-  moments: sharedMoments,
-  extrasTitle: `Claves del servicio en ${location.city}`,
-  extrasIntro: buildCityExtrasIntro(location),
-  extras: [
-    ...sharedExtras,
-    `Cobertura local y zonas cercanas: ${location.nearbyAreas.join(', ')}.`,
-  ],
-  answerBlockTitle: `Por que elegir saxofonista para bodas en ${location.city}`,
-  answerBlockIntro: `Qué ofrece Benito González Sax en ${location.city}, cómo transforma tu boda o evento, cómo trabaja y cómo reservar.`,
-  answerCards: buildCityAnswerCards(location),
-  serviceTypes: sharedServiceTypes,
-  packsTitle: `Packs para boda en ${location.city}`,
-  packsIntro: `Dos packs para que podáis elegir en ${location.city} entre una propuesta más cerrada basada en repertorio y otra más personalizada, pensada para entradas, sorpresas y canciones concretas.`,
-  packs: sharedWeddingPacks,
-  packPreviewImages,
-  repertoireTitle: `Repertorio para bodas en ${location.city}`,
-  repertoireIntro:
-    'Una selección de canciones para que puedas ver el tipo de repertorio disponible en ceremonia, cóctel, momentos elegantes y fiesta. Siempre se adapta al estilo real de la boda.',
-  repertoireCategories: sharedRepertoireCategories,
-  repertoireDownloadLabel: 'Descargar repertorio en PDF',
-  repertoireDownloadHref: '/downloads/repertorio-benito-gonzalez-sax.pdf',
-  repertoirePreviewImages,
-  videosTitle: `Vídeos de saxo para bodas en ${location.city}`,
-  videosIntro:
-    'Una selección de vídeos reales para que puedas ver cómo suena y cómo se vive el directo antes de pedir presupuesto.',
-  videos: sharedVideos,
-  citiesTitle: `Otras ciudades relacionadas con el servicio desde ${location.city}`,
-  citiesIntro:
-    buildNearbyLinks(location).length > 0
-      ? 'Si también estáis valorando otras localizaciones, aquí tenéis ciudades cercanas o relacionadas que ya cuentan con información específica.'
-      : 'Si todavía no tenéis cerrada la ciudad, también podéis volver a la página principal para ver la propuesta general.',
-  cityLinks: buildNearbyLinks(location),
-  cityCoverageBullets: [],
-  testimonialsTitle: `Opiniones y Testimonios para bodas en ${location.city}`,
-  testimonialsDescription: `Opiniones reales de clientes y parejas que ayudan a entender cómo se vive el servicio en una boda.`,
-  testimonials: sharedTestimonials.map((testimonial) => ({
-    ...testimonial,
-    role: testimonial.role === 'Boda' ? location.testimonialTag : testimonial.role,
-  })),
-  faqTitle: `FAQ sobre contratar saxofonista para bodas en ${location.city}`,
-  faqs: buildDifferentiatedCityFaqs(location),
-  contactTitle: `Pide presupuesto para tu boda en ${location.city}`,
-  contactDescription: `Comparte fecha, lugar, ciudad y el momento de la boda en el que quieres el saxo. Así podré darte una propuesta para ${location.city} y alrededores.`,
-  contactHighlight: `Si ya tenéis fecha y lugar, WhatsApp suele ser la vía más rápida para revisar disponibilidad en ${location.city}.`,
-  formSubject: `Solicitud de presupuesto - Boda en ${location.city}`,
-  whatsappHref: buildWhatsAppHref(
-    `Hola Benito, quiero pedir presupuesto para una boda en ${location.city}.`,
-  ),
-  breadcrumb: [
-    { label: 'Saxofonista para bodas', href: '/' },
-    {
-      label: `Saxofonista para bodas en ${location.city}`,
-      href: `/${location.slug}`,
-    },
-  ],
-});
+export const buildCityPageData = (location: LocationEntry): LandingPageData => {
+  const recommendedSuppliers = getRecommendedSuppliersForLocation(location);
+
+  return {
+    type: 'city',
+    title: `Saxofonista para bodas en ${location.city} | Benito González Sax`,
+    description: `Saxofonista para bodas en ${location.city}. Música en directo para ceremonia, cóctel, banquete y barra libre con presupuesto personalizado y cobertura en ${location.province}.`,
+    canonicalPath: `/${location.slug}`,
+    heroTitle: `Saxofonista para bodas en ${location.city}`,
+    heroLabel:
+      location.city === location.province
+        ? `${location.city}, Provincia de ${location.province}`
+        : `${location.city}, ${location.province}`,
+    trustTitle: `¿Por qué contar con mis servicios en ${location.city}?`,
+    heroSummary: `Saxofonista para bodas en ${location.city}.`,
+    heroBody: `Benito González ayuda a parejas de ${location.city} a montar una boda inolvidable con saxo en directo.`,
+    primaryCtaLabel: 'Consultar disponibilidad',
+    primaryCtaHref: '#contacto',
+    secondaryCtaLabel: 'Ver vídeos',
+    secondaryCtaHref: '#videos',
+    introTitle: `Saxofonista en directo para bodas en ${location.city}`,
+    introParagraphs: buildDifferentiatedIntroParagraphs(location),
+    trustPoints: buildCityTrustPoints(location),
+    serviceTitle: `Que servicios cubre un saxofonista para bodas en ${location.city}`,
+    serviceDescription: `Cada boda es distinta, por eso el servicio se adapta al estilo del evento, al espacio y a los momentos que queréis destacar en ${location.city} y alrededores.`,
+    moments: sharedMoments,
+    extrasTitle: `Claves del servicio en ${location.city}`,
+    extrasIntro: buildCityExtrasIntro(location),
+    extras: [
+      ...sharedExtras,
+      `Cobertura local y zonas cercanas: ${location.nearbyAreas.join(', ')}.`,
+    ],
+    answerBlockTitle: `Por que elegir saxofonista para bodas en ${location.city}`,
+    answerBlockIntro: `Qué ofrece Benito González Sax en ${location.city}, cómo transforma tu boda o evento, cómo trabaja y cómo reservar.`,
+    answerCards: buildCityAnswerCards(location),
+    serviceTypes: sharedServiceTypes,
+    packsTitle: `Packs para boda en ${location.city}`,
+    packsIntro: `Dos packs para que podáis elegir en ${location.city} entre una propuesta más cerrada basada en repertorio y otra más personalizada, pensada para entradas, sorpresas y canciones concretas.`,
+    packs: sharedWeddingPacks,
+    packPreviewImages,
+    repertoireTitle: `Repertorio para bodas en ${location.city}`,
+    repertoireIntro:
+      'Una selección de canciones para que puedas ver el tipo de repertorio disponible en ceremonia, cóctel, momentos elegantes y fiesta. Siempre se adapta al estilo real de la boda.',
+    repertoireCategories: sharedRepertoireCategories,
+    repertoireDownloadLabel: 'Descargar repertorio en PDF',
+    repertoireDownloadHref: '/downloads/repertorio-benito-gonzalez-sax.pdf',
+    repertoirePreviewImages,
+    videosTitle: `Vídeos de saxo para bodas en ${location.city}`,
+    videosIntro:
+      'Una selección de vídeos reales para que puedas ver cómo suena y cómo se vive el directo antes de pedir presupuesto.',
+    videos: sharedVideos,
+    citiesTitle: `Otras ciudades relacionadas con el servicio desde ${location.city}`,
+    citiesIntro:
+      buildNearbyLinks(location).length > 0
+        ? 'Si también estáis valorando otras localizaciones, aquí tenéis ciudades cercanas o relacionadas que ya cuentan con información específica.'
+        : 'Si todavía no tenéis cerrada la ciudad, también podéis volver a la página principal para ver la propuesta general.',
+    cityLinks: buildNearbyLinks(location),
+    cityCoverageBullets: [],
+    testimonialsTitle: `Opiniones y Testimonios para bodas en ${location.city}`,
+    testimonialsDescription: `Opiniones reales de clientes y parejas que ayudan a entender cómo se vive el servicio en una boda.`,
+    testimonials: sharedTestimonials.map((testimonial) => ({
+      ...testimonial,
+      role: testimonial.role === 'Boda' ? location.testimonialTag : testimonial.role,
+    })),
+    faqTitle: `FAQ sobre contratar saxofonista para bodas en ${location.city}`,
+    faqs: buildDifferentiatedCityFaqs(location),
+    contactTitle: `Pide presupuesto para tu boda en ${location.city}`,
+    contactDescription: `Comparte fecha, lugar, ciudad y el momento de la boda en el que quieres el saxo. Así podré darte una propuesta para ${location.city} y alrededores.`,
+    contactHighlight: `Si ya tenéis fecha y lugar, WhatsApp suele ser la vía más rápida para revisar disponibilidad en ${location.city}.`,
+    formSubject: `Solicitud de presupuesto - Boda en ${location.city}`,
+    whatsappHref: buildWhatsAppHref(
+      `Hola Benito, quiero pedir presupuesto para una boda en ${location.city}.`,
+    ),
+    ...(recommendedSuppliers && {
+      recommendedSuppliers,
+      recommendedSuppliersTitle: `Proveedores recomendados en ${location.city}`,
+      recommendedSuppliersIntro: `Una selección breve de profesionales que pueden ayudaros a organizar otros aspectos de vuestra boda en ${location.city} y alrededores.`,
+    }),
+    breadcrumb: [
+      { label: 'Saxofonista para bodas', href: '/' },
+      {
+        label: `Saxofonista para bodas en ${location.city}`,
+        href: `/${location.slug}`,
+      },
+    ],
+  };
+};

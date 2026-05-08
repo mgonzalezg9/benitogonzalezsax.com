@@ -246,6 +246,10 @@ export const en = {
     faq: {
       eyebrow: 'FAQ',
     },
+    recommendedSuppliers: {
+      eyebrow: 'Recommended suppliers',
+      linkLabel: 'View supplier',
+    },
     cities: {
       eyebrow: 'Coverage',
       generalPageLabel: 'General page',

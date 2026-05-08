@@ -1,0 +1,31 @@
+section,field,canonical_value,notes,status
+identity,public_brand_name,"Benito González Sax","Default public-facing brand name when the platform supports accents",confirmed
+identity,fallback_brand_name,"Benito Gonzalez Sax","Use only when a platform breaks accented characters or has technical limitations",conditional
+identity,legal_name,"Benito González García","Use only for legal or billing fields",confirmed
+contact,website,"https://benitogonzalezsax.com/","Primary canonical website URL",confirmed
+contact,email,"info@benitogonzalezsax.com","Default public contact email",confirmed
+contact,visible_phone,"+34 615 97 71 90","Use in visible profile text",confirmed
+contact,structured_phone,"+34615977190","Use in call buttons and structured directory fields",confirmed
+contact,whatsapp,"https://wa.me/34615977190","Use where WhatsApp links are allowed",confirmed
+location,base_locality,"Mazarrón","Canonical locality used in site constants and schema",confirmed
+location,province_region,"Murcia","Use with Mazarrón when province or region is requested",confirmed
+location,country_es,"España","Spanish country label",confirmed
+location,country_en,"Spain","English country label",confirmed
+location,coordinates,"37.5989,-1.3147","Use only for maps, schema, or listings that request coordinates",confirmed
+service,primary_market,"Weddings and events in Spain","Broad brand-level service framing",confirmed
+service,service_summary_es,"Saxofonista para bodas y eventos","Safe short category line for Spanish profiles",confirmed
+service,service_summary_en,"Saxophonist for weddings and events","Safe short category line for English profiles",confirmed
+service,service_areas_es,"Murcia, Alicante, Madrid, Valencia, Barcelona, Sevilla, Málaga, Zaragoza, Palma, Valladolid y otras provincias de la Península y Baleares","Long-form Spanish service area line",confirmed
+service,service_areas_en,"Mainland Spain and the Balearic Islands, including Murcia, Alicante, Madrid, Valencia, Barcelona, Seville, Malaga, Mallorca, Valladolid and Zaragoza","Long-form English service area line",confirmed
+service,contact_languages,"Spanish, English","Confirm before standardizing French everywhere",partially_confirmed
+social,instagram,"https://www.instagram.com/benitogonzalezsax/","Controlled social profile",confirmed
+social,youtube,"https://www.youtube.com/@benitogonzalezsax/featured","Controlled social profile",confirmed
+social,facebook,"https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/","Controlled social profile",confirmed
+social,google_business_profile,"Pending owner verification","Add exact public URL and profile category",pending
+social,tiktok,"Pending confirmation","Add only if the account is active and controlled",pending
+citation,leadslend,"https://www.leadslend.com/musica-y-djs/saxofonista-para-bodas-y-eventos","Public directory citation",found
+citation,artistealo,"https://artistealo.com/catalogo/musica-en-vivo/saxofonista/","Public directory citation; exact controlled profile URL still to confirm",found
+citation,espectaculus,"https://espectaculus.es/profesional/benito-gonzalez-sax","Public directory citation",found
+citation,musiqua,"https://www.musiqua.es/band/saxo-show-para-eventos-26210","Public directory citation; review years/events/pricing consistency",found
+citation,encore_musicians,"https://encoremusicians.com/benitogonzalezsax","Public directory citation; useful for English trust",found
+citation,la_factoria_del_show,"https://www.lafactoriadelshow.com/saxofonistas/murcia/","Public directory citation; useful local/category mention",found

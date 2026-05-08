@@ -13,6 +13,7 @@ import LandingContact from '../parts/LandingContact.astro';
 import LandingFaq from '../parts/LandingFaq.astro';
 import LandingCities from '../parts/LandingCities.astro';
 import LandingFloatingCta from '../parts/LandingFloatingCta.astro';
+import LandingRecommendedSuppliers from '../parts/LandingRecommendedSuppliers.astro';
 
 interface Props {
   page: LandingPageData;
@@ -33,6 +34,7 @@ const { page } = Astro.props;
   <LandingTestimonials page={page} />
   <LandingContact page={page} />
   <LandingFaq page={page} />
+  <LandingRecommendedSuppliers page={page} />
   <LandingCities page={page} />
   <LandingFloatingCta />
 </main>
