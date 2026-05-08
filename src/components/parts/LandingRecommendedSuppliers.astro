@@ -1,0 +1,60 @@
+---
+import type { LandingPageData } from '../../data/landingPages';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { stripSegmentAAccents } from '../../lib/typography';
+import LandingAccordionSection from './LandingAccordionSection.astro';
+
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
+const suppliers = page.recommendedSuppliers ?? [];
+const t = useTranslations(getLangFromUrl(Astro.url));
+---
+
+{
+  suppliers.length > 0 && page.recommendedSuppliersTitle && (
+    <LandingAccordionSection eyebrow={t.landing.recommendedSuppliers.eyebrow}>
+      <section class="bg-white pb-20 pt-2">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl">
+            <h2 class="font-segmentA text-[3.2rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[4.4rem]">
+              {stripSegmentAAccents(page.recommendedSuppliersTitle)}
+            </h2>
+            {page.recommendedSuppliersIntro && (
+              <p class="mt-6 text-lg leading-8 text-gray-700">{page.recommendedSuppliersIntro}</p>
+            )}
+          </div>
+
+          <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {suppliers.map((supplier) => (
+              <article class="rounded-[1.5rem] border border-gray-200 bg-gray-50 p-6">
+                <p class="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+                  {supplier.category}
+                </p>
+                <h3 class="mt-4 font-segmentA text-[2.4rem] font-bold uppercase tracking-[0.08em] text-primary md:text-[2.8rem]">
+                  <a href={supplier.url} target="_blank" rel="noopener noreferrer">
+                    {stripSegmentAAccents(supplier.name)}
+                  </a>
+                </h3>
+                <p class="mt-4 text-base leading-7 text-gray-700">{supplier.description}</p>
+                <p class="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-gray-500">
+                  {supplier.serviceArea}
+                </p>
+                <a
+                  href={supplier.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-6 inline-flex rounded-full border border-primary px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-primary transition hover:bg-primary hover:text-white"
+                >
+                  {t.landing.recommendedSuppliers.linkLabel}
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </LandingAccordionSection>
+  )
+}
