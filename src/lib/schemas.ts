@@ -17,20 +17,31 @@ export const buildPageSchemas = (
   const latitude = location?.latitude ?? BUSINESS.latitude;
   const longitude = location?.longitude ?? BUSINESS.longitude;
 
-  const reviewCount = page.testimonials.length;
-  const reviews = page.testimonials.map((testimonial) => ({
-    '@type': 'Review',
-    reviewBody: testimonial.quote,
-    author: {
-      '@type': 'Person',
-      name: testimonial.name,
-    },
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: '5',
-      bestRating: '5',
-    },
-  }));
+  // Reviews/ratings live only on the brand entity (homepage). Repeating the same
+  // testimonials on every city URL is a Google review-spam pattern.
+  const reviewSchema = location
+    ? {}
+    : {
+        review: page.testimonials.map((testimonial) => ({
+          '@type': 'Review',
+          reviewBody: testimonial.quote,
+          author: {
+            '@type': 'Person',
+            name: testimonial.name,
+          },
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: '5',
+            bestRating: '5',
+          },
+        })),
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '5',
+          reviewCount: String(page.testimonials.length),
+          bestRating: '5',
+        },
+      };
 
   const offerCatalog = {
     '@type': 'OfferCatalog',
@@ -105,14 +116,13 @@ export const buildPageSchemas = (
         longitude,
       },
       hasOfferCatalog: offerCatalog,
-      review: reviews,
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5',
-        reviewCount: String(reviewCount),
-        bestRating: '5',
-      },
-      sameAs: [BUSINESS.facebook, BUSINESS.instagram, BUSINESS.youtube],
+      ...reviewSchema,
+      sameAs: [
+        BUSINESS.googleBusiness,
+        BUSINESS.facebook,
+        BUSINESS.instagram,
+        BUSINESS.youtube,
+      ],
     },
     {
       '@context': 'https://schema.org',
