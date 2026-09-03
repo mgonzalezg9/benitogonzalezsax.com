@@ -2,6 +2,8 @@ import type { LandingPageData } from '../data/landingPages';
 import { getEnglishLocationName, type LocationEntry } from '../data/locations';
 import { BUSINESS, absoluteUrl } from './site';
 
+const REVIEW_SCHEMA_SLUGS = ['saxofonista-para-bodas-en-madrid'];
+
 export const buildPageSchemas = (
   page: LandingPageData,
   canonical: string,
@@ -17,11 +19,13 @@ export const buildPageSchemas = (
   const latitude = location?.latitude ?? BUSINESS.latitude;
   const longitude = location?.longitude ?? BUSINESS.longitude;
 
-  // Reviews/ratings live only on the brand entity (homepage). Repeating the same
-  // testimonials on every city URL is a Google review-spam pattern.
-  const reviewSchema = location
-    ? {}
-    : {
+  // The same nine testimonials on all 11 city pages is a Google review-spam
+  // pattern, so reviews ship only on the brand entity (homepage) plus the city
+  // pages listed here, which already have review snippets live in Search.
+  const showReviews = !location || REVIEW_SCHEMA_SLUGS.includes(location.slug);
+
+  const reviewSchema = showReviews
+    ? {
         review: page.testimonials.map((testimonial) => ({
           '@type': 'Review',
           reviewBody: testimonial.quote,
@@ -41,7 +45,8 @@ export const buildPageSchemas = (
           reviewCount: String(page.testimonials.length),
           bestRating: '5',
         },
-      };
+      }
+    : {};
 
   const offerCatalog = {
     '@type': 'OfferCatalog',
