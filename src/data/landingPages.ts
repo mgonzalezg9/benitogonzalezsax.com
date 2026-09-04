@@ -715,8 +715,8 @@ const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
           answer: personalizationAnswer,
         },
         {
-          question: fitQuestion,
-          answer: fitAnswer,
+          question: priceQuestion,
+          answer: priceAnswer,
         },
       ];
     case 'saxofonista-para-bodas-en-palma':
@@ -769,8 +769,8 @@ const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
           answer: personalizationAnswer,
         },
         {
-          question: fitQuestion,
-          answer: fitAnswer,
+          question: priceQuestion,
+          answer: priceAnswer,
         },
       ];
     case 'saxofonista-para-bodas-en-valencia':
