@@ -39,6 +39,7 @@ export interface RepertoireCategory {
 export interface WeddingPack {
   name: string;
   tagline: string;
+  priceEstimate?: string;
   bullets: string[];
 }
 
@@ -277,6 +278,7 @@ const sharedWeddingPacks: WeddingPack[] = [
   {
     name: 'Premium',
     tagline: 'Una actuación más allá de la carta',
+    priceEstimate: '600 - 1.000 € aprox.',
     bullets: [
       'Elige tus canciones favoritas, estén dentro del repertorio o no.',
       'Personaliza al máximo tu evento, con opción de saxo con leds incluida.',
@@ -287,6 +289,7 @@ const sharedWeddingPacks: WeddingPack[] = [
   {
     name: 'Básico',
     tagline: 'Un menú delicioso de actuación',
+    priceEstimate: '400 - 700 € aprox.',
     bullets: [
       'Elige el estilo que necesites para tu evento, aunque no el repertorio concreto.',
       'Actuación dentro de la carta de repertorio, con saxo con leds y otras personalizaciones disponibles como extra.',
@@ -439,6 +442,9 @@ const repertoirePreviewImages = [
 
 const packPreviewImages = ['/packs/premium.svg', '/packs/basico.svg'];
 
+const buildPriceEstimateSentence = (city?: string) =>
+  `Aproximadamente el pack Premium sería de 600 a 1.000 € y el pack Básico de 400 a 700 €, dependiendo de la fecha y el desplazamiento${city ? ` a ${city}` : ''}.`;
+
 const sharedHomeFaqs: LandingFaq[] = [
   {
     question: '¿Qué incluye el servicio de saxofonista para bodas?',
@@ -448,7 +454,7 @@ const sharedHomeFaqs: LandingFaq[] = [
   {
     question: '¿Cuánto cuesta contratar a un saxofonista para una boda?',
     answer:
-      'El precio depende de la ciudad, el desplazamiento, la duración, los momentos de la boda en los que quieras saxo y si el formato es solo o junto a DJ. La mejor forma de recibir una cifra realista es pedir presupuesto con fecha, lugar y tipo de servicio.',
+      `El precio depende de la ciudad, el desplazamiento, la duración, los momentos de la boda en los que quieras saxo y si el formato es solo o junto a DJ. La mejor forma de recibir una cifra realista es pedir presupuesto con fecha, lugar y tipo de servicio. ${buildPriceEstimateSentence()}`,
   },
   {
     question: '¿Es apropiado tocar el saxofón en una boda?',
@@ -540,7 +546,7 @@ const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
   const priceQuestion = `¿Cuánto cuesta contratar a un saxofonista para una boda en ${location.city}?`;
   const fitQuestion = `¿Es apropiado tocar el saxofón en una boda en ${location.city}?`;
   const serviceIncludesAnswer = `En ${location.city}, el servicio puede incluir ceremonia, cóctel, banquete, barra libre, entrada al banquete y formato Saxo + DJ, según el tipo de celebración, el lugar y el ambiente que queráis crear. La propuesta se adapta bien tanto a bodas en ${location.venueStyle} como a celebraciones donde cada momento del día necesita una energía distinta.`;
-  const priceAnswer = `${location.faqVariants.price} En ${location.city}, el presupuesto también suele depender del estilo de la boda, del tipo de espacio y de cómo se reparta la actuación entre ceremonia, cóctel, banquete o fiesta. Si compartís fecha, lugar y momentos de actuación, se puede preparar una propuesta realista para ${location.city}.`;
+  const priceAnswer = `${location.faqVariants.price} En ${location.city}, el presupuesto también suele depender del estilo de la boda, del tipo de espacio y de cómo se reparta la actuación entre ceremonia, cóctel, banquete o fiesta. ${buildPriceEstimateSentence(location.city)} Si compartís fecha, lugar y momentos de actuación, se puede preparar una propuesta realista para ${location.city}.`;
   const fitAnswer = `${location.faqVariants.fit} En ${location.city}, donde muchas bodas se viven con un ritmo muy marcado por el espacio, el cóctel y la fiesta final, el saxo aporta elegancia al principio y más presencia cuando el ambiente pide subir la energía.`;
   const travelAnswer = location.faqVariants.travel;
   const timingAnswer = location.faqVariants.timing;
