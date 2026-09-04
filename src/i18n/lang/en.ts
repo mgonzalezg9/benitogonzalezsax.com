@@ -180,6 +180,23 @@ export const en = {
       eyebrow: 'Your wedding and events saxophonist',
       demoVideoTitle: 'Wedding demo video',
     },
+    bio: {
+      eyebrow: 'About the musician',
+      title: 'Who plays at your wedding',
+      paragraphs: [
+        'Benito González García is a professional saxophonist with a grado profesional diploma from the Conservatorio de Lorca and more than 10 years of live performance. He is based in Mazarrón (Murcia) and covers weddings and events across mainland Spain and the Balearic Islands.',
+        'Alongside weddings, he has performed at brand events for Martin Miller’s Gin and IQOS. He plays solo over backing tracks, alongside a DJ, or with the LED saxophone, with a repertoire spanning jazz, house, afrohouse, EDM, pop and Latin.',
+      ],
+      venuesLabel: 'Venues he has performed at',
+      venues: [
+        'Hotel Reserva del Higuerón, Málaga',
+        'Meliá Villaitana, Benidorm',
+        'Castell d’Empordà, Girona',
+        'Larache Eventos, Murcia',
+        'La Masía de Chencho, Elche',
+        'Finca la Peraleña, Madrid',
+      ],
+    },
     eventServices: {
       eyebrow: 'Services',
     },

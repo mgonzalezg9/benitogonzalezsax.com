@@ -55,6 +55,16 @@ const t = useTranslations(getLangFromUrl(Astro.url));
                     {index === 0 ? t.landing.packs.morePersonalisationLabel : t.landing.packs.moreDirectLabel}
                   </span>
                 </div>
+                {pack.priceEstimate && (
+                  <p
+                    class:list={[
+                      'mt-4 text-2xl font-semibold tracking-tight',
+                      index === 0 ? 'text-accent' : 'text-primary',
+                    ]}
+                  >
+                    {pack.priceEstimate}
+                  </p>
+                )}
               </div>
             </div>
 

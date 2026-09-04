@@ -322,10 +322,14 @@ const sharedEventServices: LandingServiceCard[] = [
 
 const sharedServiceTypes = ['Ceremony', 'Cocktail hour', 'Banquet', 'Open bar', 'Sax + DJ'];
 
+const buildPriceEstimateSentence = (place?: string) =>
+  `As a guide, the Premium package is around €600-€1,000 and the Basic package around €400-€700, depending on the date and travel${place ? ` to ${place}` : ''}.`;
+
 const sharedWeddingPacks: WeddingPack[] = [
   {
     name: 'Premium',
     tagline: 'A more personalised performance',
+    priceEstimate: '€600 - €1,000 approx.',
     bullets: [
       'Choose your favourite songs, whether they are already in the repertoire or not.',
       'Personalise your event in detail, with LED saxophone available as part of the experience.',
@@ -336,6 +340,7 @@ const sharedWeddingPacks: WeddingPack[] = [
   {
     name: 'Basic',
     tagline: 'A simple and effective live set',
+    priceEstimate: '€400 - €700 approx.',
     bullets: [
       'Choose the style you need for your event without having to define every song.',
       'Performance based on the repertoire list, with LED saxophone and extra personalisation available as add-ons.',
@@ -483,7 +488,7 @@ const buildHomeFaqs = (): LandingFaq[] => [
   {
     question: 'How much does it cost to hire a saxophonist for a wedding or event?',
     answer:
-      'The price depends on the city, travel, duration, number of performance moments and whether the format is solo saxophone, corporate entertainment or Sax + DJ.',
+      `The price depends on the city, travel, duration, number of performance moments and whether the format is solo saxophone, corporate entertainment or Sax + DJ. ${buildPriceEstimateSentence()}`,
   },
   {
     question: 'How much is a saxophonist for 1 hour in Spain?',
@@ -573,7 +578,7 @@ const buildCityFaqs = (location: LocationEntry): LandingFaq[] => {
   return [
     {
       question: `How much does it cost to hire a saxophonist for a wedding or event in ${place}?`,
-      answer: `The price depends on the date, venue, travel, duration and the number of performance moments. In ${place}, the type of venue, local logistics and event style can also affect the quote.`,
+      answer: `The price depends on the date, venue, travel, duration and the number of performance moments. In ${place}, the type of venue, local logistics and event style can also affect the quote. ${buildPriceEstimateSentence(place)}`,
     },
     {
       question: `How much is a saxophonist for 1 hour in ${place}?`,
