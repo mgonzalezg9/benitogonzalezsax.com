@@ -17,6 +17,8 @@ export const BUSINESS = {
     'https://www.facebook.com/people/Benito-Gonz%C3%A1lez/pfbid02aQaaHf2vJntMAxebPSyQL7Z5KsXh1BGABeSava492qYXhP2frwCm61iDiRY7FfKCl/',
   instagram: 'https://www.instagram.com/benitogonzalezsax/',
   youtube: 'https://www.youtube.com/@benitogonzalezsax/featured',
+  // Google Business Profile share link (knowledge graph mid /g/11w839lz5t)
+  googleBusiness: 'https://share.google/rLlGhpvebeBZnY5cf',
 };
 
 export const DEFAULT_OG_IMAGE = '/apple-touch-icon.png';

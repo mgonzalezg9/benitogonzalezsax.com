@@ -2,6 +2,8 @@ import type { LandingPageData } from '../data/landingPages';
 import { getEnglishLocationName, type LocationEntry } from '../data/locations';
 import { BUSINESS, absoluteUrl } from './site';
 
+const REVIEW_SCHEMA_SLUGS = ['saxofonista-para-bodas-en-madrid'];
+
 export const buildPageSchemas = (
   page: LandingPageData,
   canonical: string,
@@ -17,20 +19,34 @@ export const buildPageSchemas = (
   const latitude = location?.latitude ?? BUSINESS.latitude;
   const longitude = location?.longitude ?? BUSINESS.longitude;
 
-  const reviewCount = page.testimonials.length;
-  const reviews = page.testimonials.map((testimonial) => ({
-    '@type': 'Review',
-    reviewBody: testimonial.quote,
-    author: {
-      '@type': 'Person',
-      name: testimonial.name,
-    },
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: '5',
-      bestRating: '5',
-    },
-  }));
+  // The same nine testimonials on all 11 city pages is a Google review-spam
+  // pattern, so reviews ship only on the brand entity (homepage) plus the city
+  // pages listed here, which already have review snippets live in Search.
+  const showReviews = !location || REVIEW_SCHEMA_SLUGS.includes(location.slug);
+
+  const reviewSchema = showReviews
+    ? {
+        review: page.testimonials.map((testimonial) => ({
+          '@type': 'Review',
+          reviewBody: testimonial.quote,
+          author: {
+            '@type': 'Person',
+            name: testimonial.name,
+          },
+          reviewRating: {
+            '@type': 'Rating',
+            ratingValue: '5',
+            bestRating: '5',
+          },
+        })),
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '5',
+          reviewCount: String(page.testimonials.length),
+          bestRating: '5',
+        },
+      }
+    : {};
 
   const offerCatalog = {
     '@type': 'OfferCatalog',
@@ -105,14 +121,13 @@ export const buildPageSchemas = (
         longitude,
       },
       hasOfferCatalog: offerCatalog,
-      review: reviews,
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5',
-        reviewCount: String(reviewCount),
-        bestRating: '5',
-      },
-      sameAs: [BUSINESS.facebook, BUSINESS.instagram, BUSINESS.youtube],
+      ...reviewSchema,
+      sameAs: [
+        BUSINESS.googleBusiness,
+        BUSINESS.facebook,
+        BUSINESS.instagram,
+        BUSINESS.youtube,
+      ],
     },
     {
       '@context': 'https://schema.org',
