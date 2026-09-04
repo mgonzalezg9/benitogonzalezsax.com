@@ -60,11 +60,13 @@ const t = useTranslations(getLangFromUrl(Astro.url));
             href={imageSrc}
             target="_blank"
             rel="noreferrer"
-            class="overflow-hidden rounded-[1.5rem] border border-gray-200 bg-gray-50 shadow-sm transition hover:-translate-y-1 hover:border-accent"
+            class="block aspect-[794/1123] overflow-hidden rounded-[1.5rem] border border-gray-200 bg-gray-50 shadow-sm transition hover:-translate-y-1 hover:border-accent"
           >
             <img
               src={imageSrc}
               alt={`${t.landing.repertoire.previewAlt} ${index + 1}`}
+              width="794"
+              height="1123"
               class="h-full w-full object-cover"
               loading="lazy"
             />
