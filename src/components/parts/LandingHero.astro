@@ -36,8 +36,8 @@ const trustTitle = page.trustTitle || t.landing.hero.trustTitle;
     preload="metadata"
     poster={AboutImage.src}
     aria-hidden="true"
-    data-hero-video="/videos/hero-background.mp4"
   >
+    <source src="/videos/hero-background.mp4" type="video/mp4" media="(min-width: 768px)" />
   </video>
 
   <div class="absolute inset-0 bg-black/35"></div>
@@ -106,14 +106,3 @@ const trustTitle = page.trustTitle || t.landing.hero.trustTitle;
   </div>
 </section>
 
-<script>
-  // The video is only visible from md up; a CSS-hidden <source> would still be
-  // downloaded (~4.5MB), so attach it only when the desktop breakpoint matches.
-  const video = document.querySelector<HTMLVideoElement>('video[data-hero-video]');
-  const src = video?.dataset.heroVideo;
-
-  if (video && src && window.matchMedia('(min-width: 768px)').matches) {
-    video.src = src;
-    video.load();
-  }
-</script>
