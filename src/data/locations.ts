@@ -250,7 +250,7 @@ const seeds: Seed[] = [
       'Ofrezco saxo para bodas en Cádiz con formatos que funcionan muy bien en celebraciones junto al mar, fincas, bodegas y hoteles con fiesta final.',
     'bodas en la costa gaditana, timing y repertorio',
     'Boda en Cádiz',
-    2,
+    1,
     ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-malaga'],
   ],
   [
@@ -292,7 +292,7 @@ const seeds: Seed[] = [
     'En Córdoba llevo el saxo a bodas donde la ceremonia, el cóctel y la fiesta necesitan una progresión musical muy bien pensada.',
     'cócteles en patios, haciendas y espacios de boda de Córdoba',
     'Boda en Córdoba',
-    2,
+    1,
     ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-jaen'],
   ],
   [
@@ -348,7 +348,7 @@ const seeds: Seed[] = [
     'En Granada trabajo bodas donde la ambientación y la emoción son tan importantes como la música, con saxo para ceremonia, cóctel y fiesta.',
     'bodas en Granada capital, Sierra Nevada y costa',
     'Boda en Granada',
-    2,
+    1,
     ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-almeria'],
   ],
   [
@@ -774,6 +774,90 @@ const seeds: Seed[] = [
 ];
 
 const locationOverrides: Record<string, Partial<LocationEntry>> = {
+  'saxofonista-para-bodas-en-granada': {
+    serviceContext:
+      'Granada combina bodas con mucha personalidad en cármenes, hoteles con vistas a la Alhambra y fincas de la Vega, además de celebraciones en la Costa Tropical y en la Sierra Nevada, donde el entorno y la ambientación tienen tanto peso como la música.',
+    logisticsAngle:
+      'En Granada suele ser importante coordinar el montaje con espacios de mucho carácter, como cármenes, patios y hoteles con terraza, y con la logística de bodas que se mueven entre la capital, la costa y la sierra.',
+    musicAngle:
+      'En Granada funciona muy bien una propuesta que acompañe con elegancia una ceremonia con mucha carga emocional y gane energía en el cóctel y la fiesta, sobre todo en espacios con encanto donde la puesta en escena importa.',
+    bookingAngle:
+      'Para bodas en Granada ayuda mucho concretar si la celebración es en la capital, en la costa o en la sierra, el tipo de espacio y qué momentos queréis reforzar con el saxo.',
+    venueStyle: 'cármenes, hoteles con vistas, fincas de la Vega y espacios de boda de Granada',
+    proofHighlights: [
+      'Propuesta pensada para bodas en Granada donde el entorno, la luz y la ambientación tienen tanto peso como la música.',
+      'Cobertura habitual en Granada, Motril, Loja y Almuñécar.',
+      'Buena adaptación a cármenes, hoteles con vistas y fincas donde el saxo acompaña ceremonia, cóctel y fiesta.',
+    ],
+    faqVariants: {
+      price:
+        'En Granada el presupuesto depende de si la boda es en la capital, la costa o la sierra, del tipo de espacio y de los bloques de actuación que queráis reforzar con saxo.',
+      fit:
+        'Sí. En Granada el saxo encaja muy bien en cármenes, hoteles con vistas y fincas con mucho carácter, donde se busca una ceremonia emotiva y una fiesta con energía.',
+      travel:
+        'Sí. Trabajo bodas en Granada capital y zonas cercanas como Motril, Loja y Almuñécar, adaptando desplazamiento, montaje y horarios a cada espacio.',
+      timing:
+        'En Granada conviene reservar con antelación, sobre todo en primavera y verano, cuando cármenes y fincas con encanto tienen más demanda.',
+      personalization:
+        'Sí. El repertorio y la intensidad del directo se ajustan en Granada al tipo de espacio y al momento que queráis destacar, desde la ceremonia hasta la fiesta final.',
+    },
+  },
+  'saxofonista-para-bodas-en-cordoba': {
+    serviceContext:
+      'Córdoba concentra bodas en patios con mucho carácter, haciendas, cortijos y espacios históricos donde la ceremonia, el cóctel y la fiesta necesitan una progresión musical muy bien pensada para no romper la atmósfera del lugar.',
+    logisticsAngle:
+      'En Córdoba suele ser clave la coordinación con patios y espacios históricos, donde el montaje y el sonido tienen que integrarse sin restar protagonismo a la arquitectura del lugar.',
+    musicAngle:
+      'En Córdoba funciona muy bien una propuesta elegante para ceremonia y cóctel en patios y haciendas, con un tramo final más potente para banquete o barra libre.',
+    bookingAngle:
+      'Para bodas en Córdoba ayuda concretar el tipo de espacio, patio, hacienda o cortijo, la fecha y qué momentos del día queréis reforzar con el saxo.',
+    venueStyle: 'patios, haciendas, cortijos y espacios históricos de Córdoba',
+    proofHighlights: [
+      'Formato pensado para bodas en Córdoba donde la ceremonia, el cóctel y la fiesta necesitan una progresión musical muy cuidada.',
+      'Cobertura habitual en Córdoba, Lucena, Puente Genil y Priego de Córdoba.',
+      'Buena adaptación a patios, haciendas y cortijos donde el directo debe integrarse con espacios de mucho carácter.',
+    ],
+    faqVariants: {
+      price:
+        'En Córdoba el presupuesto depende del tipo de espacio, patio, hacienda o cortijo, la fecha y los bloques de actuación que queráis para ceremonia, cóctel, banquete o fiesta.',
+      fit:
+        'Sí. En Córdoba el saxo encaja muy bien en patios y haciendas con mucho carácter, donde se busca una ceremonia elegante y una fiesta final con energía.',
+      travel:
+        'Sí. Trabajo bodas en Córdoba capital y zonas cercanas como Lucena, Puente Genil y Priego de Córdoba, coordinando montaje y horarios con cada espacio.',
+      timing:
+        'En Córdoba conviene consultar disponibilidad con tiempo, sobre todo en primavera y otoño, cuando patios y haciendas tienen más demanda de bodas.',
+      personalization:
+        'Sí. El repertorio se ajusta en Córdoba al tipo de espacio y al momento del día que queráis destacar, desde la ceremonia hasta la barra libre.',
+    },
+  },
+  'saxofonista-para-bodas-en-cadiz': {
+    serviceContext:
+      'Cádiz reúne bodas junto al mar, en bodegas y fincas de la campiña, con celebraciones que combinan una ceremonia elegante, un cóctel con mucho ambiente y una fiesta final muy animada, típica de las bodas andaluzas de costa.',
+    logisticsAngle:
+      'En Cádiz suele ser importante coordinar montajes en exterior, junto al mar o en bodegas, adaptando sonido y horarios a la brisa, la luz y el ritmo real de cada celebración.',
+    musicAngle:
+      'En Cádiz funciona muy bien una propuesta que arranque elegante en ceremonia y cóctel junto al mar y termine con mucha energía en banquete, barra libre o Saxo + DJ.',
+    bookingAngle:
+      'Para bodas en Cádiz ayuda concretar si la celebración es junto al mar, en bodega o en finca, y qué peso queréis dar al saxo en cada bloque del día.',
+    venueStyle: 'espacios junto al mar, bodegas, fincas y hoteles de la costa gaditana',
+    proofHighlights: [
+      'Propuesta adaptada a bodas junto al mar y celebraciones andaluzas en Cádiz.',
+      'Cobertura habitual en Cádiz, Jerez de la Frontera, El Puerto de Santa María y Chiclana de la Frontera.',
+      'Buena integración con bodegas, fincas y espacios de costa donde el saxo acompaña cóctel y fiesta.',
+    ],
+    faqVariants: {
+      price:
+        'En Cádiz el presupuesto depende de si la boda es junto al mar, en bodega o en finca, del desplazamiento y de los bloques de actuación que queráis.',
+      fit:
+        'Sí. En Cádiz el saxo encaja muy bien en bodas junto al mar, bodegas y fincas, donde se busca elegancia en ceremonia y cóctel y mucha energía en la fiesta.',
+      travel:
+        'Sí. Trabajo bodas en Cádiz capital y zonas cercanas como Jerez de la Frontera, El Puerto de Santa María y Chiclana de la Frontera, coordinando montaje y horarios con cada espacio.',
+      timing:
+        'En Cádiz conviene reservar con antelación, especialmente en primavera y verano, cuando la demanda de bodas junto al mar y en bodegas es más alta.',
+      personalization:
+        'Sí. El repertorio y la intensidad del directo se adaptan en Cádiz al tipo de espacio y al ambiente que queráis crear, desde la ceremonia hasta la barra libre.',
+    },
+  },
   'saxofonista-para-bodas-en-murcia': {
     serviceContext:
       'Murcia es una ciudad donde muchas bodas se viven con cercanía, un cóctel largo y espacios amplios en fincas y haciendas donde la música tiene que acompañar sin invadir. También es habitual que el banquete y la barra libre tengan mucho peso dentro de la celebración.',
@@ -1079,6 +1163,8 @@ export const getLaunchedLocations = () => launchedLocations;
 export const getEnglishLocationName = (location: LocationEntry) => {
   const englishNames: Record<string, string> = {
     Almería: 'Almeria',
+    Cádiz: 'Cadiz',
+    Córdoba: 'Cordoba',
     Málaga: 'Malaga',
     Palma: 'Mallorca',
     Sevilla: 'Seville',

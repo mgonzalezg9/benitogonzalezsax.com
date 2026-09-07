@@ -28,6 +28,48 @@ interface EnglishCityProfile {
 }
 
 const englishCityProfiles: Record<string, EnglishCityProfile> = {
+  'saxofonista-para-bodas-en-granada': {
+    intro:
+      'Granada blends weddings with strong character in carmen gardens, view hotels near the Alhambra and countryside estates, plus celebrations on the Costa Tropical and in the Sierra Nevada foothills.',
+    logistics:
+      'The proposal adapts to venues with a lot of character, such as carmen gardens, courtyards and view hotels, and to weddings that move between the city, the coast and the mountains.',
+    music:
+      'Live saxophone can accompany an emotional ceremony with elegance and then build energy for the cocktail hour and party in venues where atmosphere matters as much as the music.',
+    venueStyle: 'carmen gardens, view hotels, countryside estates and wedding venues in Granada',
+    nearbyContext: 'Motril, Loja, Almunecar and other nearby areas',
+    fit:
+      'In Granada, saxophone works especially well in venues with strong character, where couples want an emotional ceremony and an energetic party.',
+    booking:
+      'For Granada weddings, it helps to share whether the celebration is in the city, on the coast or in the mountains, plus the venue and performance moments you want.',
+  },
+  'saxofonista-para-bodas-en-cordoba': {
+    intro:
+      'Cordoba brings together weddings in character-filled courtyards, estates and historic venues, where ceremony, cocktail hour and party need a carefully planned musical progression.',
+    logistics:
+      'The proposal adapts to courtyards and historic venues, where sound and setup need to blend in without overpowering the architecture of the space.',
+    music:
+      'Live saxophone can open with an elegant tone for ceremony and cocktail hour in a courtyard or estate, then build to a stronger banquet or open-bar moment.',
+    venueStyle: 'courtyards, estates and historic wedding venues in Cordoba',
+    nearbyContext: 'Lucena, Puente Genil, Priego de Cordoba and other nearby areas',
+    fit:
+      'In Cordoba, saxophone works especially well in courtyards and estates with strong character, where couples want an elegant ceremony and an energetic finish.',
+    booking:
+      'For Cordoba weddings, it helps to share the type of venue, courtyard, estate or country house, plus the date and performance moments you want.',
+  },
+  'saxofonista-para-bodas-en-cadiz': {
+    intro:
+      'Cadiz brings together seaside weddings, winery celebrations and countryside estates, with a typical Andalusian rhythm that moves from an elegant ceremony to a lively final party.',
+    logistics:
+      'The proposal adapts to outdoor setups by the sea or in wineries, with sound and timing adjusted to the breeze, the light and the real pace of each celebration.',
+    music:
+      'Live saxophone can start elegant for a seaside ceremony and cocktail hour, then build real energy for the banquet, open bar or Sax + DJ format.',
+    venueStyle: 'seaside venues, wineries, estates and coastal hotels in Cadiz',
+    nearbyContext: 'Jerez de la Frontera, El Puerto de Santa Maria, Chiclana de la Frontera and other nearby areas',
+    fit:
+      'In Cadiz, saxophone works especially well for seaside weddings and winery celebrations, where couples want elegance early on and a lively party later.',
+    booking:
+      'For Cadiz weddings, it helps to share whether the celebration is by the sea, in a winery or on an estate, plus the performance moments you want.',
+  },
   'saxofonista-para-bodas-en-alicante': {
     intro:
       'Alicante is a Mediterranean wedding destination with sea-view venues, inland estates and celebrations where the cocktail hour often sets the tone for the whole day.',
