@@ -1,8 +1,14 @@
 import type { LandingPageData } from '../data/landingPages';
 import { getEnglishLocationName, type LocationEntry } from '../data/locations';
+import { en } from '../i18n/lang/en';
+import { es } from '../i18n/lang/es';
 import { BUSINESS, absoluteUrl } from './site';
 
 const REVIEW_SCHEMA_SLUGS = ['saxofonista-para-bodas-en-madrid'];
+
+// One canonical id for the musician so every page's founder/employee link
+// resolves to the same entity instead of a per-URL duplicate.
+const PERSON_ID = absoluteUrl('/#benito-gonzalez');
 
 export const buildPageSchemas = (
   page: LandingPageData,
@@ -87,10 +93,47 @@ export const buildPageSchemas = (
         { '@type': 'AdministrativeArea', name: 'Illes Balears' },
       ];
 
+  const businessId = `${canonical}#business`;
+
+  const person = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': PERSON_ID,
+    name: BUSINESS.legalName,
+    alternateName: BUSINESS.name,
+    jobTitle: isEnglish ? 'Saxophonist' : 'Saxofonista',
+    description: (isEnglish ? en : es).landing.bio.paragraphs.join(' '),
+    url: absoluteUrl(isEnglish ? '/en' : '/'),
+    email: BUSINESS.email,
+    telephone: BUSINESS.phone,
+    knowsLanguage: ['es', 'en'],
+    knowsAbout: page.serviceTypes,
+    alumniOf: {
+      '@type': 'EducationalOrganization',
+      name: 'Conservatorio de Lorca',
+    },
+    homeLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: BUSINESS.addressLocality,
+        addressRegion: BUSINESS.addressRegion,
+        addressCountry: BUSINESS.addressCountry,
+      },
+    },
+    sameAs: [
+      BUSINESS.googleBusiness,
+      BUSINESS.facebook,
+      BUSINESS.instagram,
+      BUSINESS.youtube,
+    ],
+  };
+
   const schemas = [
     {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
+      '@id': businessId,
       name: location ? `${BUSINESS.name} - ${page.heroTitle}` : BUSINESS.name,
       url: canonical,
       description: page.description,
@@ -121,6 +164,8 @@ export const buildPageSchemas = (
         longitude,
       },
       hasOfferCatalog: offerCatalog,
+      founder: { '@id': PERSON_ID },
+      employee: { '@id': PERSON_ID },
       ...reviewSchema,
       sameAs: [
         BUSINESS.googleBusiness,
@@ -151,6 +196,7 @@ export const buildPageSchemas = (
         acceptedAnswer: { '@type': 'Answer', text: faq.answer },
       })),
     },
+    person,
     ...(page.breadcrumb
       ? [
           {

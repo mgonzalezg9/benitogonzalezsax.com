@@ -89,6 +89,37 @@ const preloadedFonts = [
   </body>
 </html>
 
+<script>
+  // Mobile Safari reclaims offscreen iframes and leaves a dead black frame that
+  // never reloads. Send any player that scrolls away back to its poster, and
+  // keep at most one live player, so every play click builds a fresh iframe.
+  const revertPlayer = (player: Element) => {
+    player.querySelector('iframe')?.remove();
+    player.classList.remove('lyt-activated');
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    if (document.fullscreenElement) return;
+
+    for (const entry of entries) {
+      if (!entry.isIntersecting && entry.target.classList.contains('lyt-activated')) {
+        revertPlayer(entry.target);
+      }
+    }
+  });
+
+  document.querySelectorAll('lite-youtube').forEach((player) => observer.observe(player));
+
+  document.addEventListener('click', (event) => {
+    const clicked = (event.target as HTMLElement | null)?.closest('lite-youtube');
+    if (!clicked) return;
+
+    document.querySelectorAll('lite-youtube.lyt-activated').forEach((player) => {
+      if (player !== clicked) revertPlayer(player);
+    });
+  });
+</script>
+
 <style is:global>
   html {
     scroll-behavior: smooth;
@@ -98,6 +129,18 @@ const preloadedFonts = [
     font-family: 'Inter', sans-serif;
   }
   summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* lite-youtube ships a 720px cap and its own 16:9 padding; the wrapper owns
+     the ratio so portrait Shorts stay portrait. */
+  lite-youtube.embed-fill {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  lite-youtube.embed-fill::after {
     display: none;
   }
 </style>
