@@ -1,7 +1,12 @@
 ---
 import type { LandingPageData } from '../../data/landingPages';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
-import { getEmbedUrl } from '../../lib/embeds';
+import { YouTube } from 'astro-embed';
+import {
+  getInstagramEmbedUrl,
+  getYouTubePosterUrl,
+  isYouTubeShort,
+} from '../../lib/embeds';
 import { stripSegmentAAccents } from '../../lib/typography';
 import LandingAccordionSection from './LandingAccordionSection.astro';
 
@@ -25,14 +30,29 @@ const t = useTranslations(getLangFromUrl(Astro.url));
 
       <div class="mt-10 grid gap-6 lg:grid-cols-2">
         {page.videos.map((video) => {
-          const embedUrl = getEmbedUrl(video.platform, video.url);
+          const isYouTube = video.platform === 'youtube';
+          const isPortrait = isYouTube && isYouTubeShort(video.url);
+          const instagramEmbedUrl = isYouTube ? null : getInstagramEmbedUrl(video.url);
 
           return (
             <article class="overflow-hidden rounded-[1.75rem] border border-gray-200 bg-gray-50 shadow-sm">
-              <div class="aspect-[9/16] w-full bg-primary/5 md:aspect-video">
-                {embedUrl ? (
+              <div
+                class:list={[
+                  'w-full bg-primary/5',
+                  isPortrait ? 'mx-auto aspect-[9/16] max-w-[320px]' : 'aspect-video',
+                ]}
+              >
+                {isYouTube ? (
+                  <YouTube
+                    id={video.url}
+                    title={video.title}
+                    playlabel={video.title}
+                    poster={getYouTubePosterUrl(video.url)}
+                    class="embed-fill"
+                  />
+                ) : instagramEmbedUrl ? (
                   <iframe
-                    src={embedUrl}
+                    src={instagramEmbedUrl}
                     title={video.title}
                     class="h-full w-full"
                     loading="lazy"
