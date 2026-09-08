@@ -153,7 +153,7 @@ const seeds: Seed[] = [
     'cobertura en la provincia de Almería y repertorio para bodas costeras',
     'Boda en Andalucía',
     1,
-    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-murcia'],
+    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-murcia', 'saxofonista-para-bodas-en-granada'],
   ],
   [
     'Ávila',
@@ -251,7 +251,7 @@ const seeds: Seed[] = [
     'bodas en la costa gaditana, timing y repertorio',
     'Boda en Cádiz',
     1,
-    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-malaga'],
+    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-cordoba'],
   ],
   [
     'Castellón de la Plana',
@@ -293,7 +293,7 @@ const seeds: Seed[] = [
     'cócteles en patios, haciendas y espacios de boda de Córdoba',
     'Boda en Córdoba',
     1,
-    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-jaen'],
+    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-granada', 'saxofonista-para-bodas-en-malaga'],
   ],
   [
     'Cuenca',
@@ -349,7 +349,7 @@ const seeds: Seed[] = [
     'bodas en Granada capital, Sierra Nevada y costa',
     'Boda en Granada',
     1,
-    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-almeria'],
+    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-almeria', 'saxofonista-para-bodas-en-cordoba'],
   ],
   [
     'Guadalajara',
@@ -489,7 +489,7 @@ const seeds: Seed[] = [
     'bodas de destino en Málaga y coordinación con producciones premium',
     'Boda en Málaga',
     1,
-    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-granada'],
+    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-granada', 'saxofonista-para-bodas-en-cadiz'],
   ],
   [
     'Murcia',
@@ -643,7 +643,7 @@ const seeds: Seed[] = [
       'haciendas de Sevilla, organizadores y montajes para bodas grandes',
     'Boda en Sevilla',
     1,
-    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-cadiz'],
+    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-cadiz', 'saxofonista-para-bodas-en-cordoba'],
   ],
   [
     'Soria',
@@ -727,7 +727,7 @@ const seeds: Seed[] = [
       'servicio en Valladolid, fincas cercanas y reserva con organizadores',
     'Boda en Valladolid',
     1,
-    ['saxofonista-para-bodas-en-madrid', 'saxofonista-para-bodas-en-salamanca'],
+    ['saxofonista-para-bodas-en-madrid', 'saxofonista-para-bodas-en-zaragoza'],
   ],
   [
     'Vitoria-Gasteiz',
@@ -1154,6 +1154,18 @@ export const allLocations = seeds
 export const launchedLocations = allLocations.filter(
   (location) => location.rolloutPhase <= ACTIVE_ROLLOUT_PHASE,
 );
+
+// ponytail: build-time guard so an unlaunched relatedSlug never silently
+// leaves a city page with fewer than two internal links.
+const launchedSlugs = new Set(launchedLocations.map((location) => location.slug));
+for (const location of launchedLocations) {
+  const related = location.relatedSlugs.filter((slug) => launchedSlugs.has(slug));
+  if (related.length < 2) {
+    throw new Error(
+      `${location.slug} has ${related.length} launched relatedSlugs (needs 2+): ${location.relatedSlugs.join(', ')}`,
+    );
+  }
+}
 
 export const getLocationBySlug = (slug: string) =>
   allLocations.find((location) => location.slug === slug);
