@@ -800,6 +800,87 @@ const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
           answer: serviceIncludesAnswer,
         },
       ];
+    case 'saxofonista-para-bodas-en-granada':
+      return [
+        {
+          question: '¿Encaja el saxo en cármenes, hoteles con vistas o fincas de Granada?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Granada capital, la costa o la sierra?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para ceremonia y fiesta en Granada?',
+          answer: `${location.musicAngle} Por eso en Granada muchas parejas reservan una parte más elegante para la ceremonia y el cóctel y un tramo final con más energía para la fiesta.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Granada?',
+          answer: timingAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-cordoba':
+      return [
+        {
+          question: '¿Encaja el saxo en patios, haciendas o cortijos de Córdoba?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Córdoba y alrededores?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para ceremonia, cóctel y fiesta en Córdoba?',
+          answer: `${location.musicAngle} Por eso en Córdoba muchas parejas combinan un bloque elegante para ceremonia y cóctel con un tramo final más potente para banquete o barra libre.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Se puede personalizar el repertorio para vuestra boda en Córdoba?',
+          answer: personalizationAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-cadiz':
+      return [
+        {
+          question: '¿Encaja el saxo en bodas junto al mar o en bodegas de Cádiz?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Cádiz y alrededores?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel y barra libre en Cádiz?',
+          answer: `${location.musicAngle} Por eso en Cádiz muchas parejas combinan un cóctel elegante junto al mar con una fiesta final muy animada junto a DJ.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Cádiz?',
+          answer: timingAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
     default:
       return [
         {
