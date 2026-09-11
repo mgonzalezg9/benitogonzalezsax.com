@@ -159,6 +159,8 @@ export const en = {
   footer: {
     copyright: 'All rights reserved',
     privacyPolicy: 'Privacy policy',
+    citiesTitle: 'Saxophonist by city',
+    cityLinkPrefix: 'Saxophonist in',
   },
   landing: {
     hero: {

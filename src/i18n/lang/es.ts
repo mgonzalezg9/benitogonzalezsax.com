@@ -161,6 +161,8 @@ export const es = {
   footer: {
     copyright: 'Todos los derechos reservados',
     privacyPolicy: 'Política de privacidad',
+    citiesTitle: 'Saxofonista por ciudades',
+    cityLinkPrefix: 'Saxofonista en',
   },
   landing: {
     hero: {
