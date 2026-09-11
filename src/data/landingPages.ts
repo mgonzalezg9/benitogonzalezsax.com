@@ -509,7 +509,7 @@ const buildHomeCityLinks = (): LandingLink[] =>
   getLaunchedLocations().map((location) => ({
     href: `/${location.slug}`,
     label: location.city,
-    description: `${location.city}, ${location.province}`,
+    description: `Saxofonista para bodas en ${location.city}`,
   }));
 
 const buildNearbyLinks = (location: LocationEntry): LandingLink[] => {
