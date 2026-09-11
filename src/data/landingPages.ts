@@ -509,7 +509,7 @@ const buildHomeCityLinks = (): LandingLink[] =>
   getLaunchedLocations().map((location) => ({
     href: `/${location.slug}`,
     label: location.city,
-    description: `Saxofonista para bodas en ${location.city}`,
+    description: `Saxofonista en ${location.city} para bodas`,
   }));
 
 const buildNearbyLinks = (location: LocationEntry): LandingLink[] => {
@@ -523,7 +523,7 @@ const buildNearbyLinks = (location: LocationEntry): LandingLink[] => {
     .map((entry) => ({
       href: `/${entry.slug}`,
       label: entry.city,
-      description: `Saxofonista para bodas en ${entry.city}`,
+      description: `Saxofonista en ${entry.city} para bodas`,
     }));
 };
 
@@ -1043,8 +1043,8 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => {
 
   return {
     type: 'city',
-    title: `Saxofonista para bodas en ${location.city} | Benito González Sax`,
-    description: `Saxofonista para bodas en ${location.city}. Música en directo para ceremonia, cóctel, banquete y barra libre con presupuesto personalizado y cobertura en ${location.province}.`,
+    title: `Saxofonista en ${location.city} para bodas | Benito González Sax`,
+    description: `Saxofonista en ${location.city} para bodas y eventos. Música en directo para ceremonia, cóctel, banquete y barra libre con presupuesto personalizado y cobertura en ${location.province}.`,
     canonicalPath: `/${location.slug}`,
     heroTitle: `Saxofonista para bodas en ${location.city}`,
     heroLabel:
