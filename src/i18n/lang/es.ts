@@ -191,6 +191,8 @@ export const es = {
         'Benito González García es saxofonista profesional con título de grado profesional por el Conservatorio de Lorca y más de 10 años tocando en directo. Trabaja desde Mazarrón (Murcia) y cubre bodas y eventos en la Península y Baleares.',
         'Además de bodas, ha puesto música a eventos de marca para Martin Miller’s Gin e IQOS. Toca solo con bases, junto a DJ o con saxo con leds, con repertorio de jazz, house, afrohouse, EDM, pop y latino.',
       ],
+      probodaPrefix: 'También ha creado ',
+      probodaSuffix: ', un directorio de proveedores de bodas que ayuda a las parejas a organizar su gran día.',
       venuesLabel: 'Espacios donde ha actuado',
       venues: [
         'Hotel Reserva del Higuerón, Málaga',
