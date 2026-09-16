@@ -1,5 +1,7 @@
 export const SITE_URL = 'https://benitogonzalezsax.com';
 
+export const PROBODA_URL = 'https://proboda.es';
+
 export const BUSINESS = {
   name: 'Benito González Sax',
   legalName: 'Benito González García',

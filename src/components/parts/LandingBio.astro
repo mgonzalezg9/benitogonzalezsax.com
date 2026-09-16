@@ -1,7 +1,14 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import type { LandingPageData } from '../../data/landingPages';
+import { PROBODA_URL } from '../../lib/site';
 import { stripSegmentAAccents } from '../../lib/typography';
 
+interface Props {
+  page: LandingPageData;
+}
+
+const { page } = Astro.props;
 const t = useTranslations(getLangFromUrl(Astro.url));
 ---
 
@@ -18,6 +25,13 @@ const t = useTranslations(getLangFromUrl(Astro.url));
         {t.landing.bio.paragraphs.map((paragraph) => (
           <p>{paragraph}</p>
         ))}
+        {page.type === 'home' && (
+          <p>
+            {t.landing.bio.probodaPrefix}
+            <a href={PROBODA_URL} target="_blank" rel="noopener" class="font-semibold text-primary underline underline-offset-4 hover:text-accent">proboda.es</a>
+            {t.landing.bio.probodaSuffix}
+          </p>
+        )}
       </div>
     </div>
 
