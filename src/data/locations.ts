@@ -125,7 +125,7 @@ const seeds: Seed[] = [
     'cobertura por la provincia de Albacete y combinaciones saxo + DJ',
     'Boda en Castilla-La Mancha',
     1,
-    ['saxofonista-para-bodas-en-murcia', 'saxofonista-para-bodas-en-alicante'],
+    ['saxofonista-para-bodas-en-murcia', 'saxofonista-para-bodas-en-alicante', 'saxofonista-para-bodas-en-valencia'],
   ],
   [
     'Alicante',
@@ -377,7 +377,7 @@ const seeds: Seed[] = [
     'desplazamiento a la costa onubense y repertorio adaptable',
     'Boda en Huelva',
     1,
-    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-cadiz'],
+    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-cadiz', 'saxofonista-para-bodas-en-malaga'],
   ],
   [
     'Huesca',
@@ -405,7 +405,7 @@ const seeds: Seed[] = [
     'bodas en Jaén, Úbeda y Baeza con repertorio personalizado',
     'Boda en Jaén',
     1,
-    ['saxofonista-para-bodas-en-cordoba', 'saxofonista-para-bodas-en-granada'],
+    ['saxofonista-para-bodas-en-cordoba', 'saxofonista-para-bodas-en-granada', 'saxofonista-para-bodas-en-malaga'],
   ],
   [
     'León',
