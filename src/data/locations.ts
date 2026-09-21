@@ -124,8 +124,8 @@ const seeds: Seed[] = [
     'Ofrezco saxofón para bodas en Albacete pensado para parejas que quieren una entrada elegante, un cóctel con ritmo y una fiesta final memorable.',
     'cobertura por la provincia de Albacete y combinaciones saxo + DJ',
     'Boda en Castilla-La Mancha',
-    2,
-    ['saxofonista-para-bodas-en-murcia', 'saxofonista-para-bodas-en-alicante'],
+    1,
+    ['saxofonista-para-bodas-en-murcia', 'saxofonista-para-bodas-en-alicante', 'saxofonista-para-bodas-en-valencia'],
   ],
   [
     'Alicante',
@@ -139,7 +139,7 @@ const seeds: Seed[] = [
     'bodas de destino en Alicante, desplazamiento y coordinación con DJs del espacio',
     'Boda en Alicante',
     1,
-    ['saxofonista-para-bodas-en-murcia', 'saxofonista-para-bodas-en-valencia'],
+    ['saxofonista-para-bodas-en-murcia', 'saxofonista-para-bodas-en-valencia', 'saxofonista-para-bodas-en-albacete'],
   ],
   [
     'Almería',
@@ -251,7 +251,7 @@ const seeds: Seed[] = [
     'bodas en la costa gaditana, timing y repertorio',
     'Boda en Cádiz',
     1,
-    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-cordoba'],
+    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-cordoba', 'saxofonista-para-bodas-en-huelva'],
   ],
   [
     'Castellón de la Plana',
@@ -293,7 +293,7 @@ const seeds: Seed[] = [
     'cócteles en patios, haciendas y espacios de boda de Córdoba',
     'Boda en Córdoba',
     1,
-    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-granada', 'saxofonista-para-bodas-en-malaga'],
+    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-granada', 'saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-jaen'],
   ],
   [
     'Cuenca',
@@ -349,7 +349,7 @@ const seeds: Seed[] = [
     'bodas en Granada capital, Sierra Nevada y costa',
     'Boda en Granada',
     1,
-    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-almeria', 'saxofonista-para-bodas-en-cordoba'],
+    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-almeria', 'saxofonista-para-bodas-en-cordoba', 'saxofonista-para-bodas-en-jaen'],
   ],
   [
     'Guadalajara',
@@ -376,8 +376,8 @@ const seeds: Seed[] = [
       'Trabajo bodas en Huelva con una propuesta de saxo ideal para espacios junto al mar, fincas, hoteles y celebraciones con muy buena energía.',
     'desplazamiento a la costa onubense y repertorio adaptable',
     'Boda en Huelva',
-    3,
-    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-cadiz'],
+    1,
+    ['saxofonista-para-bodas-en-sevilla', 'saxofonista-para-bodas-en-cadiz', 'saxofonista-para-bodas-en-malaga'],
   ],
   [
     'Huesca',
@@ -404,8 +404,8 @@ const seeds: Seed[] = [
     'En Jaén adapto el saxo para bodas a ceremonias íntimas, cócteles largos y fiestas donde el saxo convive muy bien con DJ o pista abierta.',
     'bodas en Jaén, Úbeda y Baeza con repertorio personalizado',
     'Boda en Jaén',
-    3,
-    ['saxofonista-para-bodas-en-cordoba', 'saxofonista-para-bodas-en-granada'],
+    1,
+    ['saxofonista-para-bodas-en-cordoba', 'saxofonista-para-bodas-en-granada', 'saxofonista-para-bodas-en-malaga'],
   ],
   [
     'León',
@@ -503,7 +503,7 @@ const seeds: Seed[] = [
     'disponibilidad en Murcia, fincas cercanas y formatos saxo + DJ',
     'Boda en Murcia',
     1,
-    ['saxofonista-para-bodas-en-alicante', 'saxofonista-para-bodas-en-valencia'],
+    ['saxofonista-para-bodas-en-alicante', 'saxofonista-para-bodas-en-valencia', 'saxofonista-para-bodas-en-albacete'],
   ],
   [
     'Ourense',
@@ -643,7 +643,7 @@ const seeds: Seed[] = [
       'haciendas de Sevilla, organizadores y montajes para bodas grandes',
     'Boda en Sevilla',
     1,
-    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-cadiz', 'saxofonista-para-bodas-en-cordoba'],
+    ['saxofonista-para-bodas-en-malaga', 'saxofonista-para-bodas-en-cadiz', 'saxofonista-para-bodas-en-cordoba', 'saxofonista-para-bodas-en-huelva'],
   ],
   [
     'Soria',
@@ -856,6 +856,90 @@ const locationOverrides: Record<string, Partial<LocationEntry>> = {
         'En Cádiz conviene reservar con antelación, especialmente en primavera y verano, cuando la demanda de bodas junto al mar y en bodegas es más alta.',
       personalization:
         'Sí. El repertorio y la intensidad del directo se adaptan en Cádiz al tipo de espacio y al ambiente que queráis crear, desde la ceremonia hasta la barra libre.',
+    },
+  },
+  'saxofonista-para-bodas-en-albacete': {
+    serviceContext:
+      'Albacete reúne bodas en salones, haciendas y fincas de La Mancha, con celebraciones de cóctel largo, banquete generoso y una fiesta final donde la pista se llena pronto, y con parejas que también celebran en pueblos de la provincia como La Roda, Almansa o Hellín.',
+    logisticsAngle:
+      'En Albacete suele ser importante coordinar el montaje con salones y fincas de interior, con distancias amplias entre capital y pueblos y con horarios de banquete que se alargan hasta la barra libre.',
+    musicAngle:
+      'En Albacete funciona muy bien una propuesta que dé elegancia a la ceremonia y al cóctel y suba de intensidad con la entrada al banquete y la fiesta, en solitario o junto a DJ.',
+    bookingAngle:
+      'Para bodas en Albacete ayuda concretar si la celebración es en la capital o en un pueblo de la provincia, el tipo de espacio y qué momentos queréis reforzar con el saxo.',
+    venueStyle: 'salones, haciendas y fincas de Albacete y su provincia',
+    proofHighlights: [
+      'Propuesta pensada para bodas en Albacete con cóctel largo, banquete y una fiesta final con mucha pista.',
+      'Cobertura habitual en Albacete, La Roda, Almansa y Hellín.',
+      'Buena adaptación a salones, haciendas y fincas donde el saxo acompaña ceremonia, cóctel y barra libre, también junto a DJ.',
+    ],
+    faqVariants: {
+      price:
+        'En Albacete el presupuesto depende de si la boda es en la capital o en la provincia, del desplazamiento, del tipo de espacio y de los bloques de actuación que queráis con saxo.',
+      fit:
+        'Sí. En Albacete el saxo encaja muy bien en salones, haciendas y fincas, donde se busca una ceremonia elegante, un cóctel con ritmo y una fiesta final con energía.',
+      travel:
+        'Sí. Trabajo bodas en Albacete capital y zonas cercanas como La Roda, Almansa y Hellín, coordinando desplazamiento, montaje y horarios con cada espacio.',
+      timing:
+        'En Albacete conviene consultar disponibilidad con tiempo, sobre todo en primavera, verano y sábados de septiembre, cuando fincas y salones concentran más bodas.',
+      personalization:
+        'Sí. El repertorio y la intensidad del directo se ajustan en Albacete al tipo de espacio y al momento que queráis destacar, desde la ceremonia hasta la barra libre.',
+    },
+  },
+  'saxofonista-para-bodas-en-jaen': {
+    serviceContext:
+      'Jaén combina bodas en haciendas y cortijos entre olivares, celebraciones en la Jaén monumental y en las ciudades renacentistas de Úbeda y Baeza, donde el entorno pide una música elegante que se integre con la arquitectura y el paisaje.',
+    logisticsAngle:
+      'En Jaén suele ser clave coordinar el montaje con haciendas, cortijos y espacios históricos, con accesos que pueden ser largos y con ceremonias y cócteles al aire libre donde el sonido debe adaptarse al entorno.',
+    musicAngle:
+      'En Jaén funciona muy bien una propuesta elegante para ceremonia y cóctel entre olivares o en espacios monumentales, con un tramo final más potente para banquete, barra libre o Saxo + DJ.',
+    bookingAngle:
+      'Para bodas en Jaén ayuda concretar si la celebración es en la capital, en Úbeda y Baeza o en una hacienda del campo, además del tipo de espacio y los momentos que queréis reforzar con saxo.',
+    venueStyle: 'haciendas, cortijos, espacios monumentales y hoteles de Jaén, Úbeda y Baeza',
+    proofHighlights: [
+      'Propuesta pensada para bodas en Jaén donde el paisaje de olivar y el patrimonio marcan el ambiente.',
+      'Cobertura habitual en Jaén, Úbeda, Baeza y Linares.',
+      'Buena adaptación a haciendas, cortijos y espacios históricos donde el saxo acompaña ceremonia, cóctel y fiesta.',
+    ],
+    faqVariants: {
+      price:
+        'En Jaén el presupuesto depende de si la boda es en la capital, en Úbeda y Baeza o en el campo, del desplazamiento y de los bloques de actuación que queráis con saxo.',
+      fit:
+        'Sí. En Jaén el saxo encaja muy bien en haciendas, cortijos y espacios históricos, donde se busca una ceremonia elegante y una fiesta final con energía.',
+      travel:
+        'Sí. Trabajo bodas en Jaén capital y zonas cercanas como Úbeda, Baeza y Linares, coordinando desplazamiento, montaje y horarios con cada espacio.',
+      timing:
+        'En Jaén conviene reservar con antelación, especialmente en primavera y otoño, cuando haciendas y espacios con encanto reciben más bodas.',
+      personalization:
+        'Sí. El repertorio y la intensidad del directo se ajustan en Jaén al tipo de espacio y al ambiente que queráis crear, desde la ceremonia hasta la barra libre.',
+    },
+  },
+  'saxofonista-para-bodas-en-huelva': {
+    serviceContext:
+      'Huelva reúne bodas junto al mar en la costa onubense, celebraciones en fincas y hoteles cerca de Punta Umbría, Lepe o El Rompido y bodas en la sierra, con un ambiente andaluz muy festivo donde la ceremonia elegante da paso a una fiesta larga.',
+    logisticsAngle:
+      'En Huelva suele ser importante coordinar montajes en exterior cerca de la costa, adaptando sonido y horarios a la brisa, la luz del atardecer y el ritmo real de cada celebración.',
+    musicAngle:
+      'En Huelva funciona muy bien una propuesta que arranque elegante en ceremonia y cóctel al aire libre y gane energía en banquete, barra libre o Saxo + DJ.',
+    bookingAngle:
+      'Para bodas en Huelva ayuda concretar si la celebración es en la costa, en una finca o en la sierra, además de la fecha y los momentos que queréis reforzar con saxo.',
+    venueStyle: 'espacios junto al mar, fincas, hoteles y salones de la costa onubense y la provincia de Huelva',
+    proofHighlights: [
+      'Propuesta adaptada a bodas costeras y celebraciones andaluzas en Huelva.',
+      'Cobertura habitual en Huelva, Punta Umbría, Lepe y El Rompido.',
+      'Buena integración con fincas, hoteles y espacios de costa donde el saxo acompaña cóctel y fiesta.',
+    ],
+    faqVariants: {
+      price:
+        'En Huelva el presupuesto depende de si la boda es en la costa, en una finca o en la sierra, del desplazamiento y de los bloques de actuación que queráis con saxo.',
+      fit:
+        'Sí. En Huelva el saxo encaja muy bien en bodas junto al mar, fincas y hoteles, donde se busca elegancia en la ceremonia y mucha energía en la fiesta.',
+      travel:
+        'Sí. Trabajo bodas en Huelva capital y zonas cercanas como Punta Umbría, Lepe y El Rompido, coordinando desplazamiento, montaje y horarios con cada espacio.',
+      timing:
+        'En Huelva conviene reservar con antelación, sobre todo en primavera y verano, cuando la costa onubense concentra más bodas.',
+      personalization:
+        'Sí. El repertorio y la intensidad del directo se ajustan en Huelva al tipo de espacio y al ambiente que queráis crear, desde la ceremonia hasta la barra libre.',
     },
   },
   'saxofonista-para-bodas-en-murcia': {
@@ -1177,6 +1261,7 @@ export const getEnglishLocationName = (location: LocationEntry) => {
     Almería: 'Almeria',
     Cádiz: 'Cadiz',
     Córdoba: 'Cordoba',
+    Jaén: 'Jaen',
     Málaga: 'Malaga',
     Palma: 'Mallorca',
     Sevilla: 'Seville',

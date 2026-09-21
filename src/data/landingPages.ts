@@ -854,6 +854,87 @@ const buildDifferentiatedCityFaqs = (location: LocationEntry): LandingFaq[] => {
           answer: serviceIncludesAnswer,
         },
       ];
+    case 'saxofonista-para-bodas-en-albacete':
+      return [
+        {
+          question: '¿Encaja el saxo en salones, haciendas o fincas de Albacete?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Albacete y pueblos de la provincia?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para ceremonia, cóctel y fiesta en Albacete?',
+          answer: `${location.musicAngle} Por eso en Albacete muchas parejas reservan un bloque elegante para ceremonia y cóctel y un tramo final más potente para banquete o barra libre.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Albacete?',
+          answer: timingAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-jaen':
+      return [
+        {
+          question: '¿Encaja el saxo en haciendas, cortijos o espacios monumentales de Jaén?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Jaén, Úbeda y Baeza?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para ceremonia y cóctel al aire libre en Jaén?',
+          answer: `${location.musicAngle} Por eso en Jaén muchas parejas combinan una ceremonia y un cóctel elegantes entre olivares o en espacios con encanto con una fiesta final más animada.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Se puede personalizar el repertorio para vuestra boda en Jaén?',
+          answer: personalizationAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
+    case 'saxofonista-para-bodas-en-huelva':
+      return [
+        {
+          question: '¿Encaja el saxo en bodas junto al mar, fincas u hoteles de Huelva?',
+          answer: fitAnswer,
+        },
+        {
+          question: '¿Te desplazas para bodas en Huelva y la costa onubense?',
+          answer: travelAnswer,
+        },
+        {
+          question: '¿Puedo contratar saxo para cóctel y barra libre en Huelva?',
+          answer: `${location.musicAngle} Por eso en Huelva muchas parejas combinan un cóctel elegante al aire libre con una fiesta final muy animada junto a DJ.`,
+        },
+        {
+          question: priceQuestion,
+          answer: priceAnswer,
+        },
+        {
+          question: '¿Con cuánta antelación conviene reservar en Huelva?',
+          answer: timingAnswer,
+        },
+        {
+          question: serviceIncludesQuestion,
+          answer: serviceIncludesAnswer,
+        },
+      ];
     case 'saxofonista-para-bodas-en-cadiz':
       return [
         {

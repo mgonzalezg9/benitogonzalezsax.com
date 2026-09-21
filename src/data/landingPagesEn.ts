@@ -70,6 +70,48 @@ const englishCityProfiles: Record<string, EnglishCityProfile> = {
     booking:
       'For Cadiz weddings, it helps to share whether the celebration is by the sea, in a winery or on an estate, plus the performance moments you want.',
   },
+  'saxofonista-para-bodas-en-albacete': {
+    intro:
+      'Albacete brings together weddings in halls, country houses and estates across La Mancha, with long cocktail hours, generous banquets and a final party where the dance floor fills early.',
+    logistics:
+      'The proposal adapts to inland halls and estates, longer distances between the city and the surrounding towns, and banquet schedules that often run all the way to the open bar.',
+    music:
+      'Live saxophone can bring elegance to the ceremony and cocktail hour, then raise the energy for the banquet entrance and party, on its own or alongside a DJ.',
+    venueStyle: 'halls, country houses and estates in Albacete and its province',
+    nearbyContext: 'La Roda, Almansa, Hellin and other nearby areas',
+    fit:
+      'In Albacete, saxophone works especially well in halls and estates, where couples want an elegant ceremony, a cocktail hour with rhythm and a lively finish.',
+    booking:
+      'For Albacete weddings, it helps to share whether the celebration is in the city or in a town of the province, plus the venue and performance moments you want.',
+  },
+  'saxofonista-para-bodas-en-jaen': {
+    intro:
+      'Jaen combines weddings in country houses and estates among the olive groves with celebrations in the monumental city and in the Renaissance towns of Ubeda and Baeza, where the setting calls for elegant music.',
+    logistics:
+      'The proposal adapts to country houses, estates and historic venues, with sometimes long access roads and outdoor ceremonies and cocktail hours where the sound has to suit the surroundings.',
+    music:
+      'Live saxophone can set an elegant tone for the ceremony and cocktail hour among the olive groves or in monumental venues, then build to a stronger banquet, open bar or Sax + DJ moment.',
+    venueStyle: 'country houses, estates, monumental venues and hotels in Jaen, Ubeda and Baeza',
+    nearbyContext: 'Ubeda, Baeza, Linares and other nearby areas',
+    fit:
+      'In Jaen, saxophone works especially well in country houses and historic venues, where couples want an elegant ceremony and an energetic party.',
+    booking:
+      'For Jaen weddings, it helps to share whether the celebration is in the city, in Ubeda and Baeza or on a countryside estate, plus the performance moments you want.',
+  },
+  'saxofonista-para-bodas-en-huelva': {
+    intro:
+      'Huelva brings together seaside weddings on the Costa de la Luz, celebrations in estates and hotels near Punta Umbria, Lepe or El Rompido, and mountain weddings, all with a festive Andalusian mood.',
+    logistics:
+      'The proposal adapts to outdoor setups near the coast, with sound and timing adjusted to the breeze, the sunset light and the real pace of each celebration.',
+    music:
+      'Live saxophone can start elegant for an outdoor ceremony and cocktail hour, then build energy for the banquet, open bar or Sax + DJ format.',
+    venueStyle: 'seaside venues, estates, hotels and halls on the Huelva coast and across the province',
+    nearbyContext: 'Punta Umbria, Lepe, El Rompido and other nearby areas',
+    fit:
+      'In Huelva, saxophone works especially well for seaside weddings, estates and hotels, where couples want elegance in the ceremony and a lively party later.',
+    booking:
+      'For Huelva weddings, it helps to share whether the celebration is on the coast, on an estate or in the mountains, plus the date and performance moments you want.',
+  },
   'saxofonista-para-bodas-en-alicante': {
     intro:
       'Alicante is a Mediterranean wedding destination with sea-view venues, inland estates and celebrations where the cocktail hour often sets the tone for the whole day.',
