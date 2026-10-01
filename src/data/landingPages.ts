@@ -1,4 +1,5 @@
-import { BUSINESS, absoluteUrl, buildWhatsAppHref } from '../lib/site';
+import { BUSINESS, PROBODA_URL, absoluteUrl, buildWhatsAppHref } from '../lib/site';
+import { slugify } from '../lib/typography';
 import type { LocationEntry } from './locations';
 import { getLaunchedLocations } from './locations';
 import {
@@ -117,6 +118,14 @@ export interface LandingPageData {
   recommendedSuppliersTitle?: string;
   recommendedSuppliersIntro?: string;
   breadcrumb?: { label: string; href: string }[];
+  probodaReferral?: ProbodaReferral;
+}
+
+export interface ProbodaReferral {
+  before: string;
+  anchor: string;
+  after: string;
+  href: string;
 }
 
 const sharedTestimonials: LandingTestimonial[] = [
@@ -1119,6 +1128,26 @@ export const buildHomePageData = (): LandingPageData => ({
   ),
 });
 
+// Anchor text deliberately varies per city.
+const probodaReferralCopy: Record<string, [before: string, anchor: string, after: string]> = {
+  alicante: ['Si no tengo disponibilidad puedes ver mi lista de ', 'saxofonistas recomendados en Alicante', ' en mi página Proboda.'],
+  valencia: ['¿Ya tengo tu fecha ocupada? En mi página Proboda puedes comparar ', 'otros saxofonistas para bodas en Valencia', ' y pedir presupuesto a los que estén libres.'],
+  madrid: ['Si tu fecha ya está reservada, consulta los ', 'saxofonistas de Madrid', ' que recomiendo en mi página Proboda.'],
+  sevilla: ['¿No tengo hueco para tu boda? Echa un vistazo a estos ', 'saxofonistas para bodas en Sevilla', ' en mi página Proboda.'],
+  barcelona: ['Si no estoy disponible ese día, en mi página Proboda tienes más ', 'saxofonistas en Barcelona', ' para comparar.'],
+  murcia: ['Si ya tengo la fecha cubierta, puedes contactar con ', 'otros saxofonistas en Murcia', ' a través de mi página Proboda.'],
+  cordoba: ['¿Fecha ocupada? En mi página Proboda encontrarás ', 'saxofonistas disponibles en Córdoba', ' para tu boda.'],
+  granada: ['Si no tengo disponibilidad para tu boda en Granada, puedes buscar otros saxofonistas en mi página de ', 'Proboda', '.'],
+};
+
+const buildProbodaReferral = (location: LocationEntry): ProbodaReferral | undefined => {
+  const citySlug = slugify(location.city);
+  const copy = probodaReferralCopy[citySlug];
+  if (!copy) return undefined;
+  const [before, anchor, after] = copy;
+  return { before, anchor, after, href: `${PROBODA_URL}/saxofonista-para-bodas/${citySlug}` };
+};
+
 export const buildCityPageData = (location: LocationEntry): LandingPageData => {
   const recommendedSuppliers = getRecommendedSuppliersForLocation(location);
 
@@ -1204,5 +1233,6 @@ export const buildCityPageData = (location: LocationEntry): LandingPageData => {
         href: `/${location.slug}`,
       },
     ],
+    probodaReferral: buildProbodaReferral(location),
   };
 };

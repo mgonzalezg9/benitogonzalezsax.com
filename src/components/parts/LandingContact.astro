@@ -125,8 +125,11 @@ const contactFieldLabels = {
               </button>
             </div>
 
-            <p class="text-sm leading-6 text-gray-500">
+            <p class="text-sm leading-6 text-gray-400">
               {t.landing.contact.form.helpText}
+              {page.probodaReferral && (
+                <>{page.probodaReferral.before}<a href={page.probodaReferral.href} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-primary">{page.probodaReferral.anchor}</a>{page.probodaReferral.after}</>
+              )}
             </p>
           </form>
         </div>
