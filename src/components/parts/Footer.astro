@@ -29,18 +29,18 @@ const cityLinks = getLaunchedLocations().map((location) => ({
     </nav>
 
     <div class="mt-8 flex flex-col md:flex-row justify-between items-center">
-      <div class="mb-4 md:mb-0 flex flex-col gap-2">
-        <p class="text-sm">&copy; {new Date().getFullYear()} Benito González García - {t.footer.copyright}</p>
-        <a href={getRouteForLanguage('/politica-de-privacidad', lang)} class="text-sm underline hover:text-accent transition-colors">
-          {t.footer.privacyPolicy}
-        </a>
+      <div class="mb-4 md:mb-0 flex flex-col md:flex-row items-center gap-6">
+        <a href="https://proboda.es/profesional/benito-gonzalez-sax" title="Benito González Sax en Proboda"><img src="/proboda-clara.png" alt="Proboda, proveedores de bodas" width="120" height="120"></a>
+        <div class="flex flex-col gap-2">
+          <p class="text-sm">&copy; {new Date().getFullYear()} Benito González García - {t.footer.copyright}</p>
+          <a href={getRouteForLanguage('/politica-de-privacidad', lang)} class="text-sm underline hover:text-accent transition-colors">
+            {t.footer.privacyPolicy}
+          </a>
+        </div>
       </div>
 
-      <div class="flex items-center gap-6">
-        <a href="https://proboda.es/profesional/benito-gonzalez-sax" title="Benito González Sax en Proboda"><img src="/proboda-clara.png" alt="Proboda, proveedores de bodas" width="120" height="120"></a>
-        <div class="w-[100px] py-4">
-          <Logo />
-        </div>
+      <div class="w-[100px] py-4">
+        <Logo />
       </div>
     </div>
   </div>
